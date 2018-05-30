@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：点我 例如：  输入：”abcabcbb “ 输出：3   输入：”pwwkew “ 输出：3   输入：”aaaaa” 输出：1  问题解法暴力搜索定义一个HashSet，用于存放已经遍历过的字符，然后用两层for循环，第一层for循环主要是遍历子字符串开始的位置，第二层for循环主要是遍历字符串结束的位置，在第二">
+<meta name="description" content="问题描述给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：点我">
 <meta name="keywords" content="leetCode,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetCode-3:Longest Substring Without Repeating Characters">
 <meta property="og:url" content="http://yoursite.com/2018/05/29/leetCode-3/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：点我 例如：  输入：”abcabcbb “ 输出：3   输入：”pwwkew “ 输出：3   输入：”aaaaa” 输出：1  问题解法暴力搜索定义一个HashSet，用于存放已经遍历过的字符，然后用两层for循环，第一层for循环主要是遍历子字符串开始的位置，第二层for循环主要是遍历字符串结束的位置，在第二">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="问题描述给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-29T15:23:23.196Z">
+<meta property="og:updated_time" content="2018-05-30T13:52:39.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetCode-3:Longest Substring Without Repeating Characters">
-<meta name="twitter:description" content="问题描述给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：点我 例如：  输入：”abcabcbb “ 输出：3   输入：”pwwkew “ 输出：3   输入：”aaaaa” 输出：1  问题解法暴力搜索定义一个HashSet，用于存放已经遍历过的字符，然后用两层for循环，第一层for循环主要是遍历子字符串开始的位置，第二层for循环主要是遍历字符串结束的位置，在第二">
+<meta name="twitter:description" content="问题描述给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：点我">
 
 
 
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -126,7 +126,7 @@
 
 
 
-  <title>leetCode-3:Longest Substring Without Repeating Characters | Hexo</title>
+  <title>leetCode-3:Longest Substring Without Repeating Characters | ChunNote</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">ChunNote</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -296,7 +296,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="ChunNote">
     </span>
 
     
@@ -358,6 +358,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -377,6 +382,7 @@
 
       
         <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个字符串，找出其中不包含重复字符的连续最长子字符串的长度。题目链接：<strong><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/description/" target="_blank" rel="noopener">点我</a></strong></p>
+<a id="more"></a>
 <p>例如：</p>
 <blockquote>
 <p>输入：”abcabcbb “</p>
@@ -438,6 +444,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/30/red-black-tree/" rel="prev" title="红黑树">
+                红黑树 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -514,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -525,7 +535,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -536,7 +546,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -607,6 +617,20 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+</div>
+
 
 
 
@@ -700,13 +724,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

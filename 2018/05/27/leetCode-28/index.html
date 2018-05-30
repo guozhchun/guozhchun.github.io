@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。 注意：如果B字符串是空的，返回 0 ，这与String.indexOf函数效果相同 问题解法使用java的String类函数java库中的String类中已经有indexOf函数可以提供查找子字符串的功能，且其查询效果高效，一般情况下，都是使用此函数直">
+<meta name="description" content="问题描述给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。 注意：如果B字符串是空的，返回 0 ，这与String.indexOf函数效果相同">
 <meta name="keywords" content="leetCode,java,kmp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetCode-28:Implement strStr()">
 <meta property="og:url" content="http://yoursite.com/2018/05/27/leetCode-28/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。 注意：如果B字符串是空的，返回 0 ，这与String.indexOf函数效果相同 问题解法使用java的String类函数java库中的String类中已经有indexOf函数可以提供查找子字符串的功能，且其查询效果高效，一般情况下，都是使用此函数直">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="问题描述给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。 注意：如果B字符串是空的，返回 0 ，这与String.indexOf函数效果相同">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-27T15:45:16.253Z">
+<meta property="og:updated_time" content="2018-05-30T13:53:08.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetCode-28:Implement strStr()">
-<meta name="twitter:description" content="问题描述给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。 注意：如果B字符串是空的，返回 0 ，这与String.indexOf函数效果相同 问题解法使用java的String类函数java库中的String类中已经有indexOf函数可以提供查找子字符串的功能，且其查询效果高效，一般情况下，都是使用此函数直">
+<meta name="twitter:description" content="问题描述给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。 注意：如果B字符串是空的，返回 0 ，这与String.indexOf函数效果相同">
 
 
 
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -126,7 +126,7 @@
 
 
 
-  <title>leetCode-28:Implement strStr() | Hexo</title>
+  <title>leetCode-28:Implement strStr() | ChunNote</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">ChunNote</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -296,7 +296,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="ChunNote">
     </span>
 
     
@@ -358,6 +358,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -378,6 +383,7 @@
       
         <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个待匹配的字符串A和匹配的字符串B，要求判断B是否是A的子字符串。如果是则输出匹配的A字符串的起始下标，如果不是子字符串则输出-1。</p>
 <p><em>注意：如果B字符串是空的，返回 0 ，这与<code>String.indexOf</code>函数效果相同</em></p>
+<a id="more"></a>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="使用java的String类函数"><a href="#使用java的String类函数" class="headerlink" title="使用java的String类函数"></a>使用java的String类函数</h2><p>java库中的String类中已经有<code>indexOf</code>函数可以提供查找子字符串的功能，且其查询效果高效，一般情况下，都是使用此函数直接进行查找，无需自己重复造轮子，而且，即使自己造轮子也不一定比其高效。此实现方式代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (haystack == <span class="keyword">null</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> haystack.indexOf(needle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="暴力查询"><a href="#暴力查询" class="headerlink" title="暴力查询"></a>暴力查询</h2><p>当没想到使用库函数时，第一反应是用暴力查询。即对遍历循环A字符串，在每个循环中依次遍历B字符串进行匹配，当全部匹配时，返回A字符串进行匹配的起始下标。循环结束后仍无匹配时返回-1。此种解法的时间复杂度是<code>O(n * m)</code>，其中 n 是A字符串长度，m 是B字符串长度。代码如下</p>
@@ -507,7 +513,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -518,7 +524,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -529,7 +535,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -600,6 +606,20 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+</div>
+
 
 
 
@@ -693,13 +713,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
