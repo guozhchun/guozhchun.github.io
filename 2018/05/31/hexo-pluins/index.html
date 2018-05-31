@@ -87,13 +87,17 @@
 <meta property="og:site_name" content="ChunNote">
 <meta property="og:description" content="hexo官方提供了很多插件方便编写管理文章，以下几个插件是我觉得相对比较好用的插件。 注意：本文均以NexT主题 (version: 5.1.4)为基础进行的配置，不同的主题配置不同">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/05/31/images/registerOAuthApplication.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/31/images/gitmentConfig.png">
-<meta property="og:updated_time" content="2018-05-31T15:18:06.055Z">
+<meta property="og:image" content="http://yoursite.com/images/registerOAuthApplication.png">
+<meta property="og:image" content="http://yoursite.com/images/gitmentConfig.png">
+<meta property="og:image" content="http://yoursite.com/images/busuanzi.png">
+<meta property="og:image" content="http://yoursite.com/images/localSearch.png">
+<meta property="og:image" content="http://yoursite.com/images/imagesDir.png">
+<meta property="og:image" content="http://yoursite.com/images/useImage.png">
+<meta property="og:updated_time" content="2018-05-31T16:53:15.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几个好用的hexo插件">
 <meta name="twitter:description" content="hexo官方提供了很多插件方便编写管理文章，以下几个插件是我觉得相对比较好用的插件。 注意：本文均以NexT主题 (version: 5.1.4)为基础进行的配置，不同的主题配置不同">
-<meta name="twitter:image" content="http://yoursite.com/2018/05/31/images/registerOAuthApplication.png">
+<meta name="twitter:image" content="http://yoursite.com/images/registerOAuthApplication.png">
 
 
 
@@ -399,10 +403,35 @@
 <a id="more"></a>
 <h1 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a>Gitment</h1><p>这个插件主要是用于增加文章的评论的。主要是借助github的issues，文章评论的内容会当成某个仓库issues放在github上。NexT 5.1.4 版本已经集成了这个插件，只需要注册一个OAuth Application，改下主题的相关配置项即可。主要步骤如下</p>
 <h2 id="注册OAuth-Application"><a href="#注册OAuth-Application" class="headerlink" title="注册OAuth Application"></a>注册OAuth Application</h2><p><strong><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">点击此处</a></strong>申请一个新的OAuth Application。如下图所示，需要注意的是Authorization callback URL需要填写自己的hexo网站域名。注册成功后会得到一个<code>Client ID</code>和<code>Client Secret</code>，这两个值是后面配置主题的<code>_config.yml</code>中需要用到的。</p>
-<img class="../images/registerOAuthApplication.png [alt text]">
-<p><img src="../images/registerOAuthApplication.png" alt="register OAuth Application"></p>
+<p><img src="/images/registerOAuthApplication.png" alt="register OAuth Application"></p>
 <h2 id="修改主题的-config-yml配置"><a href="#修改主题的-config-yml配置" class="headerlink" title="修改主题的_config.yml配置"></a>修改主题的_config.yml配置</h2><p>主要是将gitment底下的<code>enable</code>参数改为<code>true</code>，<code>github_user</code>写自己的github用户名，<code>github_repo</code>是用于存放评论内容的issues对应的仓库，必须存在，可以新建一个新的空仓库，也可以放在已有的仓库底下。<code>client_id</code>和<code>client_secret</code>是上一部中申请OAuth Application生成的<code>Client ID</code>和<code>Client Secret</code>。</p>
-<p><img src="../images/gitmentConfig.png" alt="gitment config"></p>
+<p><img src="/images/gitmentConfig.png" alt="gitment config"></p>
+<h1 id="不蒜子"><a href="#不蒜子" class="headerlink" title="不蒜子"></a>不蒜子</h1><p>这个插件主要是用来统计文章和网站的访问量的，具体使用可以参考<strong><a href="http://ibruce.info/2015/04/04/busuanzi" target="_blank" rel="noopener">官网</a></strong>。NexT 5.1.4 版本已经集成了这个插件，只需要将主题下的<code>_config.yml</code>配置文件中<code>busuanzi_count</code>底下的<code>enable</code>参数改成<code>true</code>即可。其他参数可以参考配置文件中的说明进行修改。</p>
+<p><img src="/images/busuanzi.png" alt="busuanzi config"></p>
+<h1 id="hexo-filter-flowchart"><a href="#hexo-filter-flowchart" class="headerlink" title="hexo-filter-flowchart"></a>hexo-filter-flowchart</h1><p>使用这个插件可以很方便的用markdown画出流程图，由于我使用的markdown编辑器是<strong><a href="https://www.typora.io/" target="_blank" rel="noopener">Typora</a></strong>，内部集成了flowcharts.js文件，可以使用其画出流程图，对于需要将这些通过Typora画出的流程图上传到网站上并能正常显示，就需要使用<strong><a href="https://github.com/bubkoo/hexo-filter-flowchart" target="_blank" rel="noopener">hexo-filter-flowchart</a></strong>这个插件了。主要配置如下</p>
+<h2 id="安装flowchart插件"><a href="#安装flowchart插件" class="headerlink" title="安装flowchart插件"></a>安装flowchart插件</h2><p>在<code>${hexoHome}</code>目录下执行以下命令完成安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart</span><br></pre></td></tr></table></figure>
+<h2 id="修改-config-yml配置项"><a href="#修改-config-yml配置项" class="headerlink" title="修改 _config.yml配置项"></a>修改 _config.yml配置项</h2><p>在自己的hexo博客目录底下的 _config.xml 文件中，增加以下的配置项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flowchart:</span><br><span class="line">  # raphael:   # optional, the source url of raphael.js</span><br><span class="line">  # flowchart: # optional, the source url of flowchart.js</span><br><span class="line">  options: # options used for `drawSVG`</span><br></pre></td></tr></table></figure>
+<h1 id="local-search"><a href="#local-search" class="headerlink" title="local_search"></a>local_search</h1><p><strong><a href="https://github.com/theme-next/hexo-generator-searchdb" target="_blank" rel="noopener">local_search</a></strong>这个插件主要是为博客增加搜索功能。主要安装配置如下</p>
+<h2 id="安装hexo-generator-searchdb"><a href="#安装hexo-generator-searchdb" class="headerlink" title="安装hexo-generator-searchdb"></a>安装hexo-generator-searchdb</h2><p>在<code>${hexoHome}</code>目录下执行以下命令安装hexo-generator-searchdb插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<h2 id="修改主题的-config-yml配置-1"><a href="#修改主题的-config-yml配置-1" class="headerlink" title="修改主题的 _config.yml配置"></a>修改主题的 _config.yml配置</h2><p>主要是将<code>local_search</code>底下的<code>enable</code>值改为<code>true</code></p>
+<p><img src="/images/localSearch.png" alt="local search"></p>
+<h1 id="hexo-featured-image"><a href="#hexo-featured-image" class="headerlink" title="hexo-featured-image"></a>hexo-featured-image</h1><p>这个插件主要是使用markdown语法写的图片能够上传到网站上并正常显示的一个插件。只需要安装该插件，然后在<code>${hexoHome}/source</code>目录底下新建一个<code>images</code>目录用于存放图片即可，在引用图片时图片的路径为<code>/images/yourImageName</code>，因为使用<code>hexo g</code>时会将<code>${hexoHome}/source/images</code>底下的图片拷贝到<code>${hexoHome}/public/images目录下</code>。例如：引用图片<code>${hexoHome}/source/images/localSearch.png</code>需要写<code>![](/images/localSearch.png)</code>。这里有点不太好的地方就是引用的图片在markdown上无法显示，因为本地路径不对（但是发布之后路径是对的，因此在线时可以正常显示）。具体配置可以参考<strong><a href="https://github.com/poacher2k/hexo-featured-image" target="_blank" rel="noopener">官网</a></strong>，这里以其最简单的配置进行说明（不修改 _config.yml文件）</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>在<code>${hexoHome}</code>目录下执行以下命令完成安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-featured-image</span><br></pre></td></tr></table></figure>
+<h2 id="新建images目录"><a href="#新建images目录" class="headerlink" title="新建images目录"></a>新建images目录</h2><p>在<code>${hexoHome}/source</code>目录下新建<code>images</code>目录</p>
+<p><img src="/images/imagesDir.png" alt="create image directory"></p>
+<h2 id="引用图片"><a href="#引用图片" class="headerlink" title="引用图片"></a>引用图片</h2><p>在需要引用图片的地方使用markdown的格式进行引用，需要注意的是引用图片的路径必须为<code>/images/yourImageName</code>。例如引用<code>localSearch.png</code>文件应该写<code>![local search](/images/localSearch.png)</code>。</p>
+<p><img src="/images/useImage.png" alt="use image"></p>
+<h1 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h1><ol>
+<li><a href="https://imsun.net/posts/gitment-introduction/" target="_blank" rel="noopener">https://imsun.net/posts/gitment-introduction</a></li>
+<li><a href="http://ibruce.info/2015/04/04/busuanzi" target="_blank" rel="noopener">http://ibruce.info/2015/04/04/busuanzi</a></li>
+<li><a href="https://github.com/bubkoo/hexo-filter-flowchart" target="_blank" rel="noopener">https://github.com/bubkoo/hexo-filter-flowchart</a></li>
+<li><a href="https://github.com/theme-next/hexo-generator-searchdb" target="_blank" rel="noopener">https://github.com/theme-next/hexo-generator-searchdb</a></li>
+<li><a href="https://github.com/poacher2k/hexo-featured-image" target="_blank" rel="noopener">https://github.com/poacher2k/hexo-featured-image</a></li>
+</ol>
 
       
     </div>
@@ -582,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gitment"><span class="nav-number">1.</span> <span class="nav-text">Gitment</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册OAuth-Application"><span class="nav-number">1.1.</span> <span class="nav-text">注册OAuth Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主题的-config-yml配置"><span class="nav-number">1.2.</span> <span class="nav-text">修改主题的_config.yml配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gitment"><span class="nav-number">1.</span> <span class="nav-text">Gitment</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册OAuth-Application"><span class="nav-number">1.1.</span> <span class="nav-text">注册OAuth Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主题的-config-yml配置"><span class="nav-number">1.2.</span> <span class="nav-text">修改主题的_config.yml配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不蒜子"><span class="nav-number">2.</span> <span class="nav-text">不蒜子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-filter-flowchart"><span class="nav-number">3.</span> <span class="nav-text">hexo-filter-flowchart</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装flowchart插件"><span class="nav-number">3.1.</span> <span class="nav-text">安装flowchart插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-config-yml配置项"><span class="nav-number">3.2.</span> <span class="nav-text">修改 _config.yml配置项</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#local-search"><span class="nav-number">4.</span> <span class="nav-text">local_search</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo-generator-searchdb"><span class="nav-number">4.1.</span> <span class="nav-text">安装hexo-generator-searchdb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主题的-config-yml配置-1"><span class="nav-number">4.2.</span> <span class="nav-text">修改主题的 _config.yml配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-featured-image"><span class="nav-number">5.</span> <span class="nav-text">hexo-featured-image</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装插件"><span class="nav-number">5.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建images目录"><span class="nav-number">5.2.</span> <span class="nav-text">新建images目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用图片"><span class="nav-number">5.3.</span> <span class="nav-text">引用图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考来源"><span class="nav-number">6.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
             
 
           </div>
