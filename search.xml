@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>几个好用的hexo插件</title>
+      <link href="/2018/05/31/hexo-pluins/"/>
+      <url>/2018/05/31/hexo-pluins/</url>
+      <content type="html"><![CDATA[<p>hexo官方提供了很多<strong><a href="https://hexo.io/plugins/" target="_blank" rel="noopener">插件</a></strong>方便编写管理文章，以下几个插件是我觉得相对比较好用的插件。</p><p><em>注意：本文均以<strong><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT</a></strong>主题 (version: 5.1.4)为基础进行的配置，不同的主题配置不同</em></p><a id="more"></a><h1 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a>Gitment</h1><p>这个插件主要是用于增加文章的评论的。主要是借助github的issues，文章评论的内容会当成某个仓库issues放在github上。NexT 5.1.4 版本已经集成了这个插件，只需要注册一个OAuth Application，改下主题的相关配置项即可。主要步骤如下</p><h2 id="注册OAuth-Application"><a href="#注册OAuth-Application" class="headerlink" title="注册OAuth Application"></a>注册OAuth Application</h2><p><strong><a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">点击此处</a></strong>申请一个新的OAuth Application。如下图所示，需要注意的是Authorization callback URL需要填写自己的hexo网站域名。注册成功后会得到一个<code>Client ID</code>和<code>Client Secret</code>，这两个值是后面配置主题的<code>_config.yml</code>中需要用到的。</p><img class="../images/registerOAuthApplication.png [alt text]"><p><img src="../images/registerOAuthApplication.png" alt="register OAuth Application"></p><h2 id="修改主题的-config-yml配置"><a href="#修改主题的-config-yml配置" class="headerlink" title="修改主题的_config.yml配置"></a>修改主题的_config.yml配置</h2><p>主要是将gitment底下的<code>enable</code>参数改为<code>true</code>，<code>github_user</code>写自己的github用户名，<code>github_repo</code>是用于存放评论内容的issues对应的仓库，必须存在，可以新建一个新的空仓库，也可以放在已有的仓库底下。<code>client_id</code>和<code>client_secret</code>是上一部中申请OAuth Application生成的<code>Client ID</code>和<code>Client Secret</code>。</p><p><img src="../images/gitmentConfig.png" alt="gitment config"></p>]]></content>
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> 插件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>红黑树</title>
       <link href="/2018/05/30/red-black-tree/"/>
       <url>/2018/05/30/red-black-tree/</url>
