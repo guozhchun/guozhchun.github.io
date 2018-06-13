@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="leetCode,java," />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="问题描述  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：点我">
-<meta name="keywords" content="leetCode,java">
+<meta name="description" content="定义策略模式定义了算法族，分别分装起来，让他们之间可以互相替换，此模式让算法的变化独立与使用算法的客户。这是《Head Fisrst 设计模式》里面的定义，有点拗口不好理解。我的理解是策略模式是让一个类拥有某个接口类的变量，在调用某个函数时，调用接口类变量里的接口函数，当这个类拥有的接口类的变量所指向的具体的实现类不同时可以产生不一样的效果，这个过程中，类调用接口变量的接口函数，并不需要知道接口变">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-78:Subsets">
-<meta property="og:url" content="http://yoursite.com/2018/06/11/leetCode-78/index.html">
+<meta property="og:title" content="策略模式">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/strategyPattern/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：点我">
+<meta property="og:description" content="定义策略模式定义了算法族，分别分装起来，让他们之间可以互相替换，此模式让算法的变化独立与使用算法的客户。这是《Head Fisrst 设计模式》里面的定义，有点拗口不好理解。我的理解是策略模式是让一个类拥有某个接口类的变量，在调用某个函数时，调用接口类变量里的接口函数，当这个类拥有的接口类的变量所指向的具体的实现类不同时可以产生不一样的效果，这个过程中，类调用接口变量的接口函数，并不需要知道接口变">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-11T15:22:09.118Z">
+<meta property="og:image" content="http://yoursite.com/images/strategyPatternUML.png">
+<meta property="og:image" content="http://yoursite.com/images/strategyPatternSampleUML.png">
+<meta property="og:image" content="http://yoursite.com/images/strategyPatternSampleOutput.png">
+<meta property="og:updated_time" content="2018-06-13T13:45:05.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-78:Subsets">
-<meta name="twitter:description" content="问题描述  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：点我">
+<meta name="twitter:title" content="策略模式">
+<meta name="twitter:description" content="定义策略模式定义了算法族，分别分装起来，让他们之间可以互相替换，此模式让算法的变化独立与使用算法的客户。这是《Head Fisrst 设计模式》里面的定义，有点拗口不好理解。我的理解是策略模式是让一个类拥有某个接口类的变量，在调用某个函数时，调用接口类变量里的接口函数，当这个类拥有的接口类的变量所指向的具体的实现类不同时可以产生不一样的效果，这个过程中，类调用接口变量的接口函数，并不需要知道接口变">
+<meta name="twitter:image" content="http://yoursite.com/images/strategyPatternUML.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/11/leetCode-78/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/strategyPattern/"/>
 
 
 
 
 
-  <title>leetCode-78:Subsets | ChunNote</title>
+  <title>策略模式 | ChunNote</title>
   
 
 
@@ -287,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/leetCode-78/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/strategyPattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-78:Subsets</h1>
+          <h1 class="post-title" itemprop="name headline">策略模式</h1>
         
 
         <div class="post-meta">
@@ -316,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:02:48+08:00">
-                2018-06-11 23:02:48
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T20:12:05+08:00">
+                2018-06-13 20:12:05
               </time>
             
 
@@ -332,8 +336,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-11T23:22:09+08:00">
-                2018-06-11 23:22:09
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-13T21:45:05+08:00">
+                2018-06-13 21:45:05
               </time>
             
           </span>
@@ -351,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetCode</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -369,8 +373,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/11/leetCode-78/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/11/leetCode-78/" itemprop="commentsCount"></span>
+                <a href="/2018/06/13/strategyPattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/13/strategyPattern/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -403,14 +407,27 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：<strong><a href="https://leetcode.com/problems/subsets/description/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>策略模式定义了算法族，分别分装起来，让他们之间可以互相替换，此模式让算法的变化独立与使用算法的客户。这是《Head Fisrst 设计模式》里面的定义，有点拗口不好理解。我的理解是策略模式是让一个类拥有某个接口类的变量，在调用某个函数时，调用接口类变量里的接口函数，当这个类拥有的接口类的变量所指向的具体的实现类不同时可以产生不一样的效果，这个过程中，类调用接口变量的接口函数，并不需要知道接口变量代表的是哪个具体实现，而且也可以改变接口变量所指向的具体实现类来达到不同的效果，可以很好的实现封装效果，也留下了很好的扩展性。</p>
 <a id="more"></a>
-<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：[1,2,3]</p>
-<p>输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]</p>
-</blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此问题可以转换成以下的解法：求出[1,2,3,…n-1]的所有子集合，对这每个子集合都加上[n]这个数得到新的包含[n]的集合，将这些集合合并就是[1,2,3,…n]的所有子集合。从这个过程来看，是一个递归的过程，但是可以将其转成递推，主要做法是先放入一个空集合，然后对数组中的每个数，都取出数组前面的数的所有子集合，然后加上这个数得到新的集合，再将这些集合合并得到截至数组目前这个数的所有子集合。代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) </span><br><span class="line">    &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        result.add(<span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> size = result.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; size; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                List&lt;Integer&gt; multiNumList = <span class="keyword">new</span> LinkedList&lt;&gt;(result.get(j));</span><br><span class="line">                multiNumList.add(nums[i]);</span><br><span class="line">                result.add(multiNumList);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h1><p><img src="/images/strategyPatternUML.png" alt="策略模式类图"></p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>此处以吃鸡游戏中的角色和武器为例。假设游戏中有两个玩家：Alice和Bob，有两种武器：枪和刀。Alice和Bob可以拿任何一种武器攻击对方，也可以在中途更换武器。</p>
+<h2 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h2><p><img src="/images/strategyPatternSampleUML.png" alt="策略模式例子类图"></p>
+<h2 id="Weapon接口类"><a href="#Weapon接口类" class="headerlink" title="Weapon接口类"></a>Weapon接口类</h2><p>这个接口类主要是定义行为的，主要是让持有者类通过调用接口方法实现具体行为。此例中就是让Person类持有这个接口类的引用，通过引用调用接口方法实现不同武器的不同攻击效果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Weapon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Gun实现类"><a href="#Gun实现类" class="headerlink" title="Gun实现类"></a>Gun实现类</h2><p>这个类是接口类Weapon的一个实现类，用于模拟枪的攻击效果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gun</span> <span class="keyword">implements</span> <span class="title">Weapon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Gun Attacking..."</span>);</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Knife实现类"><a href="#Knife实现类" class="headerlink" title="Knife实现类"></a>Knife实现类</h2><p>这个类是接口类Weapon的一个实现类，用于模拟刀的攻击效果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Knife</span> <span class="keyword">implements</span> <span class="title">Weapon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Knife Attacking..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Person类"><a href="#Person类" class="headerlink" title="Person类"></a>Person类</h2><p>Person类拥有Weapon接口，方法attackOthers调用接口对象weapon中的接口函数attack实现攻击别人的目的。changeWeapon函数用于改变weapon的行为。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Weapon weapon;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(Weapon weapon)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.weapon = weapon;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attackOthers</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        weapon.attack();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changeWeapon</span><span class="params">(Weapon weapon)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.weapon = weapon;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="验证程序"><a href="#验证程序" class="headerlink" title="验证程序"></a>验证程序</h2><p>首先，初始化Gun和Knife两个武器类，然后初始化Alice和Bob两个玩家。在初始化Alice时给Alice一把刀，在初始化Bob时给Bob一把枪。</p>
+<p>接着，Alice使用自己的武器（刀）攻击Bob。Bob受到攻击后，也使用自己的武器（枪）进行反击。</p>
+<p>最后，Alice发现刀打不过枪，决定更换武器枪，然后使用现在的武器（枪）给Bob致命一击，成功吃鸡。</p>
+<p>程序如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStrategy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 初始化武器和角色</span></span><br><span class="line">        System.out.println(<span class="string">"----Game Begin!----"</span>);</span><br><span class="line">        Weapon gun = <span class="keyword">new</span> Gun();</span><br><span class="line">        Weapon knife = <span class="keyword">new</span> Knife();</span><br><span class="line">        System.out.println(<span class="string">"----Alice enter the game with a knife----"</span>);</span><br><span class="line">        Person alice = <span class="keyword">new</span> Person(knife);</span><br><span class="line">        System.out.println(<span class="string">"----Bob enter the game with a gun----"</span>);</span><br><span class="line">        Person bob = <span class="keyword">new</span> Person(gun);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Alice用刀偷袭了Bob</span></span><br><span class="line">        System.out.println(<span class="string">"----Alice attack Bob----"</span>);</span><br><span class="line">        alice.attackOthers();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Bob发现有人偷袭，转身给对方一枪</span></span><br><span class="line">        System.out.println(<span class="string">"----Bob attack Alice----"</span>);</span><br><span class="line">        bob.attackOthers();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Alice发现刀的杀伤力不够，更换枪</span></span><br><span class="line">        System.out.println(<span class="string">"----Alice change weapon to gun----"</span>);</span><br><span class="line">        alice.changeWeapon(gun);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Alice更换枪后，给Bob致命一击</span></span><br><span class="line">        System.out.println(<span class="string">"----Alice attack Bob----"</span>);</span><br><span class="line">        alice.attackOthers();</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"----Game Over! Alice Win!----"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下</p>
+<p><img src="/images/strategyPatternSampleOutput.png" alt="策略模式例子输出结果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] Eric Freeman等，Head First 设计模式（中文版）[M]，北京：中国电力出版社，2007</p>
 
       
     </div>
@@ -428,9 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
-          
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -443,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/10/leetCode-60/" rel="next" title="leetCode-60:Permutation Sequence">
-                <i class="fa fa-chevron-left"></i> leetCode-60:Permutation Sequence
+              <a href="/2018/06/12/leetCode-90/" rel="next" title="leetCode-90:Subsets II">
+                <i class="fa fa-chevron-left"></i> leetCode-90:Subsets II
               </a>
             
           </div>
@@ -453,8 +468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/12/leetCode-90/" rel="prev" title="leetCode-90:Subsets II">
-                leetCode-90:Subsets II <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/13/leetCode-91/" rel="prev" title="leetCode-91:Decode Ways">
+                leetCode-91:Decode Ways <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -594,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类图"><span class="nav-number">2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类图-1"><span class="nav-number">3.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weapon接口类"><span class="nav-number">3.2.</span> <span class="nav-text">Weapon接口类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gun实现类"><span class="nav-number">3.3.</span> <span class="nav-text">Gun实现类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Knife实现类"><span class="nav-number">3.4.</span> <span class="nav-text">Knife实现类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Person类"><span class="nav-number">3.5.</span> <span class="nav-text">Person类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证程序"><span class="nav-number">3.6.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
