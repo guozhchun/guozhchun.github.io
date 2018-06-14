@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[java8中ArrayList实现原理]]></title>
+    <url>%2F2018%2F06%2F14%2FArrayList%2F</url>
+    <content type="text"><![CDATA[概述ArrayList是常用的数据结构，在java8中，其主要是通过数组来实现的。在插入一个元素时会先判断数组容量是否还能放置元素，如果不能，则进行扩容。本文主要分析add、get、set、remove方法。 一些成员变量1234567891011// 默认的初始化数组大小private static final int DEFAULT_CAPACITY = 10;// 空数组，主要用于new ArrayList&lt;&gt;()的情况 private static final Object[] EMPTY_ELEMENTDATA = &#123;&#125;;// 数组数据结构，用于存放ArrayList的元素transient Object[] elementData; // non-private to simplify nested class access// 当前ArrayList的元素个数private int size; add方法add(E e)方法大致流程 代码1234567891011121314151617181920212223242526272829303132333435363738public boolean add(E e) &#123; // 保证数组大小能够放置新元素，必要时进行扩容 ensureCapacityInternal(size + 1); // Increments modCount!! // 在数组末端增加新元素 elementData[size++] = e; return true;&#125;private void ensureCapacityInternal(int minCapacity) &#123; // 如果数组是空数组，第一次增加元素时取默认初始大小 if (elementData == EMPTY_ELEMENTDATA) &#123; minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity); &#125; ensureExplicitCapacity(minCapacity);&#125;private void ensureExplicitCapacity(int minCapacity) &#123; modCount++; // 当前数组已经满了，要增加新元素，只能扩容 if (minCapacity - elementData.length &gt; 0) grow(minCapacity);&#125;// 数组扩容的函数private void grow(int minCapacity) &#123; // overflow-conscious code int oldCapacity = elementData.length; // 新的数组大小为原先数组大小的 1.5 倍 int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); if (newCapacity - minCapacity &lt; 0) newCapacity = minCapacity; if (newCapacity - MAX_ARRAY_SIZE &gt; 0) newCapacity = hugeCapacity(minCapacity); // 拷贝原先数组元素 elementData = Arrays.copyOf(elementData, newCapacity);&#125; add(int index, E e)方法这个方法与add(E e)方法类似，只不过在函数刚开始的地方多了个边界检查，在确保数组能够放置新元素后面增加了下标元素及其后面的元素向后移动一位的操作。 1234567891011public void add(int index, E element) &#123; // 边界检查 rangeCheckForAdd(index); // 确保数组能够放置新元素，必要时进行 1.5 倍大小的扩容 ensureCapacityInternal(size + 1); // Increments modCount!! // 从下标开始的元素均向后移动一位 System.arraycopy(elementData, index, elementData, index + 1, size - index); // 在下标的位置放置新元素 elementData[index] = element; size++;&#125; get方法get方法很简单，就是检查下标的边界，然后直接取数组下标的元素返回。 123456789101112public E get(int index) &#123; // 边界检查 rangeCheck(index); // 返回数组下标所对应元素的值 return elementData(index);&#125;// 返回数组下标所对应元素的值@SuppressWarnings("unchecked")E elementData(int index) &#123; return (E) elementData[index];&#125; set方法set方法也很简单，也是先检查下标的边界，然后先取出原有下标的元素，再直接替换新的元素，最后将原先的元素返回。 123456789public E set(int index, E element) &#123; // 边界检查 rangeCheck(index); // 取出下标对应的老元素 E oldValue = elementData(index); // 替换下标元素 elementData[index] = element; return oldValue;&#125; remove方法remove(int index)方法根据下标删除元素，首先进行边界检查，然后取出下标对应的元素，再将这个元素后面的元素都向前移动一位，接着将数组最后一个元素置空以便垃圾回收器能够回收该对象，最后将下标指向的原先的对象返回。 1234567891011121314151617public E remove(int index) &#123; // 边界检查 rangeCheck(index); modCount++; // 取出原先下标对应的值 E oldValue = elementData(index); int numMoved = size - index - 1; if (numMoved &gt; 0) // 将下标后面的元素向前移动一位 System.arraycopy(elementData, index+1, elementData, index, numMoved); // 将数组最后一个元素置空，以便垃圾回收器进行回收 elementData[--size] = null; // clear to let GC do its work return oldValue;&#125; remove(Object o)方法根据对象删除对象的方法主要是根据对象是否是空的进行分别处理。 删除的对象是null，则查找数组中的元素，如果有null元素，则将第一个null元素删除 删除的对象不是null，则根据equals方法将对象与数组中的元素进行比较，将第一个相等的元素删除 1234567891011121314151617181920212223242526272829public boolean remove(Object o) &#123; if (o == null) &#123; // 查找数组的null元素，找到时将第一个null元素删除 for (int index = 0; index &lt; size; index++) if (elementData[index] == null) &#123; fastRemove(index); return true; &#125; &#125; else &#123; // 根据equals方法将对象与数组元素进行比较，将第一个相等的元素删除 for (int index = 0; index &lt; size; index++) if (o.equals(elementData[index])) &#123; fastRemove(index); return true; &#125; &#125; return false;&#125;// 将下标后面的元素向前移动一位，将数组最后一个元素置空，以便垃圾回收器进行回收private void fastRemove(int index) &#123; modCount++; int numMoved = size - index - 1; if (numMoved &gt; 0) // 将下标后面的元素向前移动一位 System.arraycopy(elementData, index+1, elementData, index, numMoved); // 将数组最后一个元素置空，以便垃圾回收器进行回收 elementData[--size] = null; // clear to let GC do its work&#125; 其他 ArrayList允许增加null对象 ArrayList允许添加重复对象 ArrayList对象是有序的，新增的对象在尾部 ArrayList不是线程安全的，需要在外部调用的地方手动保证线程安全。因为在add函数中有size++的操作，当有两个线程同时调用add函数时，假设A线程已经在对应的位置上放置了元素，但是size还未加一，此时切换到B线程执行add函数直到结束，size加一了，切回A线程执行size++，此时A线程中的size值还是原先的没有经过B线程加一的值，在A线程执行完size++后，此时size只会加一而不会加二，从而导致数据丢失。start=>start: Start isArrayEmpty=>condition: 数组是否为空 reCalcMinCapacity=>operation: 重新计算minCapacity 大小,取 DEFAULT_CAPACITY 和minCapacity 的最大值 isResize=>condition: minCapacity大于 当前数组大小 resize=>operation: 扩容数组为原先的1.5倍 addObj=>operation: 往数组末尾中加入元素 end=>end: End start->isArrayEmpty(yes)->reCalcMinCapacity->isResize(yes)->resize->addObj->end isArrayEmpty(no)->isResize(no)->addObj{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12} var code = document.getElementById("flowchart-0-code").value; var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value)); var diagram = flowchart.parse(code); diagram.drawSVG("flowchart-0", options);]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-91:Decode Ways]]></title>
     <url>%2F2018%2F06%2F13%2FleetCode-91%2F</url>
     <content type="text"><![CDATA[问题描述用数字1~26代表大写字母A~Z，输入一个非空的数字字符串，要求输出这个数字字符串转成大写字母时有多少种转换的方式。题目链接：点我 样例输入输出 输入：”12” 输出：2 输入：”226” 输出：3 输入：”302” 输出：0 问题解法此题可以转换为已知一个字符串的的转换方式数，求当加入一个新的字符组成一个新的字符串时的转换方式数。这很明显可以使用递归或动态规划解法。此处用动态规划进行求解。假设用 f(n) 表示前 n 个数的转换方式数，则可以得出以下的动态规划方程 如果第 n 个数是0 如果第 n - 1个数是1或者2，则 f(n) = f(n - 2)，因为只能把最后两个数一起转换 否则，f(n) = 0，此时没有任何转换方式满足 如果第 n 个数不是 0，第 n - 1个数是 0，则 f(n) = f(n - 1)，因为最后一个数必须单独进行转换 如果第 n 个数和第 n - 1个数都不是0 如果第 n - 1个数和第n - 2个数构成的数字小于等于26，则 f(n) = f(n - 1) + f(n - 2)，因为此时可以将最后两个数一起转换，也可以将最后一个数单独转换，如果是最后两个数一起转换，则转换方式有 f(n - 2)，如果是将最后一个数单独转换，则转换方式有 f(n - 1) 如果第 n - 1个数和第n - 2个数构成的数字大于26，则 f(n) = f(n - 1)，因为此时只能将最后一个数单独转换 初始化时，f(0) = 1, f(1) = 0(当前位是0，前一位大于2)，或 f(1) = 1(当前位是0，前一位是1或2，或当前位不是0且与前一位构成数字大于26)，或 f(1) = 2(当前位不是0，且与前一位构成的数字小于等于26) 代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566class Solution &#123; public int numDecodings(String s) &#123; int size = s.length(); if (size == 0 || s.startsWith("0")) &#123; return 0; &#125; if (size == 1) &#123; return 1; &#125; // a[i] 表示截止到i位置的拆分数 int[] a = new int[size]; a[0] = 1; a[1] = 1; if (s.charAt(1) == '0' &amp;&amp; s.charAt(0) != '1' &amp;&amp; s.charAt(0) != '2') &#123; a[1] = 0; &#125; else if (Integer.parseInt(s.substring(0, 2)) &lt;= 26 &amp;&amp; s.charAt(1) != '0') &#123; a[1] = 2; &#125; for (int i = 2; i &lt; size; i++) &#123; // 当前位是0，需要检查是否可以和前一位构成10或者20 // 如果可以，则拆分的数等于截止到前两个数的拆分数 // 否则，拆分数为0 if (s.charAt(i) == '0') &#123; if (s.charAt(i - 1) == '1' || s.charAt(i - 1) == '2') &#123; a[i] = a[i - 2]; &#125; else &#123; a[i] = 0; &#125; &#125; // 如果当前位不等于0，则判断前一位是否是0 // 如果是0，则拆分数等于截止前一位的拆分数 else if (s.charAt(i - 1) == '0') &#123; a[i] = a[i - 1]; &#125; // 如果当前位和前一位都不等于0，需要判断是否和前一位构成的数小于等于26 // 如果小于等于26，则拆分数为截止到前一个数的拆分数加上截止到前两个数的拆分数 // 否则，拆分数为截止到前一个数的拆分数 else if (Integer.parseInt(s.substring(i - 1, i + 1)) &lt;= 26) &#123; a[i] = a[i - 1] + a[i - 2]; &#125; else &#123; a[i] = a[i - 1]; &#125; &#125; return a[size - 1]; &#125;&#125;]]></content>
@@ -8,8 +19,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -31,8 +42,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -43,8 +54,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -55,8 +66,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -67,8 +78,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -79,8 +90,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -102,8 +113,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -114,8 +125,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -159,8 +170,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -195,8 +206,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -207,8 +218,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -219,8 +230,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -231,8 +242,8 @@
         <category>leetCode</category>
       </categories>
       <tags>
-        <tag>leetCode</tag>
         <tag>java</tag>
+        <tag>leetCode</tag>
         <tag>kmp</tag>
       </tags>
   </entry>
