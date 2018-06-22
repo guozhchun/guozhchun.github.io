@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/images/designPattern/adapterPattern/classAdapterPatternSampleUML.png">
 <meta property="og:image" content="http://yoursite.com/images/designPattern/adapterPattern/classAdapterPatternSampleOutput.png">
 <meta property="og:image" content="http://yoursite.com/images/designPattern/adapterPattern/adapterPatternCompareWithCommandPatternUML.png">
-<meta property="og:updated_time" content="2018-06-22T15:57:09.488Z">
+<meta property="og:updated_time" content="2018-06-22T16:05:32.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式">
 <meta name="twitter:description" content="定义 适配器模式将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-22T23:57:09+08:00">
-                2018-06-22 23:57:09
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-23T00:05:32+08:00">
+                2018-06-23 00:05:32
               </time>
             
           </span>
@@ -418,11 +418,11 @@
 <p>适配器有两种，一种是对象适配器，一种是类适配器。</p>
 <a id="more"></a>
 <h1 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h1><h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="/images/designPattern/adapterPattern/adapterPatternUML.png" alt="适配器模式类图"></p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>此处以射击类游戏为例。假设有两种武器：刀和枪，刀有刺杀（stab）功能，枪有开枪（fire）的功能，现在用枪的开枪功能模拟刀的刺杀功能，也就是在调用stab函数时实际上是调用的fire函数。</p>
-<h3 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/designPattern/adapterPattern/adapterPatternSampleUML.png" alt="适配器模式例子类图"></p>
 <blockquote>
 <p>说明：此图参考《Head First 设计模式》画出</p>
 </blockquote>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>此处以射击类游戏为例。假设有两种武器：刀和枪，刀有刺杀（stab）功能，枪有开枪（fire）的功能，现在用枪的开枪功能模拟刀的刺杀功能，也就是在调用stab函数时实际上是调用的fire函数。</p>
+<h3 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/designPattern/adapterPattern/adapterPatternSampleUML.png" alt="适配器模式例子类图"></p>
 <h3 id="目标接口"><a href="#目标接口" class="headerlink" title="目标接口"></a>目标接口</h3><p>此处是用枪来模拟刀，所以目标接口是刀的接口。此处用StabAction接口类来表示，接口中只有一个stab抽象函数，用来表示刺杀行为。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">StabAction</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">stab</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="目标接口实现类"><a href="#目标接口实现类" class="headerlink" title="目标接口实现类"></a>目标接口实现类</h3><p>目标接口实现类是Knife类，实现stab接口，表示刀的刺杀行为</p>
@@ -435,12 +435,12 @@
 <p>输出如下</p>
 <p><img src="/images/designPattern/adapterPattern/adapterPatternSampleOutput.png" alt="适配器模式例子输出结果"></p>
 <h1 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h1><h2 id="类图-2"><a href="#类图-2" class="headerlink" title="类图"></a>类图</h2><p><img src="/images/designPattern/adapterPattern/classAdapterPatternUML.png" alt="类适配器模式类图"></p>
-<p>对比类图可以发现，类适配器主要是使用继承实现的，即让适配器类继承被适配器类；而对象适配器主要是使用组合实现的，即让适配器拥有被适配者类。</p>
-<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><p>此处仍以对象适配器的例子进行说明比较。</p>
-<h3 id="类图-3"><a href="#类图-3" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/designPattern/adapterPattern/classAdapterPatternSampleUML.png" alt="类适配器模式例子类图"></p>
 <blockquote>
 <p>说明：此图参考《Head First 设计模式》画出</p>
 </blockquote>
+<p>对比类图可以发现，类适配器主要是使用继承实现的，即让适配器类继承被适配器类；而对象适配器主要是使用组合实现的，即让适配器拥有被适配者类。</p>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><p>此处仍以对象适配器的例子进行说明比较。</p>
+<h3 id="类图-3"><a href="#类图-3" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/designPattern/adapterPattern/classAdapterPatternSampleUML.png" alt="类适配器模式例子类图"></p>
 <h3 id="目标接口-1"><a href="#目标接口-1" class="headerlink" title="目标接口"></a>目标接口</h3><p>与对象适配器中例子的目标接口相同</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">StabAction</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">stab</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="目标接口实现类-1"><a href="#目标接口实现类-1" class="headerlink" title="目标接口实现类"></a>目标接口实现类</h3><p>与对象适配器中例子的目标接口实现类相同</p>
@@ -453,8 +453,8 @@
 <p>输出如下</p>
 <p><img src="/images/designPattern/adapterPattern/classAdapterPatternSampleOutput.png" alt="类适配器模式例子输出结果"></p>
 <p>可以看出，类适配器和对象适配器的输出结果是相同的</p>
-<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>对象适配器和类适配器都能在不改变原有接口的情况下实现接口的通信，完成一个接口到另一个接口的转换。但是对象适配器使用的是组合，而类适配器使用的是继承。使用组合不仅可以适配某个类，也可以适配该类的任何子类，而使用继承则不需要可以覆盖被适配者的行为。然而，由于java不支持多继承，且本着“组合优于继承”的原则，还是建议多使用对象适配器的方式，少使用类适配器的方式。</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="与命令模式比较"><a href="#与命令模式比较" class="headerlink" title="与命令模式比较"></a>与命令模式比较</h2><p>命令模式是将“请求”进行封装成一个命令对象，让调用者持有这个命令对象，调用者通过调用命令对象提供的接口让命令对象持有的实现者完成特定的操作。这个过程中，命令对象就相当与一个适配器的作用，对比命令模式的类图和适配器的类图也可以看出，调用者 -&gt; 命令对象 -&gt; 实现者 这三者就是一个适配器模式的类图，如下图所示</p>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>对象适配器和类适配器都能在不改变原有接口的情况下实现接口的通信，完成一个接口到另一个接口的转换。但是对象适配器使用的是组合，而类适配器使用的是继承。使用组合不仅可以适配某个类，也可以适配该类的任何子类，而使用继承则可以覆盖被适配者的行为。然而，由于java不支持多继承，且本着“组合优于继承”的原则，还是建议多使用对象适配器的方式，少使用类适配器的方式。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="与命令模式比较"><a href="#与命令模式比较" class="headerlink" title="与命令模式比较"></a>与命令模式比较</h2><p>命令模式是将“请求”封装成一个命令对象，让调用者持有这个命令对象，调用者通过调用命令对象提供的接口让命令对象持有的实现者完成特定的操作。这个过程中，命令对象就相当于一个适配器的作用，对比命令模式的类图和适配器的类图也可以看出，调用者 -&gt; 命令对象 -&gt; 实现者 这三者就是一个适配器模式的类图，如下图所示</p>
 <p><img src="/images/designPattern/adapterPattern/adapterPatternCompareWithCommandPatternUML.png" alt="命令模式与适配器模式类图比较"></p>
 <h2 id="与装饰者模式比较"><a href="#与装饰者模式比较" class="headerlink" title="与装饰者模式比较"></a>与装饰者模式比较</h2><p>装饰者模式是对一个装饰对象新增功能，用来装饰的对象不但继承了装饰者对象，同时也拥有装饰者对象作为一个属性。对于适配者模式而言，适配器实现目标接口，同时继承或组合被装饰者。即装饰者模式对同一个对象同时应用了继承和组合，而适配器模式对同一个对象只会运用继承或组合中的一种。另外，从功能角度而言，装饰者模式是为对象附上新的功能，不会进行接口的转换，而适配器模式一定会对接口进行转换，不会为对象附上新的功能。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] Eric Freeman等，Head First 设计模式（中文版）[M]，北京：中国电力出版社，2007</p>
