@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,leetCode," />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="问题描述  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：点我">
-<meta name="keywords" content="java,leetCode">
+<meta name="description" content="定义 模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-78:Subsets">
-<meta property="og:url" content="http://yoursite.com/2018/06/11/leetCode-78/index.html">
+<meta property="og:title" content="模板方法模式">
+<meta property="og:url" content="http://yoursite.com/2018/06/23/template-pattern/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：点我">
+<meta property="og:description" content="定义 模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-11T15:22:09.118Z">
+<meta property="og:image" content="http://yoursite.com/images/designPattern/templatePattern/UML.png">
+<meta property="og:image" content="http://yoursite.com/images/designPattern/templatePattern/sampleUML.png">
+<meta property="og:image" content="http://yoursite.com/images/designPattern/templatePattern/sampleOutput.png">
+<meta property="og:updated_time" content="2018-06-23T09:45:16.238Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-78:Subsets">
-<meta name="twitter:description" content="问题描述  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：点我">
+<meta name="twitter:title" content="模板方法模式">
+<meta name="twitter:description" content="定义 模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta name="twitter:image" content="http://yoursite.com/images/designPattern/templatePattern/UML.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/11/leetCode-78/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/23/template-pattern/"/>
 
 
 
 
 
-  <title>leetCode-78:Subsets | ChunNote</title>
+  <title>模板方法模式 | ChunNote</title>
   
 
 
@@ -287,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/leetCode-78/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/23/template-pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-78:Subsets</h1>
+          <h1 class="post-title" itemprop="name headline">模板方法模式</h1>
         
 
         <div class="post-meta">
@@ -316,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:02:48+08:00">
-                2018-06-11 23:02:48
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-23T16:26:33+08:00">
+                2018-06-23 16:26:33
               </time>
             
 
@@ -332,8 +336,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-11T23:22:09+08:00">
-                2018-06-11 23:22:09
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-23T17:45:16+08:00">
+                2018-06-23 17:45:16
               </time>
             
           </span>
@@ -351,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetCode</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -369,8 +373,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/11/leetCode-78/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/11/leetCode-78/" itemprop="commentsCount"></span>
+                <a href="/2018/06/23/template-pattern/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/23/template-pattern/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -403,14 +407,29 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>  给出一个不包含重复数字的整形数组，要求找出这个数组的所有子集合（幂集）。题目链接：<strong><a href="https://leetcode.com/problems/subsets/description/" target="_blank" rel="noopener">点我</a></strong></p>
-<a id="more"></a>
-<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：[1,2,3]</p>
-<p>输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]</p>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><blockquote>
+<p>模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——《Head First 设计模式》</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此问题可以转换成以下的解法：求出[1,2,3,…n-1]的所有子集合，对这每个子集合都加上[n]这个数得到新的包含[n]的集合，将这些集合合并就是[1,2,3,…n]的所有子集合。从这个过程来看，是一个递归的过程，但是可以将其转成递推，主要做法是先放入一个空集合，然后对数组中的每个数，都取出数组前面的数的所有子集合，然后加上这个数得到新的集合，再将这些集合合并得到截至数组目前这个数的所有子集合。代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) </span><br><span class="line">    &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        result.add(<span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> size = result.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; size; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                List&lt;Integer&gt; multiNumList = <span class="keyword">new</span> LinkedList&lt;&gt;(result.get(j));</span><br><span class="line">                multiNumList.add(nums[i]);</span><br><span class="line">                result.add(multiNumList);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说，模板方法是在一个方法中定义了整个流程，其中部分流程是在本类实现的，部分流程是需要由具体的子类实现的。</p>
+<a id="more"></a>
+<h1 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h1><p><img src="/images/designPattern/templatePattern/UML.png" alt="模板方法模式类图"></p>
+<blockquote>
+<p>说明：此图参考《Head First 设计模式》画出</p>
+</blockquote>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>此处以竞技类游戏为例。假设游戏中有两种武器：刀和枪。用刀完成一次攻击需要完成以下流程：取出武器，刺杀，收回武器。用枪完成一次攻击需要完成以下流程：取出武器，装子弹，开枪，收回武器。</p>
+<h2 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h2><p><img src="/images/designPattern/templatePattern/sampleUML.png" alt="模板方法模式例子类图"></p>
+<h2 id="模板抽象类"><a href="#模板抽象类" class="headerlink" title="模板抽象类"></a>模板抽象类</h2><p>Weapon是模板抽象类，里面有一个模板方法doAttack，该方法定义了攻击的整个流程：取武器takeWeapon、攻击attack、收回武器putBackWeapon。其中取武器takeWeapon和收回武器putBackWeapon是武器攻击的共有特征，放在抽象类中实现，而攻击attack根据武器类别的不同而不同，故定义成抽象方法供子类实现。</p>
+<p>需要另外注意的是，为了避免模板方法被子类覆盖重写，此处将其定义成final</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Weapon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 这是模板方法，定义了整个攻击的流程</span></span><br><span class="line">    <span class="comment">// 将其定义为final，可以避免子类覆盖重写这个方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">doAttack</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        takeWeapon();</span><br><span class="line">        attack();</span><br><span class="line">        putBackWeapon();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 抽象方法，供子类实现，从而实现不同的行为</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">takeWeapon</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"taking weapon..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">putBackWeapon</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"putting bakc weapon...."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板具体实现类"><a href="#模板具体实现类" class="headerlink" title="模板具体实现类"></a>模板具体实现类</h2><p>模板具体实现类有两个Knife和Gun。其中Knife用于模拟刀，它有一个stab方法用于表示刀的特殊攻击行为。Gun用于模拟枪，它有loadBullets和fire方法用于表示枪的特殊攻击行为。这两个实现类分别继承了Weapon抽象类，实现attack抽象方法，在attack中实现自己独特的攻击行为。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Knife</span> <span class="keyword">extends</span> <span class="title">Weapon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">stab</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Knife stabbing..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        stab();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gun</span> <span class="keyword">extends</span> <span class="title">Weapon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadBullets</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Loading bullets..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fire</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Gun firing..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        loadBullets();</span><br><span class="line">        fire();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="验证程序"><a href="#验证程序" class="headerlink" title="验证程序"></a>验证程序</h2><p>验证程序很简单，直接初始化Knife和Gun，并分别调用模板方法doAttack实现一次攻击</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestTemplate</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Weapon knife = <span class="keyword">new</span> Knife();</span><br><span class="line">        Weapon gun = <span class="keyword">new</span> Gun();</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"----Knife do attack----"</span>);</span><br><span class="line">        knife.doAttack();</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"----Gun do attack----"</span>);</span><br><span class="line">        gun.doAttack();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下</p>
+<p><img src="/images/designPattern/templatePattern/sampleOutput.png" alt="模板方法模式例子输出结果"></p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>模板方法模式是一种比较常用的设计，也是一种比较简单的设计模式。对于需要提供用户自定义行为的框架而言，模板方法设计模式是一种常用的也是一种合适的设计模式，因为其既保证了框架整体的流程不变性，又提供了部分子流程的可变性供客户自定义完成独特的要求。在项目中，涉及到提供定制点的功能实现，也大部分是采用模板方法设计模式来实现的。</p>
+<h2 id="与策略模式比较"><a href="#与策略模式比较" class="headerlink" title="与策略模式比较"></a>与策略模式比较</h2><p>模板方法模式与策略模式都是对“算法”进行封装，但是模板方法模式侧重的是对算法整理流程的定义和不变性，暴露部分子流程接口供子类实现，从而实现不同的功能；而策略模式则注重对整套算法的封装实现，其关注的是整个算法的互换性，当对某个算法进行更改时，是更改整套算法流程而不是其中的某个子流程。另一方面，从实现的角度而言，模板方法模式使用的是继承，而策略模式使用的是组合。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] Eric Freeman等，Head First 设计模式（中文版）[M]，北京：中国电力出版社，2007</p>
 
       
     </div>
@@ -428,9 +447,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -443,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/10/leetCode-60/" rel="next" title="leetCode-60:Permutation Sequence">
-                <i class="fa fa-chevron-left"></i> leetCode-60:Permutation Sequence
+              <a href="/2018/06/23/facade-pattern/" rel="next" title="外观模式">
+                <i class="fa fa-chevron-left"></i> 外观模式
               </a>
             
           </div>
@@ -452,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/12/leetCode-90/" rel="prev" title="leetCode-90:Subsets II">
-                leetCode-90:Subsets II <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -594,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类图"><span class="nav-number">2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类图-1"><span class="nav-number">3.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板抽象类"><span class="nav-number">3.2.</span> <span class="nav-text">模板抽象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板具体实现类"><span class="nav-number">3.3.</span> <span class="nav-text">模板具体实现类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证程序"><span class="nav-number">3.4.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与策略模式比较"><span class="nav-number">4.1.</span> <span class="nav-text">与策略模式比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
