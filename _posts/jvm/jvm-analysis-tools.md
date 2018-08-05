@@ -1,8 +1,8 @@
 ---
-title: jvm性能分析工具
+title: jvm 性能分析工具
 date: 2018-07-07 15:14:50
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 概述

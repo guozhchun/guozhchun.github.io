@@ -1,8 +1,8 @@
 ---
-title: 部分java虚拟机参数
+title: 部分 java 虚拟机参数
 date: 2018-06-16 16:45:29
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
  # 概述

@@ -2,7 +2,7 @@
 title: jvm垃圾回收器
 date: 2018-07-02 22:00:20
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 概述

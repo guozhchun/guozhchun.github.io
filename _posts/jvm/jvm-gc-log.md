@@ -1,8 +1,8 @@
 ---
-title: GC日志
+title: GC 日志
 date: 2018-07-11 22:15:42
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 前言

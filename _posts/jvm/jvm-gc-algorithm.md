@@ -1,8 +1,8 @@
 ---
-title: jvm垃圾回收算法
+title: jvm 垃圾回收算法
 date: 2018-07-01 16:45:40
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 概述

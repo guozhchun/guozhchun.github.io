@@ -1,8 +1,8 @@
 ---
-title: jvm内存分配策略
+title: jvm 内存分配策略
 date: 2018-07-05 21:19:10
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 概述

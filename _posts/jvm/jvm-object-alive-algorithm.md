@@ -1,8 +1,8 @@
 ---
-title: jvm对象存活判定算法
+title: jvm 对象存活判定算法
 date: 2018-07-01 11:59:14
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 概述

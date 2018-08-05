@@ -1,8 +1,8 @@
 ---
-title: jvm内存模型
+title: jvm 内存模型
 date: 2018-06-16 14:35:33
 tags: [java, jvm]
-categories: java
+categories: jvm
 ---
 
 # 概述
