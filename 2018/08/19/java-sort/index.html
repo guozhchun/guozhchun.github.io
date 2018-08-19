@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="概述在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。 数组 Arrays 排序数组的排序主要是依靠 Arrays">
+<meta name="description" content="概述在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java 排序">
 <meta property="og:url" content="http://yoursite.com/2018/08/19/java-sort/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="概述在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。 数组 Arrays 排序数组的排序主要是依靠 Arrays">
+<meta property="og:description" content="概述在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-19T14:15:47.833Z">
+<meta property="og:updated_time" content="2018-08-19T14:18:49.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java 排序">
-<meta name="twitter:description" content="概述在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。 数组 Arrays 排序数组的排序主要是依靠 Arrays">
+<meta name="twitter:description" content="概述在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。">
 
 
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-19T22:15:47+08:00">
-                2018-08-19 22:15:47
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-19T22:18:49+08:00">
+                2018-08-19 22:18:49
               </time>
             
           </span>
@@ -404,6 +404,7 @@
 
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在平常的开发中经常需要用到排序，在 java 中主要有两种类型的排序，一种是数组 Arrays，另一种是集合 Collections，都是通过调用 sort 函数来实现排序的。而这也要求进行排序的对象需要 Comparable 接口或者在调用 sort 函数时将实现 Comparator 的对象作为另一个参数传入，从而达到排序的目的。</p>
+<a id="more"></a>
 <h1 id="数组-Arrays-排序"><a href="#数组-Arrays-排序" class="headerlink" title="数组 Arrays 排序"></a>数组 Arrays 排序</h1><p>数组的排序主要是依靠 <code>Arrays.sort</code> 函数来完成。由于数组的元素可以是由基本类型组成，也可以由对象组成，因此这个函数可以对基本类型的数组进行排序，也可以对对象数组进行排序。排序主要有两种方式，一种是由对象实现<code>Comparable</code> 接口中的 <code>compareTo</code> 函数（<em>注意：基本类型不用实现这个接口</em>）。另一种是在调用 <code>Arrays.sort</code> 函数时将实现 <code>Comparator</code> 接口的 <code>compare</code> 函数的对象作为参数传入该函数进行比较。</p>
 <h2 id="使用-Comparable-实现排序"><a href="#使用-Comparable-实现排序" class="headerlink" title="使用 Comparable 实现排序"></a>使用 Comparable 实现排序</h2><p>使用 Comparable 的方式进行排序，要求排序的对象实现 Comparable 接口，并实现接口中的 compareTo 函数。此函数将本对象与另一个对象进行比较，如果本对象小于另一个对象，则返回负数，如果本对象大于另一个对象，则返回正数，相等则返回 0。</p>
 <p>程序如下</p>
