@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="定义描述符是 jvm 层次上的概念，针对 class 文件定义而成，主要用来描述字段的数据类型、方法的参数列表（包括数量、类型以及顺序）。">
+<meta name="description" content="概述类加载器主要是用来将 java 字节码文件（class 文件）加载到虚拟机中，也可以说是将 java 类加载到 java 虚拟机中。在 java 中，每一个类加载器都拥有一个独立的类名称空间，对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立起在 java 虚拟机中的唯一性。也就是说，要比较两个类是否相等，只有在两个类是由同一个类加载器加载的前提下才有效，否则即使两个类是同一个 cl">
 <meta name="keywords" content="java,jvm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jvm 描述符">
-<meta property="og:url" content="http://yoursite.com/2018/08/02/jvm/jvm-descriptor/index.html">
+<meta property="og:title" content="类加载器">
+<meta property="og:url" content="http://yoursite.com/2018/09/09/jvm/jvm-classloader/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="定义描述符是 jvm 层次上的概念，针对 class 文件定义而成，主要用来描述字段的数据类型、方法的参数列表（包括数量、类型以及顺序）。">
+<meta property="og:description" content="概述类加载器主要是用来将 java 字节码文件（class 文件）加载到虚拟机中，也可以说是将 java 类加载到 java 虚拟机中。在 java 中，每一个类加载器都拥有一个独立的类名称空间，对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立起在 java 虚拟机中的唯一性。也就是说，要比较两个类是否相等，只有在两个类是由同一个类加载器加载的前提下才有效，否则即使两个类是同一个 cl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-05T10:04:38.783Z">
+<meta property="og:image" content="http://yoursite.com/images/jvm/classloader.png">
+<meta property="og:updated_time" content="2018-09-09T08:50:49.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jvm 描述符">
-<meta name="twitter:description" content="定义描述符是 jvm 层次上的概念，针对 class 文件定义而成，主要用来描述字段的数据类型、方法的参数列表（包括数量、类型以及顺序）。">
+<meta name="twitter:title" content="类加载器">
+<meta name="twitter:description" content="概述类加载器主要是用来将 java 字节码文件（class 文件）加载到虚拟机中，也可以说是将 java 类加载到 java 虚拟机中。在 java 中，每一个类加载器都拥有一个独立的类名称空间，对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立起在 java 虚拟机中的唯一性。也就是说，要比较两个类是否相等，只有在两个类是由同一个类加载器加载的前提下才有效，否则即使两个类是同一个 cl">
+<meta name="twitter:image" content="http://yoursite.com/images/jvm/classloader.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/02/jvm/jvm-descriptor/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/09/jvm/jvm-classloader/"/>
 
 
 
 
 
-  <title>jvm 描述符 | ChunNote</title>
+  <title>类加载器 | ChunNote</title>
   
 
 
@@ -287,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/jvm/jvm-descriptor/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/jvm/jvm-classloader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jvm 描述符</h1>
+          <h1 class="post-title" itemprop="name headline">类加载器</h1>
         
 
         <div class="post-meta">
@@ -316,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T22:42:57+08:00">
-                2018-08-02 22:42:57
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T14:37:19+08:00">
+                2018-09-09 14:37:19
               </time>
             
 
@@ -332,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-05T18:04:38+08:00">
-                2018-08-05 18:04:38
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-09T16:50:49+08:00">
+                2018-09-09 16:50:49
               </time>
             
           </span>
@@ -369,8 +371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/02/jvm/jvm-descriptor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/02/jvm/jvm-descriptor/" itemprop="commentsCount"></span>
+                <a href="/2018/09/09/jvm/jvm-classloader/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/09/jvm/jvm-classloader/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -403,73 +405,65 @@
       
 
       
-        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>描述符是 jvm 层次上的概念，针对 class 文件定义而成，主要用来描述字段的数据类型、方法的参数列表（包括数量、类型以及顺序）。</p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>类加载器主要是用来将 java 字节码文件（class 文件）加载到虚拟机中，也可以说是将 java 类加载到 java 虚拟机中。在 java 中，每一个类加载器都拥有一个独立的类名称空间，对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立起在 java 虚拟机中的唯一性。也就是说，要比较两个类是否相等，只有在两个类是由同一个类加载器加载的前提下才有效，否则即使两个类是同一个 class 文件加载而成，但是是由不同的类加载器进行加载的，那么两者进行比较也是不相等的。</p>
 <a id="more"></a>
-<h1 id="字段数据类型描述符"><a href="#字段数据类型描述符" class="headerlink" title="字段数据类型描述符"></a>字段数据类型描述符</h1><p>对于字段的数据类型，其描述符主要有以下几种</p>
+<h1 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h1><p>java 中的类加载器基本上可以分成两类，一类是系统提供的，另一类是开发人员自己编写的。系统提供的类加载器主要有以下三类：</p>
 <ul>
-<li>基本数据类型（byte、char、double、float、int、long、short、boolean）：除 long 和 boolean，其他基本数据类型的描述符用对应单词的大写首字母表示。long 用 J 表示，boolean 用 Z 表示。</li>
-<li>void：描述符是 V。</li>
-<li>对象类型：描述符用字符<code>L</code>加上对象的全限定名表示，如 <code>String</code> 类型的描述符为 <code>Ljava/lang/String</code>。</li>
-<li>数组类型：每增加一个维度则在对应的字段描述符前增加一个 <code>[</code> ，如一维数组 <code>int[]</code> 的描述符为 <code>[I</code>，二维数组 <code>String[][]</code> 的描述符为 <code>[[java/lang/String</code> 。</li>
+<li>启动类加载器（Bootstrap ClassLoader）：它用来加载 java 的核心库（<code>${JRE_HOME}/lib/rt.jar</code>），是用原生代码来实现的，并不继承自 <code>java.lang.ClassLoader</code> </li>
+<li>扩展类加载器（Extension ClassLoader）：由 <code>sun.misc.Launcher$ExtClassLoader</code> 实现，负责加载 Java 的扩展库 ，如 <code>${JRE_HOME}/lib/ext</code> 目录下的类库</li>
+<li>应用程序类加载器（Application ClassLoader）：由 <code>sun.misc.Launcher$AppClassLoader</code> 实现，负责加载用户类路径（classpath）上所指定的类库。一般而言，java 应用的类都是由它来完成加载的，可以通过 <code>ClassLoader.getSystemClassLoader()</code>来获取它 ，所以也可以称其为系统类加载器</li>
 </ul>
-<p>各类型的描述符汇总如下</p>
+<p>其结构图大致如下所示</p>
+<p><img src="/images/jvm/classloader.png" alt="类加载器双亲委派模型图"></p>
+<p>双亲委派模型的工作过程是：如果一个类加载器收到了类加载的请求，它首先不是自己尝试去加载这个类，而是交给其父类加载器进行尝试加载（注意：启动类加载器没有父类），如果父类加载器没加载成功，再交由自己的类加载器进行加载，如果仍然加载不成功，则抛出异常。</p>
+<h1 id="类加载器的主要函数"><a href="#类加载器的主要函数" class="headerlink" title="类加载器的主要函数"></a>类加载器的主要函数</h1><p>使用类加载器进行加载，主要会用到以下的函数</p>
 <table>
 <thead>
 <tr>
-<th>数据类型</th>
-<th>描述符</th>
+<th>方法</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>byte</td>
-<td>B</td>
+<td>getParent()</td>
+<td>返回该类加载器的父类加载器。</td>
 </tr>
 <tr>
-<td>char</td>
-<td>C</td>
+<td>loadClass(String name)</td>
+<td>加载名称为 name 的类，返回的结果是  <code>java.lang.Class</code> 类的实例。</td>
 </tr>
 <tr>
-<td>double</td>
-<td>D</td>
+<td>findClass(String name)</td>
+<td>查找名称为 name 的类，返回的结果是 <code>java.lang.Class</code> 类的实例。</td>
 </tr>
 <tr>
-<td>float</td>
-<td>F</td>
+<td>findLoadedClass(String name)</td>
+<td>查找名称为 name 的已经被加载过的类，返回的结果是 <code>java.lang.Class</code> 类的实例。</td>
 </tr>
 <tr>
-<td>int</td>
-<td>I</td>
+<td>defineClass(String name, byte[] b, int off, int len)</td>
+<td>把字节数组 <code>b</code>中的内容转换成 java 类，返回的结果是 <code>java.lang.Class</code>类的实例。这个方法被声明为 <code>final</code>的。</td>
 </tr>
 <tr>
-<td>long</td>
-<td>J</td>
-</tr>
-<tr>
-<td>short</td>
-<td>S</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>Z</td>
-</tr>
-<tr>
-<td>特殊类型void</td>
-<td>V</td>
-</tr>
-<tr>
-<td>对象类型</td>
-<td>L + 对象全限定名。如 <code>Ljava/lang/String</code> 表示 <code>String</code> 类型</td>
-</tr>
-<tr>
-<td>数组类型</td>
-<td>每增加一个维度则在对应的字段描述符前增加一个 <code>[</code> ，如一维数组 <code>int[]</code> 的描述符为 <code>[I</code>，二维数组 <code>String[][]</code> 的描述符为 <code>[[java/lang/String</code></td>
+<td>resolveClass(Class&lt;?&gt; c)</td>
+<td>链接指定的 java 类。</td>
 </tr>
 </tbody>
 </table>
-<h1 id="方法描述符"><a href="#方法描述符" class="headerlink" title="方法描述符"></a>方法描述符</h1><p>用描述符来描述方法时，其格式为：<code>(参数列表描述符)返回值描述符</code>。其中参数列表按照方法的参数从左到右依次用描述符对参数进行描述，如果没有参数则不用写。</p>
-<p>例如：方法<code>void init()</code>的描述符为 <code>()init</code>，方法<code>java.lang.String getName()</code>的描述符为<code>()Ljava/lang/String</code>，方法<code>int indexOf(char[] source, int sourceOffset, int sourceCount, char[] target, int targetOffset, int targetCount, int fromIndex)</code>的描述符为<code>([CII[CIII)I</code>。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明. 深入理解Java虚拟机：JVM高级特性与最佳实践[M]. 北京：机械工业出版社，2013</p>
+<p>一般情况下，调用类加载器加载某个类主要是用 loadClass 函数完成，在 loadClass 函数中，先通过 findLoadedClass 函数判断是否已经加载了某个类，如果没有加载，则调用父类加载器进行加载，如果父类加载器加载失败，则调用 findClass 函数尝试获取对应的 class 实例进行加载，而在 findClass 函数中，一般也会通过调用 defineClass 函数来将字节码数据转成对应的 class 实例。</p>
+<h1 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h1><p>自定义类加载器有两种模式：一种是通过继承 <code>ClassLoader</code> 类并重写 <code>loadClass</code> 方法，另一种是通过继承 <code>ClassLoader</code> 类并重写 <code>findClass</code> 方法。由于双亲委派模型在 <code>loadClass</code> 方法中已经保证了在调用父类的加载器加载失败后会调用本类的 <code>findClass</code> 方法进行类加载，因此建议通过重写 <code>findClass</code> 方法的方式进行自定义类加载器的编写。本例以重写 <code>findClass</code> 方法的方式进行自定义类加载器的编写。</p>
+<h2 id="要被加载器加载的类"><a href="#要被加载器加载的类" class="headerlink" title="要被加载器加载的类"></a>要被加载器加载的类</h2><p>这个类很简单，主要有两个函数：<code>setSample</code> 和 <code>sayHello</code>。其中 <code>sayHello</code> 主要用于验证类被自定义加载器正确加载，<code>setSample</code> 主要用于验证只有类加载器和加载的类都相同的情况下，两个类才是相等的。</p>
+<p>需要注意的是，此类生成的 class 文件需要放在 main 函数加载不到的地方，否则此类会被应用加载器加载而不会触发自定义类加载器的加载。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jvm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Sample sample;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSample</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sample = (Sample) obj;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义类加载器类"><a href="#自定义类加载器类" class="headerlink" title="自定义类加载器类"></a>自定义类加载器类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileClassLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CLASS_SUFFIX = <span class="string">".class"</span>;</span><br><span class="line">    <span class="keyword">private</span> String path;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FileClassLoader</span><span class="params">(String path)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.path = path;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 findClass，用于加载类</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 获取 class 文件的 byte 数据</span></span><br><span class="line">        <span class="keyword">byte</span>[] classBytes = getClassBytes(name);</span><br><span class="line">        <span class="keyword">if</span> (classBytes == <span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ClassNotFoundException(name);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用 defineClass 函数将 byte 数据转成对应的 class 类实例</span></span><br><span class="line">        <span class="keyword">return</span> defineClass(name, classBytes, <span class="number">0</span>, classBytes.length);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据类的全限定名，找到对应的 class 文件，然后文件内的数据读取出来放入一个 byte 数组返回</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> className 类的全限定名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> byte 数组，是类的 class 文件的数据。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] getClassBytes(String className)</span><br><span class="line">    &#123;</span><br><span class="line">        String filePath = path + File.separator + className.replace(<span class="string">"."</span>, File.separator) + CLASS_SUFFIX;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(filePath);</span><br><span class="line">            ByteArrayOutputStream byteArrayOutputStream = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">            <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span> * <span class="number">4</span>];</span><br><span class="line">            <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> ((length = fileInputStream.read(data)) != -<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                byteArrayOutputStream.write(data, <span class="number">0</span>, length);</span><br><span class="line">            &#125;</span><br><span class="line">            fileInputStream.close();</span><br><span class="line">            <span class="keyword">return</span> byteArrayOutputStream.toByteArray();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (IOException e)</span><br><span class="line">        &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="验证程序"><a href="#验证程序" class="headerlink" title="验证程序"></a>验证程序</h2><p>首先定义两个类加载器，用这两个类加载器加载 Sample 类并生成对应的实例，然后用反射方法分别调用实例的 <code>sayHello</code> 函数，用于验证类加载成功，再用反射方法调用实例的 <code>setSample</code> 方法用于验证在 java 中每个类都需要由加载它的类加载器和这个类本身一同确立起在 java 虚拟机中的唯一性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestClassLoader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String currentPath = System.getProperty(<span class="string">"user.dir"</span>);</span><br><span class="line">        FileClassLoader fileClassLoader1 = <span class="keyword">new</span> FileClassLoader(currentPath);</span><br><span class="line">        FileClassLoader fileClassLoader2 = <span class="keyword">new</span> FileClassLoader(currentPath);</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            String className = <span class="string">"jvm.Sample"</span>;</span><br><span class="line">            Class&lt;?&gt; class1 = fileClassLoader1.loadClass(className);</span><br><span class="line">            Class&lt;?&gt; class2 = fileClassLoader2.loadClass(className);</span><br><span class="line">            Object instance1 =  class1.newInstance();</span><br><span class="line">            Object instance2 =  class2.newInstance();</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"----class loader 1 indress: "</span> + class1.getClassLoader() + <span class="string">"----"</span>);</span><br><span class="line">            System.out.println(<span class="string">"----class loader 2 indress: "</span> + class2.getClassLoader() + <span class="string">"----"</span>);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"----class loader 1, instance sayHello----"</span>);</span><br><span class="line">            Method method = class1.getDeclaredMethod(<span class="string">"sayHello"</span>);</span><br><span class="line">            method.invoke(instance1);</span><br><span class="line">            </span><br><span class="line">            System.out.println(<span class="string">"----class loader 2, instance sayHello----"</span>);</span><br><span class="line">            Method method2 = class2.getDeclaredMethod(<span class="string">"sayHello"</span>);</span><br><span class="line">            method2.invoke(instance2);</span><br><span class="line">            </span><br><span class="line">            System.out.println(<span class="string">"----class loader 1, instance setSample----"</span>);</span><br><span class="line">            Method method3 = class1.getDeclaredMethod(<span class="string">"setSample"</span>, Object.class);</span><br><span class="line">            method3.invoke(instance1, instance2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输出结果如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">----class loader 1 indress: jvm.FileClassLoader@6d06d69c----</span><br><span class="line">----class loader 2 indress: jvm.FileClassLoader@4e25154f----</span><br><span class="line">----class loader 1, instance sayHello----</span><br><span class="line">Hello World!</span><br><span class="line">----class loader 2, instance sayHello----</span><br><span class="line">Hello World!</span><br><span class="line">----class loader 1, instance setSample----</span><br><span class="line">java.lang.reflect.InvocationTargetException</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Unknown Source)</span><br><span class="line">	at jvm.TestClassLoader.main(TestClassLoader.java:96)</span><br><span class="line">Caused by: java.lang.ClassCastException: jvm.Sample cannot be cast to jvm.Sample</span><br><span class="line">	at jvm.Sample.setSample(Sample.java:8)</span><br><span class="line">	... 5 more</span><br></pre></td></tr></table></figure>
+<p>从输出结果中可以看出，<code>fileClassLoader1</code> 和 <code>fileClassLoader2</code> 是两个不同的类加载器，虽然他们都成功地加载了同一个 class 文件（分别调用对应的 <code>sayHello</code> 函数都能正确输出结果），但是他们并不是同一个类，这通过 instance1（通过 fileClassLoader1 类加载器加载的 Sample 类生成的实例）调用 <code>setSample</code> 函数要将 instance2（通过 fileClassLoader2 类加载器加载的 Sample 类生成的实例）强制转换为 instance1 所对应的类时抛出 <code>ClassCastException</code> 异常可以证明。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>虽然在 java 世界中大部分的类加载器都使用双亲委派模型进行类的加载，而且这也是 java 设计者推荐给开发者的类加载器的实现方式，但是也例外的情况，比如 JNDI 和 OSGi，其并不能通过双亲委派模型解决问题，而是通过线程上下文类加载器或自定义其他类加载器模型完成。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明. 深入理解Java虚拟机：JVM高级特性与最佳实践[M]. 北京：机械工业出版社，2013<br>[2] 成富. 深入探讨 Java 类加载器[J/OL]. <a href="https://www.ibm.com/developerworks/cn/java/j-lo-classloader/，2010-03-01" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/java/j-lo-classloader/，2010-03-01</a></p>
 
       
     </div>
@@ -502,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/29/jvm/jvm-class-structure/" rel="next" title="jvm 类文件结构">
-                <i class="fa fa-chevron-left"></i> jvm 类文件结构
+              <a href="/2018/09/02/jvm/jvm-class-loading/" rel="next" title="jvm 类加载过程">
+                <i class="fa fa-chevron-left"></i> jvm 类加载过程
               </a>
             
           </div>
@@ -511,10 +505,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/11/jvm/jvm-instructions/" rel="prev" title="jvm 字节码指令">
-                jvm 字节码指令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -653,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字段数据类型描述符"><span class="nav-number">2.</span> <span class="nav-text">字段数据类型描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法描述符"><span class="nav-number">3.</span> <span class="nav-text">方法描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">2.</span> <span class="nav-text">双亲委派模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类加载器的主要函数"><span class="nav-number">3.</span> <span class="nav-text">类加载器的主要函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义类加载器"><span class="nav-number">4.</span> <span class="nav-text">自定义类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要被加载器加载的类"><span class="nav-number">4.1.</span> <span class="nav-text">要被加载器加载的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义类加载器类"><span class="nav-number">4.2.</span> <span class="nav-text">自定义类加载器类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证程序"><span class="nav-number">4.3.</span> <span class="nav-text">验证程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
