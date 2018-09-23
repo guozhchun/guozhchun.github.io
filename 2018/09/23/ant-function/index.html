@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,leetCode," />
+  <meta name="keywords" content="ant," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="问题描述给定一个整数，范围是-2^31 ~ 2^32-1，要求返回这个整数的逆序整数。如果得到的逆序整数超过整形的范围-2^31 ~ 2^32-1，则返回0。题目链接：点我">
-<meta name="keywords" content="java,leetCode">
+<meta name="description" content="前言ant 是一种打包脚本语言，能极大地方便程序的编译打包工作。但是在平常的开发过程中，经常会遇到一些打包流程，除了一小部分不一样，其他都是一样的。这种情况在编程语言中一般会通过抽取调用函数来减少重复代码，但是在 ant 中并没有函数这种功能。那应该如何来减少重复的代码呢？本文将通过宏定义 macrodef 和 antcall 两种方式来实现 ant 中类似函数的功能。">
+<meta name="keywords" content="ant">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-7:Reverse Integer">
-<meta property="og:url" content="http://yoursite.com/2018/05/28/leetCode/leetCode-7/index.html">
+<meta property="og:title" content="ant 类函数调用功能">
+<meta property="og:url" content="http://yoursite.com/2018/09/23/ant-function/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给定一个整数，范围是-2^31 ~ 2^32-1，要求返回这个整数的逆序整数。如果得到的逆序整数超过整形的范围-2^31 ~ 2^32-1，则返回0。题目链接：点我">
+<meta property="og:description" content="前言ant 是一种打包脚本语言，能极大地方便程序的编译打包工作。但是在平常的开发过程中，经常会遇到一些打包流程，除了一小部分不一样，其他都是一样的。这种情况在编程语言中一般会通过抽取调用函数来减少重复代码，但是在 ant 中并没有函数这种功能。那应该如何来减少重复的代码呢？本文将通过宏定义 macrodef 和 antcall 两种方式来实现 ant 中类似函数的功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T14:45:27.154Z">
+<meta property="og:image" content="http://yoursite.com/images/ant-function-macrodef-output.png">
+<meta property="og:image" content="http://yoursite.com/images/ant-function-antcall-output.png">
+<meta property="og:updated_time" content="2018-09-23T08:39:19.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-7:Reverse Integer">
-<meta name="twitter:description" content="问题描述给定一个整数，范围是-2^31 ~ 2^32-1，要求返回这个整数的逆序整数。如果得到的逆序整数超过整形的范围-2^31 ~ 2^32-1，则返回0。题目链接：点我">
+<meta name="twitter:title" content="ant 类函数调用功能">
+<meta name="twitter:description" content="前言ant 是一种打包脚本语言，能极大地方便程序的编译打包工作。但是在平常的开发过程中，经常会遇到一些打包流程，除了一小部分不一样，其他都是一样的。这种情况在编程语言中一般会通过抽取调用函数来减少重复代码，但是在 ant 中并没有函数这种功能。那应该如何来减少重复的代码呢？本文将通过宏定义 macrodef 和 antcall 两种方式来实现 ant 中类似函数的功能。">
+<meta name="twitter:image" content="http://yoursite.com/images/ant-function-macrodef-output.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/28/leetCode/leetCode-7/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/23/ant-function/"/>
 
 
 
 
 
-  <title>leetCode-7:Reverse Integer | ChunNote</title>
+  <title>ant 类函数调用功能 | ChunNote</title>
   
 
 
@@ -287,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/leetCode/leetCode-7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/23/ant-function/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-7:Reverse Integer</h1>
+          <h1 class="post-title" itemprop="name headline">ant 类函数调用功能</h1>
         
 
         <div class="post-meta">
@@ -316,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T22:07:09+08:00">
-                2018-05-28 22:07:09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-23T15:26:26+08:00">
+                2018-09-23 15:26:26
               </time>
             
 
@@ -332,8 +335,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-01T22:45:27+08:00">
-                2018-06-01 22:45:27
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-23T16:39:19+08:00">
+                2018-09-23 16:39:19
               </time>
             
           </span>
@@ -351,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetCode</span>
+                  <a href="/categories/ant/" itemprop="url" rel="index">
+                    <span itemprop="name">ant</span>
                   </a>
                 </span>
 
@@ -369,8 +372,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/28/leetCode/leetCode-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/28/leetCode/leetCode-7/" itemprop="commentsCount"></span>
+                <a href="/2018/09/23/ant-function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/23/ant-function/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -403,30 +406,21 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个整数，范围是<code>-2^31 ~ 2^32-1</code>，要求返回这个整数的逆序整数。如果得到的逆序整数超过整形的范围<code>-2^31 ~ 2^32-1</code>，则返回0。题目链接：<strong><a href="https://leetcode.com/problems/reverse-integer/description/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>ant 是一种打包脚本语言，能极大地方便程序的编译打包工作。但是在平常的开发过程中，经常会遇到一些打包流程，除了一小部分不一样，其他都是一样的。这种情况在编程语言中一般会通过抽取调用函数来减少重复代码，但是在 ant 中并没有函数这种功能。那应该如何来减少重复的代码呢？本文将通过宏定义 <code>macrodef</code> 和 <code>antcall</code> 两种方式来实现 ant 中类似函数的功能。</p>
 <a id="more"></a>
-<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：123</p>
-<p>输出：321</p>
-</blockquote>
-<blockquote>
-<p>输入：-123</p>
-<p>输出：-321</p>
-</blockquote>
-<blockquote>
-<p>输入：-1200</p>
-<p>输出：-21</p>
-</blockquote>
-<blockquote>
-<p>输入：1234567899</p>
-<p>输出：0</p>
-</blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="使用StringBuilder-reverse函数"><a href="#使用StringBuilder-reverse函数" class="headerlink" title="使用StringBuilder.reverse函数"></a>使用StringBuilder.reverse函数</h2><p>java类库中给我们提供了很多的函数方便我们使用，其中<code>StringBuilder.reverse</code>函数是将字符串按顺序倒置，与这道题类似。因此可以将输入的整数转成StringBuilder，再使用reverse函数完成逆序，再转成int类型即可。</p>
-<p><em>注意：在转成 int 类型时，可能会超出 int 类型的范围而抛出异常，此时需要捕获异常并将值置为 0</em></p>
-<p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; Integer.MIN_VALUE || x &gt; Integer.MAX_VALUE) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> num = x &gt; <span class="number">0</span> ? x : -x;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder(String.valueOf(num));</span><br><span class="line">        <span class="keyword">int</span> result;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            result = Integer.valueOf(s.reverse().toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (NumberFormatException e) </span><br><span class="line">        &#123;</span><br><span class="line">            result = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        result = x &gt; <span class="number">0</span> ? result : -result;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分拆数字逆序"><a href="#分拆数字逆序" class="headerlink" title="分拆数字逆序"></a>分拆数字逆序</h2><p>上面使用try-catch来处理转换后的数字超过整形范围的情况，这类似于使用try-catch来代替 if 语句处理业务逻辑，这是不建议的。而且，上面使用库函数虽然比较方便，但是效率上却有点低，我们可以使用另外一种方式来提高一下效率。首先，将整数的每个数字取出放在数组中，然后将数字逆序拼接成新的整数，在拼接的过程中判断是否会超出整形范围，超出则返回0。代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取非负整数的逆序数组，返回10位数组（2 ^ 31 - 1 = 2147483647，10位数组足够），不足10位时补0</span></span><br><span class="line"><span class="comment">     * 前置条件：输入的数为非负整数</span></span><br><span class="line"><span class="comment">     * 例如：输入：0</span></span><br><span class="line"><span class="comment">     *     输出：[0,0,0,0,0,0,0,0,0,0]</span></span><br><span class="line"><span class="comment">     *     输入：123</span></span><br><span class="line"><span class="comment">     *     输出：[3,2,1,0,0,0,0,0,0,0]</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> x 非负整数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 10位长度的数组，表示x的逆序，不足10位时补0</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] getReverseNums(<span class="keyword">int</span> x)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            nums[index] = x % <span class="number">10</span>;</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; Integer.MIN_VALUE || x &gt; Integer.MAX_VALUE) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> num = x &gt; <span class="number">0</span> ? x : -x;</span><br><span class="line">        <span class="keyword">int</span>[] nums = getReverseNums(num);</span><br><span class="line">        <span class="keyword">int</span> endIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// find the end index</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                endIndex = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= endIndex; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 先判断转成整数是否超出范围，否则溢出时数据发生改变</span></span><br><span class="line">            <span class="comment">// 虽然 -Integer.MIN_VALUE 比  Integer.MAX_VALUE 大 1，</span></span><br><span class="line">            <span class="comment">// 但是无法构造出result * 10 + nums[i] = 2147483648的值</span></span><br><span class="line">            <span class="comment">// 因为这样要求输入的值是-8463847412，超出了整形范围，在函数刚开始时就会进行判断返回0</span></span><br><span class="line">            <span class="comment">// 从另一个角度讲，逆序数无法达到整形的边界，因此此处可以直接用整形最大值进行判断是否越界</span></span><br><span class="line">            <span class="keyword">if</span> (result &gt; (Integer.MAX_VALUE - nums[i]) / <span class="number">10</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                result = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            result = result * <span class="number">10</span> + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        result = x &gt; <span class="number">0</span> ? result : -result;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="宏定义-macrodef"><a href="#宏定义-macrodef" class="headerlink" title="宏定义 macrodef"></a>宏定义 macrodef</h1><p>宏定义的方式主要是通过在宏内部定义变量，并将主体的实现放在 <code>sequential</code> 块中来实现的。其格式如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义宏 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">macrodef</span> <span class="attr">name</span>=<span class="string">"macroName"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 定义宏属性，值由调用宏的地方传入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"attributeName"</span> /&gt;</span></span><br><span class="line">    ...</span><br><span class="line">	</span><br><span class="line">    <span class="comment">&lt;!-- 宏主体实现内容，此处可通过 @&#123;attributeName&#125; 获取传入的 attributeName 变量的值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sequential</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">sequential</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">macrodef</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 调用宏, macroName 是定义的宏的 name 属性的值，attributeName 是宏内部定义的属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">macroName</span> <span class="attr">attributeName</span>=<span class="string">"..."</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">macroName</span> <span class="attr">attributeName</span>=<span class="string">"..."</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个简单的例子如下，假设有多个打包任务，除了打包的路径和打包的名字不同，其他步骤是一样的，此时使用宏定义实现的代码如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"testFunction"</span> <span class="attr">default</span>=<span class="string">"build"</span> <span class="attr">basedir</span>=<span class="string">"."</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">macrodef</span> <span class="attr">name</span>=<span class="string">"package"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"srcDir"</span> <span class="attr">default</span>=<span class="string">"defaultDir"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"packageName"</span> <span class="attr">default</span>=<span class="string">"defaultName"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">sequential</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"===================================="</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"prepare making a package in source code directory @&#123;srcDir&#125;"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"making a package with name @&#123;packageName&#125;"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"clean the environment after making a package"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">sequential</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">macrodef</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">srcDir</span>=<span class="string">"temp"</span> <span class="attr">packageName</span>=<span class="string">"tempName"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">srcDir</span>=<span class="string">"release"</span> <span class="attr">packageName</span>=<span class="string">"releaseName"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>程序输出如下</p>
+<p><img src="/images/ant-function-macrodef-output.png" alt="宏定义输出"></p>
+<h1 id="antcall"><a href="#antcall" class="headerlink" title="antcall"></a>antcall</h1><p>antcall 的方式主要是在调用 target 时可以主动传入 param 属性，在这个属性标签中可以为相应的属性设置特定的值。其格式如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 需要被重复调用的 target 定义，内部实现可以用 $&#123;paramName&#125; 来获取传入的 paramName 的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"targetName"</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 重复调用其他的 target --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">antcall</span> <span class="attr">target</span>=<span class="string">"targetName"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"param1"</span> <span class="attr">value</span>=<span class="string">"value1"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"param2"</span> <span class="attr">value</span>=<span class="string">"value2"</span>/&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">antcall</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">antcall</span> <span class="attr">target</span>=<span class="string">"targetName"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"param1"</span> <span class="attr">value</span>=<span class="string">"value1111"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"param2"</span> <span class="attr">value</span>=<span class="string">"value2222"</span>/&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">antcall</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个简单的例子如下，为了便于比较，此例子实现的功能跟宏定义 macrodef 中的例子一样：有多个打包任务，除了打包的路径和打包的名字不同，其他步骤是一样的。代码如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"testFunction"</span> <span class="attr">default</span>=<span class="string">"build"</span> <span class="attr">basedir</span>=<span class="string">"."</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"package"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 为 srcDir 和 packageName 设置默认值 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"srcDir"</span> <span class="attr">value</span>=<span class="string">"defaultDir"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"packageName"</span> <span class="attr">value</span>=<span class="string">"defaultName"</span> /&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"===================================="</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"prepare making a package in source code directory $&#123;srcDir&#125;"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"making a package with name $&#123;packageName&#125;"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"clean the environment after making a package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">name</span>=<span class="string">"build"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">antcall</span> <span class="attr">target</span>=<span class="string">"package"</span> /&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">antcall</span> <span class="attr">target</span>=<span class="string">"package"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"srcDir"</span> <span class="attr">value</span>=<span class="string">"temp"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"packageName"</span> <span class="attr">value</span>=<span class="string">"tempName"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">antcall</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">antcall</span> <span class="attr">target</span>=<span class="string">"package"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"srcDir"</span> <span class="attr">value</span>=<span class="string">"release"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"packageName"</span> <span class="attr">value</span>=<span class="string">"releaseName"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">antcall</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>程序输出如下</p>
+<p><img src="/images/ant-function-antcall-output.png" alt="antcall 输出"></p>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>宏定义和 antcall 两种方式都能减少重复的代码，实现类似函数调用的功能。两者各有优缺点：宏定义需要在内部额外定义需要传入的属性名称，同时可以为这个属性却设置默认值，在调用宏定义时代码相对而言比较少，看起来也比较清晰；相对而言，antcall 的重复调用的 target 跟其他普通的 target 并没有区别，这相对比较简单，只是在调用的地方需要通过 <code>param</code> 标签来指定每个属性的名称和值，在参数多的时候，这很容易造成代码的不雅观，而且当需要为属性设置默认值时，需要额外通过 <code>property</code> 标签进行设值。</p>
 
       
     </div>
@@ -444,9 +438,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
+            <a href="/tags/ant/" rel="tag"># ant</a>
           
         </div>
       
@@ -459,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/27/leetCode/leetCode-28/" rel="next" title="leetCode-28:Implement strStr()">
-                <i class="fa fa-chevron-left"></i> leetCode-28:Implement strStr()
+              <a href="/2018/09/16/leetCode/leetCode-113/" rel="next" title="leetCode-113:Path Sum II">
+                <i class="fa fa-chevron-left"></i> leetCode-113:Path Sum II
               </a>
             
           </div>
@@ -468,10 +460,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/29/leetCode/leetCode-2/" rel="prev" title="leetCode-2:Add Two Numbers">
-                leetCode-2:Add Two Numbers <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用StringBuilder-reverse函数"><span class="nav-number">3.1.</span> <span class="nav-text">使用StringBuilder.reverse函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分拆数字逆序"><span class="nav-number">3.2.</span> <span class="nav-text">分拆数字逆序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#宏定义-macrodef"><span class="nav-number">2.</span> <span class="nav-text">宏定义 macrodef</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#antcall"><span class="nav-number">3.</span> <span class="nav-text">antcall</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较"><span class="nav-number">4.</span> <span class="nav-text">比较</span></a></li></ol></div>
             
 
           </div>
