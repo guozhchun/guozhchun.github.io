@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="ChunNote">
 <meta property="og:description" content="概述java 内存模型（Java Memory Model, JMM）是 java 虚拟机定义的一种抽象的模型，主要是用来屏蔽各种硬件和操作系统的内存访问差异，以实现让 java 程序在各种平台下都能达到一致的内存访问效果。其模型大致如下图所示：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/JMM.png">
-<meta property="og:updated_time" content="2018-11-03T13:36:11.795Z">
+<meta property="og:image" content="http://yoursite.com/images/jvm/JMM.png">
+<meta property="og:updated_time" content="2018-11-03T13:45:31.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java 内存模型">
 <meta name="twitter:description" content="概述java 内存模型（Java Memory Model, JMM）是 java 虚拟机定义的一种抽象的模型，主要是用来屏蔽各种硬件和操作系统的内存访问差异，以实现让 java 程序在各种平台下都能达到一致的内存访问效果。其模型大致如下图所示：">
-<meta name="twitter:image" content="http://yoursite.com/images/JMM.png">
+<meta name="twitter:image" content="http://yoursite.com/images/jvm/JMM.png">
 
 
 
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-03T21:36:11+08:00">
-                2018-11-03 21:36:11
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-03T21:45:31+08:00">
+                2018-11-03 21:45:31
               </time>
             
           </span>
@@ -401,7 +401,7 @@
 
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>java 内存模型（Java Memory Model, JMM）是 java 虚拟机定义的一种抽象的模型，主要是用来屏蔽各种硬件和操作系统的内存访问差异，以实现让 java 程序在各种平台下都能达到一致的内存访问效果。其模型大致如下图所示：</p>
-<p><img src="/images/JMM.png" alt="java内存模型"></p>
+<p><img src="/images/jvm/JMM.png" alt="java内存模型"></p>
 <a id="more"></a>
 <h1 id="主内存和工作内存"><a href="#主内存和工作内存" class="headerlink" title="主内存和工作内存"></a>主内存和工作内存</h1><p>在 java 内存模型中，主内存是各个线程共享的，主要用于存在程序中创建的对象。与 java 内存区域（JVM 内存模型）中的堆可以进行类比，两者的功能类似。</p>
 <p>工作内存，则是各个线程独享的，各个线程之间互不干扰。与 java 内存区域中的虚拟机栈类似，都是存放着本线程使用到的局部变量，如 int、long 等基本类型。需要注意的是，使用 Interger、Long 等包装类型或其他类对象，其对象实例是在主内存中，而持有该对象的引用则是在工作内存中。</p>
