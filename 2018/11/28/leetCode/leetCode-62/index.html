@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,jvm," />
+  <meta name="keywords" content="java,leetCode," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="概述在java虚拟机中，其将内存区域划分为：程序计数器、java虚拟机栈、本地方法栈、方法区、堆。这些不同的数据区域存放者不同的数据类型，也拥有不同的作用。其中方法区和堆是线程共享的，程序计数器、java虚拟机栈、本地方法栈是线程私有的。其关系大致如下图所示（图中区域大小并不表示内存中真正的大小）">
-<meta name="keywords" content="java,jvm">
+<meta name="description" content="问题描述给定一个矩阵，一个机器人在矩阵左上角，目标在矩阵右下角，机器人每次只能向右或向下走一步，要求找出机器人从左上角走到右下角共有多少种走法。题目链接：点我">
+<meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jvm 内存模型">
-<meta property="og:url" content="http://yoursite.com/2018/06/16/jvm/jvm-memory-model/index.html">
+<meta property="og:title" content="leetCode-62:Unique Paths">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/leetCode/leetCode-62/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="概述在java虚拟机中，其将内存区域划分为：程序计数器、java虚拟机栈、本地方法栈、方法区、堆。这些不同的数据区域存放者不同的数据类型，也拥有不同的作用。其中方法区和堆是线程共享的，程序计数器、java虚拟机栈、本地方法栈是线程私有的。其关系大致如下图所示（图中区域大小并不表示内存中真正的大小）">
+<meta property="og:description" content="问题描述给定一个矩阵，一个机器人在矩阵左上角，目标在矩阵右下角，机器人每次只能向右或向下走一步，要求找出机器人从左上角走到右下角共有多少种走法。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/jvm.png">
-<meta property="og:updated_time" content="2018-08-05T09:59:05.709Z">
+<meta property="og:updated_time" content="2018-11-28T16:04:25.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jvm 内存模型">
-<meta name="twitter:description" content="概述在java虚拟机中，其将内存区域划分为：程序计数器、java虚拟机栈、本地方法栈、方法区、堆。这些不同的数据区域存放者不同的数据类型，也拥有不同的作用。其中方法区和堆是线程共享的，程序计数器、java虚拟机栈、本地方法栈是线程私有的。其关系大致如下图所示（图中区域大小并不表示内存中真正的大小）">
-<meta name="twitter:image" content="http://yoursite.com/images/jvm.png">
+<meta name="twitter:title" content="leetCode-62:Unique Paths">
+<meta name="twitter:description" content="问题描述给定一个矩阵，一个机器人在矩阵左上角，目标在矩阵右下角，机器人每次只能向右或向下走一步，要求找出机器人从左上角走到右下角共有多少种走法。题目链接：点我">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/16/jvm/jvm-memory-model/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/28/leetCode/leetCode-62/"/>
 
 
 
 
 
-  <title>jvm 内存模型 | ChunNote</title>
+  <title>leetCode-62:Unique Paths | ChunNote</title>
   
 
 
@@ -289,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/16/jvm/jvm-memory-model/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/leetCode/leetCode-62/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -306,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jvm 内存模型</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-62:Unique Paths</h1>
         
 
         <div class="post-meta">
@@ -318,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-16T14:35:33+08:00">
-                2018-06-16 14:35:33
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T23:49:12+08:00">
+                2018-11-28 23:49:12
               </time>
             
 
@@ -334,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-05T17:59:05+08:00">
-                2018-08-05 17:59:05
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-29T00:04:25+08:00">
+                2018-11-29 00:04:25
               </time>
             
           </span>
@@ -353,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jvm/" itemprop="url" rel="index">
-                    <span itemprop="name">jvm</span>
+                  <a href="/categories/leetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetCode</span>
                   </a>
                 </span>
 
@@ -371,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/16/jvm/jvm-memory-model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/16/jvm/jvm-memory-model/" itemprop="commentsCount"></span>
+                <a href="/2018/11/28/leetCode/leetCode-62/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/28/leetCode/leetCode-62/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -400,24 +398,20 @@
       
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在java虚拟机中，其将内存区域划分为：程序计数器、java虚拟机栈、本地方法栈、方法区、堆。这些不同的数据区域存放者不同的数据类型，也拥有不同的作用。其中方法区和堆是线程共享的，程序计数器、java虚拟机栈、本地方法栈是线程私有的。其关系大致如下图所示（图中区域大小并不表示内存中真正的大小）</p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个矩阵，一个机器人在矩阵左上角，目标在矩阵右下角，机器人每次只能向右或向下走一步，要求找出机器人从左上角走到右下角共有多少种走法。题目链接：<strong><a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
-<p><img src="/images/jvm.png" alt="jvm内存模型"></p>
-<h1 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h1><p>程序计数器是一块比较小的内存空间，它可以看作是当前线程所执行的字节码的行号指示器。也就是说，其用于标识程序下一个执行命令是哪条语句，比如 if 分支、while循环语句的结束和跳转都需要依靠程序计数器来完成，再比如函数A中调用函数B，在函数A调用时会依靠程序计数器中记录相关的值，当函数B调用结束时依靠程序计数器中读取原先的值获取下一条指令，从而保证函数B调用完后仍能继续在函数A中执行后续的语句。此内存区域是唯一 一个在java虚拟机规范中没有规定任何OutOfMemoryError情况的区域，换句话说，此区域不会发生OutOfMemoryError</p>
-<h1 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h1><p>java虚拟机栈描述的是java方法执行的内模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。换句话说，此区域存放着函数内的局部变量，当我们在函数中定义变量时，这些局部变量就存放在这个栈区域中。</p>
-<p>这个区域可能会抛出两种异常：</p>
-<ul>
-<li>StackOverflowError异常：当调用栈深度超过虚拟机允许的栈深度时，抛出此异常。常见于递归调用中。</li>
-<li>OutOfMemoryError异常：如果虚拟机栈可以动态扩展但是在扩展时无法申请到足够内存时抛出此异常。</li>
-</ul>
-<h1 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h1><p>本地方法栈与java虚拟机栈类似，只不过java虚拟机栈是非native方法存储的空间，而本地方法栈是native方法存储的空间。其同样会抛出StackOverflowError异常和OutOfMemoryError异常。</p>
-<h1 id="java堆"><a href="#java堆" class="headerlink" title="java堆"></a>java堆</h1><p>对绝大多数应用来说，堆是java虚拟机中内存最大的一部分，也是垃圾回收的主要区域。这个区域中的内容是共享的，也就是说，在某个函数中创建的对象存放在这个区域时，当函数结束离开，这个对象并不会跟着函数消失，仍然可以被其他函数使用。当我们使用new创建一个对象或数组时，这个新建出来的对象或数组就是存放在堆中。java虚拟机规范中指出，java堆不必处于物理上的连续空间，只需要逻辑上连续即可。</p>
-<p>当新建一个对象时，在堆中没有足够的内存分配给对象时，将会抛出OutOfMemoryError异常。</p>
-<h1 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h1><p>方法区主要用于存储<strong>已</strong>被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据。也就是说，Class类的元数据信息（用于准确定义一个类，区分于其他类的信息，比如：类名、访问修饰符等）以及我们在程序中定义的常量和静态变量都存放在此区域中。这个区域也是线程共享的，不受限于具体的类或方法。</p>
-<p>当方法区无法满足分配内存需求时，会会抛出OutOfMemoryError异常。</p>
-<h2 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h2><p>运行时常量池(Runtime Constant Pool)是方法区中的一个区域，主要用于存放编译期生成的各种字面量和符合引用。我们在程序中定义的常量和Sting变量的值就存放在这个区域中。</p>
-<p>虽然这个区域主要用于存放编译期生成的常量，但是这个区域仍然具有动态性。主要是因为java语言并不要求常量一定只有在编译期才能产生，在运行期间也能产生常量并将其放入运行时常量池中，其中最主要的方法便是<code>String.intern()</code>方法。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明，深入理解Java虚拟机：JVM高级特性与最佳实践[M]，北京：机械工业出版社，2013</p>
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：3  7</p>
+<p>输出：28</p>
+</blockquote>
+<blockquote>
+<p>输入：51 9</p>
+<p>输出：1916797311</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题是数学中的组合题，直接运用组合进行求解即可。需要注意的是求解组合的方法，不能直接使用阶乘，否则大数的阶乘会超过 int 和 long 的存储范围导致错误。</p>
+<p>还有一点需要额外注意：题目中说 m 和 n 最多只有 100，但是如果 m 和 n 是 100 的话，结果是 22750883079422934966181954039568885395604168260154104734000，这远远超出 int 的存储范围，但是题目中给出的函数返回值是 int 类型，所以<strong>此处假设，输入的值计算得到的结果不会超过 int 类型的存储范围。</strong></p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算组合C(n,m)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> n 组合的下标</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> m 组合的上标</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> n!/m!(n-m)!</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">calcCombination</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (m &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果 m 值太大，利用 C(n, m) = C(n, n - m)的关系，将 m 值降下来</span></span><br><span class="line">        <span class="comment">// 既可以避免多次计算，也可以避免计算结果太大无法存储</span></span><br><span class="line">        <span class="keyword">if</span> (m * <span class="number">2</span> &gt; n)</span><br><span class="line">        &#123;</span><br><span class="line">            m = n - m;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 为了使计算结果能够存储，此处用 long 类型而不是 int 类型</span></span><br><span class="line">        <span class="keyword">long</span> a = n;</span><br><span class="line">        <span class="keyword">long</span> b = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            a *= n - i;</span><br><span class="line">            b *= i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (a % b == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a = a / b;</span><br><span class="line">                b = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (a / b);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 确保 C(n, m) 中，n 比 m 大</span></span><br><span class="line">        <span class="keyword">if</span> (m &gt; n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = m;</span><br><span class="line">            m = n;</span><br><span class="line">            n = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> calcCombination(m + n - <span class="number">2</span>, m - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -437,7 +431,7 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/jvm/" rel="tag"># jvm</a>
+            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
           
         </div>
       
@@ -450,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/15/HashSet/" rel="next" title="java8中HashSet实现原理">
-                <i class="fa fa-chevron-left"></i> java8中HashSet实现原理
+              <a href="/2018/11/25/leetCode/leetCode-36/" rel="next" title="leetCode-36:Valid Sudoku">
+                <i class="fa fa-chevron-left"></i> leetCode-36:Valid Sudoku
               </a>
             
           </div>
@@ -459,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/16/jvm/jvm-parameter/" rel="prev" title="部分 java 虚拟机参数">
-                部分 java 虚拟机参数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -601,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序计数器"><span class="nav-number">2.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java虚拟机栈"><span class="nav-number">3.</span> <span class="nav-text">java虚拟机栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地方法栈"><span class="nav-number">4.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java堆"><span class="nav-number">5.</span> <span class="nav-text">java堆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法区"><span class="nav-number">6.</span> <span class="nav-text">方法区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时常量池"><span class="nav-number">6.1.</span> <span class="nav-text">运行时常量池</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
             
 
           </div>
