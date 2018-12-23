@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给定一个包含重复数字的正整数的数组和一个目标数字，要求找出所有由数组中元素构成的集合的和等于目标数字的列表，数组中的每个元素在同一个集合中最多只能出现一次，在结果列表中不能包含重复的集合。题目链接：点我">
+<meta name="description" content="问题描述给定一个字符串，要求找出这个字符串中最长回文子字符串，如果有多个相同最大长度的回文子字符串，输出其中一个即可。题目链接：点我">
 <meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-40:Combination Sum II">
-<meta property="og:url" content="http://yoursite.com/2018/12/09/leetCode/leetCode-40/index.html">
+<meta property="og:title" content="leetCode-5:Longest Palindromic Substring">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/leetCode/leetCode-5/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给定一个包含重复数字的正整数的数组和一个目标数字，要求找出所有由数组中元素构成的集合的和等于目标数字的列表，数组中的每个元素在同一个集合中最多只能出现一次，在结果列表中不能包含重复的集合。题目链接：点我">
+<meta property="og:description" content="问题描述给定一个字符串，要求找出这个字符串中最长回文子字符串，如果有多个相同最大长度的回文子字符串，输出其中一个即可。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T06:31:49.168Z">
+<meta property="og:updated_time" content="2018-12-23T14:57:43.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-40:Combination Sum II">
-<meta name="twitter:description" content="问题描述给定一个包含重复数字的正整数的数组和一个目标数字，要求找出所有由数组中元素构成的集合的和等于目标数字的列表，数组中的每个元素在同一个集合中最多只能出现一次，在结果列表中不能包含重复的集合。题目链接：点我">
+<meta name="twitter:title" content="leetCode-5:Longest Palindromic Substring">
+<meta name="twitter:description" content="问题描述给定一个字符串，要求找出这个字符串中最长回文子字符串，如果有多个相同最大长度的回文子字符串，输出其中一个即可。题目链接：点我">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/09/leetCode/leetCode-40/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/23/leetCode/leetCode-5/"/>
 
 
 
 
 
-  <title>leetCode-40:Combination Sum II | ChunNote</title>
+  <title>leetCode-5:Longest Palindromic Substring | ChunNote</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/leetCode/leetCode-40/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/23/leetCode/leetCode-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-40:Combination Sum II</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-5:Longest Palindromic Substring</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T14:12:31+08:00">
-                2018-12-09 14:12:31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T22:03:58+08:00">
+                2018-12-23 22:03:58
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T14:31:49+08:00">
-                2018-12-09 14:31:49
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-23T22:57:43+08:00">
+                2018-12-23 22:57:43
               </time>
             
           </span>
@@ -369,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/09/leetCode/leetCode-40/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/09/leetCode/leetCode-40/" itemprop="commentsCount"></span>
+                <a href="/2018/12/23/leetCode/leetCode-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/23/leetCode/leetCode-5/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -398,18 +398,41 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个包含重复数字的正整数的数组和一个目标数字，要求找出所有由数组中元素构成的集合的和等于目标数字的列表，数组中的每个元素在同一个集合中最多只能出现一次，在结果列表中不能包含重复的集合。题目链接：<strong><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个字符串，要求找出这个字符串中最长回文子字符串，如果有多个相同最大长度的回文子字符串，输出其中一个即可。题目链接：<strong><a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
 <h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：[1,1,1,2,2,3,3,3,4,4,4]   7</p>
-<p>输出：[[1,1,1,2,2],[1,1,1,4],[1,1,2,3],[1,2,4],[1,3,3],[2,2,3],[3,4]]</p>
+<p>输入：”babad”</p>
+<p>输出：”bab”    或者     “aba”</p>
 </blockquote>
 <blockquote>
-<p>输入：[10,1,2,7,6,1,5]             8</p>
-<p>输出：[[1,1,6],[1,2,5],[1,7],[2,6]]</p>
+<p>输入：”cbbd”</p>
+<p>输出：”bb”</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题跟<a href="https://guozhchun.github.io/2018/12/09/leetCode/leetCode-39/" target="_blank" rel="noopener">leetcode-39:Combination Sum</a>类似，不同的是原先数组中有重复元素，且数组中的元素在同一个构成集合中只能出现一次。此题仍然可以用<a href="https://guozhchun.github.io/2018/12/09/leetCode/leetCode-39/" target="_blank" rel="noopener">leetcode-39:Combination Sum</a>中的算法来求解。只是需要剔除重复的结果集。最简单直接的方法就是暴力搜索出所有的结果，然后去重，但是这样耗时太长。可以使用剪枝的做法：在每次递归中循环遍历数组元素时，如果当前数组元素跟前一个数组元素相同，则不用再进行遍历查找，因为前一个数组元素已经将所有情况都遍历过了。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">findSum</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; result, <span class="keyword">int</span>[] candidates, <span class="keyword">int</span> target, <span class="keyword">int</span> startIndex, List&lt;Integer&gt; nums, <span class="keyword">int</span> sum)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = startIndex; i &lt; candidates.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum + candidates[i] == target)</span><br><span class="line">            &#123;</span><br><span class="line">                List&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;(nums);</span><br><span class="line">                temp.add(candidates[i]);</span><br><span class="line">                result.add(temp);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (sum + candidates[i] &gt; target)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (i &gt; startIndex &amp;&amp; candidates[i] == candidates[i - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            nums.add(candidates[i]);</span><br><span class="line">            findSum(result, candidates, target, i + <span class="number">1</span>, nums, sum + candidates[i]);</span><br><span class="line">            nums.remove(nums.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum2(<span class="keyword">int</span>[] candidates, <span class="keyword">int</span> target) </span><br><span class="line">    &#123;</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        findSum(result, candidates, target, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此问题最简单的方式就是用暴力方法，即用两个 for 循环找出所有的子字符串，然后对每个字符串进行是否是回文字符串的判断。但是这样复杂度太高了，有 <code>O(n^3)</code>。因此需要采用其他的方法。</p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>用 <code>dp[i][j]</code> 表示由字符串的 <code>[i, j]</code> 位置构成的子字符的回文子字符串的长度。则可以得出以下的动态方程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果 dp[i + 1][j - 1] != 0，即 dp[i + 1][j - 1] 是一个回文字符串，并且 s[i] == s[j]</span><br><span class="line">则   dp[i][j] = dp[i + 1][j - 1] + 2;</span><br><span class="line">否则 dp[i][j] = 0</span><br></pre></td></tr></table></figure>
+<p>据此，可以写出如下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> length = s.length();</span><br><span class="line">        <span class="comment">// dp[i][j] 表示字符串的 [i, j] 范围组成的子字符串的回文字符串长度</span></span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[length][length];</span><br><span class="line">        <span class="keyword">int</span> maxLength = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> startIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> endIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = length - <span class="number">1</span>; j &gt;= i; j--)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == j)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 用 dp[i + 1][j - 1] != 0 来判断当前字符串去除首尾两个字符所组成的字符串是回文串</span></span><br><span class="line">                <span class="comment">// 由于当 i 和 j 相邻时， dp[i + 1][j - 1] == 0；所以需要将 i + 1 == j 单独拿出来作为一个判断条件</span></span><br><span class="line">                <span class="keyword">if</span> (s.charAt(i) == s.charAt(j) &amp;&amp; (i + <span class="number">1</span> == j || dp[i + <span class="number">1</span>][j - <span class="number">1</span>] != <span class="number">0</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (dp[i][j] &gt; maxLength)</span><br><span class="line">                &#123;</span><br><span class="line">                    maxLength = dp[i][j];</span><br><span class="line">                    startIndex = i;</span><br><span class="line">                    endIndex = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> s.substring(startIndex, endIndex + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="中心点扩展法"><a href="#中心点扩展法" class="headerlink" title="中心点扩展法"></a>中心点扩展法</h2><p>动态规划需要<code>O(n^2)</code>的空间，为了降低空间复杂度，可以参照将字符由中心位置向两侧依次递增构造回文字符串的做法进行求解。此方法主要是用一层循环遍历字符串每个字符，然后以这个字符为中心（或以这个字符和这个字符的下个字符为中心。主要是考虑奇偶数的情况），依次想两侧递增相同的字符，从而构成回文字符串。</p>
+<p>此解法主要参考：<a href="https://leetcode.com/articles/longest-palindromic-substring/" target="_blank" rel="noopener">https://leetcode.com/articles/longest-palindromic-substring/</a></p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">int</span> length = s.length();</span><br><span class="line">        <span class="keyword">int</span> maxLength = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> startIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> endIndex = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> len1 = getMaxLengthOfPalindromicString(s, i, i);</span><br><span class="line">            <span class="keyword">int</span> len2 = getMaxLengthOfPalindromicString(s, i, i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">int</span> len = Math.max(len1, len2);</span><br><span class="line">            <span class="keyword">if</span> (len &gt; maxLength)</span><br><span class="line">            &#123;</span><br><span class="line">                maxLength = len;</span><br><span class="line">                startIndex = i - (len - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">                endIndex = i + len / <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> s.substring(startIndex, endIndex + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getMaxLengthOfPalindromicString</span><span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = s.length();</span><br><span class="line">        <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; right &lt; length &amp;&amp; s.charAt(left) == s.charAt(right))</span><br><span class="line">        &#123;</span><br><span class="line">            left--;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> right - left - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Manacher-算法"><a href="#Manacher-算法" class="headerlink" title="Manacher 算法"></a>Manacher 算法</h2><p>此算法可以用<code>O(n)</code>的时间复杂度求解最长回文子字符串，解法主要参考：<a href="https://articles.leetcode.com/longest-palindromic-substring-part-ii/" target="_blank" rel="noopener">https://articles.leetcode.com/longest-palindromic-substring-part-ii/</a></p>
+<p>其主要过程如下：</p>
+<ul>
+<li>先将字符串进行转换，在每个字符的左右位置插入标记字符 <code>#</code>，如：<code>abbc</code> 变为 <code>#a#b#b#c#</code>，这样做法主要是规避奇偶数的问题</li>
+<li>用一个数组表示以新字符串中的每个字符为中心，向两边扩展，构成最大的回文字符串的过程中需要扩展的长度。例如：<code>#a#b#b#c#</code> 字符串对应的数组中各元素的值为 <code>0, 1, 0, 1, 2, 1, 0, 0, 0</code>。假设 <code>centerPos</code> 表示字符串中某个回文子字符串的中心位置，<code>rightPos</code> 表示上述回文字符串的右边边界，<code>i</code> 表示当前循环中指向字符位置，<code>minorI</code> 表示 <code>i</code> 关于 <code>centerPos</code> 的中心对称的位置。在计算数组元素值的过程中，主要有两个判断：<ul>
+<li>如果 <code>i &lt;= rightPos</code> 即 <code>i</code> 在当前回文子字符串中，且 <code>a[minorI] &lt; rightPos - i</code>，即以 <code>minorI</code> 为中心构成的回文字符串在当前的回文子字符串中，那么回文串左右对称的特点可以得出以下结论：以 <code>i</code> 为中心构成的回文字符串与以 <code>minorI</code> 为中心构成的回文字符串相同，且一定在当前的回文子字符串中。因此 <code>a[i] == a[minorI]</code></li>
+<li>如果不满足上述条件，那么则需要以当前位置为中心，依次向两边扩展，找到最大的回文字符串。</li>
+</ul>
+</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getReplaceString</span><span class="params">(String s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sb.append(<span class="string">"#"</span>).append(s.charAt(i));</span><br><span class="line">        &#125;</span><br><span class="line">        sb.append(<span class="string">"#"</span>);</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        String newString = getReplaceString(s);</span><br><span class="line">        <span class="keyword">int</span> length = newString.length();</span><br><span class="line">        <span class="keyword">int</span>[] lens = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">        <span class="keyword">int</span> centerPos = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> rightPos = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> maxLength = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> startIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> endIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> mirrorI = centerPos - (i - centerPos);</span><br><span class="line">            <span class="keyword">if</span> (i &lt;= rightPos &amp;&amp; lens[mirrorI] &lt; rightPos - i)</span><br><span class="line">            &#123;</span><br><span class="line">                lens[i] = lens[mirrorI];</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> tempLen = rightPos - i;</span><br><span class="line">            <span class="keyword">if</span> (tempLen &lt; <span class="number">0</span>)  <span class="comment">// rightPos &lt; i</span></span><br><span class="line">            &#123;</span><br><span class="line">                tempLen = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (i + tempLen + <span class="number">1</span> &lt; length &amp;&amp; i - tempLen - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; newString.charAt(i + tempLen + <span class="number">1</span>) == newString.charAt(i - tempLen - <span class="number">1</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                tempLen++;</span><br><span class="line">            &#125;</span><br><span class="line">            lens[i] = tempLen;</span><br><span class="line">            centerPos = i;</span><br><span class="line">            rightPos = centerPos + lens[i];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (lens[i] &gt; maxLength)</span><br><span class="line">            &#123;</span><br><span class="line">                maxLength = lens[i];</span><br><span class="line">                startIndex = (i - maxLength) / <span class="number">2</span>;</span><br><span class="line">                endIndex = (i + maxLength) / <span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> s.substring(startIndex, endIndex + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a href="https://leetcode.com/articles/longest-palindromic-substring/" target="_blank" rel="noopener">https://leetcode.com/articles/longest-palindromic-substring/</a></li>
+<li><a href="https://articles.leetcode.com/longest-palindromic-substring-part-ii/" target="_blank" rel="noopener">https://articles.leetcode.com/longest-palindromic-substring-part-ii/</a></li>
+</ol>
 
       
     </div>
@@ -442,8 +465,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/09/leetCode/leetCode-39/" rel="next" title="leetCode-39:Combination Sum">
-                <i class="fa fa-chevron-left"></i> leetCode-39:Combination Sum
+              <a href="/2018/12/15/leetCode/leetCode-49/" rel="next" title="leetCode-49:Group Anagrams">
+                <i class="fa fa-chevron-left"></i> leetCode-49:Group Anagrams
               </a>
             
           </div>
@@ -451,10 +474,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/15/leetCode/leetCode-49/" rel="prev" title="leetCode-49:Group Anagrams">
-                leetCode-49:Group Anagrams <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划"><span class="nav-number">3.1.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中心点扩展法"><span class="nav-number">3.2.</span> <span class="nav-text">中心点扩展法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manacher-算法"><span class="nav-number">3.3.</span> <span class="nav-text">Manacher 算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
