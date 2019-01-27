@@ -93,12 +93,12 @@
 <meta property="og:image" content="http://yoursite.com/images/https-4.png">
 <meta property="og:image" content="http://yoursite.com/images/https-5.png">
 <meta property="og:image" content="http://yoursite.com/images/https-6.png">
-<meta property="og:image" content="http://yoursite.com/master/images/https-7.png">
+<meta property="og:image" content="http://yoursite.com/images/https-7.png">
 <meta property="og:image" content="http://yoursite.com/images/https-8.png">
 <meta property="og:image" content="http://yoursite.com/images/https-9.png">
 <meta property="og:image" content="http://yoursite.com/images/https-10.png">
 <meta property="og:image" content="http://yoursite.com/images/https-11.png">
-<meta property="og:updated_time" content="2019-01-27T15:23:57.535Z">
+<meta property="og:updated_time" content="2019-01-27T15:30:07.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解读 https 通信">
 <meta name="twitter:description" content="简介在浏览器与服务器之间进行通信主要有 http 和 https 两种方式。对于 http 而言，这是一种明文传输的通信协议，这就让客户端与服务器之间的明文通信容易让黑客窃取甚至篡改，无法保证安全。因而引入了 https 协议，即HTTP+SSL/TLS，这是一种在 http 协议的基础上加入了 SSL 层进行加解密保护，保证客户端和服务器之间的通信是安全的。">
@@ -344,8 +344,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-27T23:23:57+08:00">
-                2019-01-27 23:23:57
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-27T23:30:07+08:00">
+                2019-01-27 23:30:07
               </time>
             
           </span>
@@ -430,7 +430,7 @@
 <h2 id="对称加密与非对称加密结合版本"><a href="#对称加密与非对称加密结合版本" class="headerlink" title="对称加密与非对称加密结合版本"></a>对称加密与非对称加密结合版本</h2><p>非对称加密的 http 通信除了可以被黑客篡改内容外，还有一个性能问题。使用非对称加解密的速度远远比不上对称加解密的速度。为了解决这问题，采用了常用的折中方法进行处理：同时使用对称加密和非对称加密方式。具体表现为：刚开始时使用非对称加密进行通信，在确认对方身份后，约定一个秘钥并使用非对称加密的方式将秘钥传送给对方，后续使用基于此秘钥的对称加密方式进行通信。此方法不但可以解决非对称加密算法的性能问题，也可以非对称加密版本中被黑客篡改内容的问题，主要是因为攻击者虽然可以获取公钥，但是无法解密，所以攻击只能是整体篡改内容，再使用相同的公钥进行加密通信，但是在约定秘钥的过程中，攻击者虽然可以篡改秘钥，但是却无法让篡改的信息在通信双方都得到正确的解析，从而让通信方得知此消息不是来自目标者而放弃此次通信，从而使本次攻击失败。其失败的攻击过程大致如下所示</p>
 <p><img src="/images/https-6.png" alt="对称加密与非对称加密结合通信-解决非对称加密的攻击问题"></p>
 <p>正常情况下，使用对称加密和非对称加密相结合的通信过程大致如下所示</p>
-<p><img src="/master/images/https-7.png" alt="对称加密与非对称加密结合通信"></p>
+<p><img src="/images/https-7.png" alt="对称加密与非对称加密结合通信"></p>
 <p>虽然此版本避免了对称加密的维护大量秘钥的问题，也解决了非对称加密的篡改和性能问题，但是仍然无法解决「中间人」攻击的问题。因为此版本有一个大前提：客户端获取的服务器的公钥是正确的。如果这个公钥是黑客伪造的，那整个过程就相当于明文通信了。其攻击过程大致如下所示</p>
 <p><img src="/images/https-8.png" alt="对称加密与非对称加密结合通信-黑客攻击"></p>
 <h2 id="数字证书版本"><a href="#数字证书版本" class="headerlink" title="数字证书版本"></a>数字证书版本</h2><p>对称加密和非对称加密相结合的版本失效的原因是因为不能确定服务器的公钥真正地来自服务器而不是来自攻击者，所以引入数字证书来确定获取到的是真正服务器的公钥。数字证书主要包含以下内容：证书发行机构、证书有效期、证书所有者（给谁发的证书）及其公钥、证书发行机构的数字签名（对证书的基本信息进行哈希，然后使用自己的私钥对哈希值进行加密），其构成大致如下图所示</p>
