@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://github.com/guozhchun/guozhchun.github.io/raw/master/images/https-9.png">
 <meta property="og:image" content="https://github.com/guozhchun/guozhchun.github.io/raw/master/images/https-10.png">
 <meta property="og:image" content="https://github.com/guozhchun/guozhchun.github.io/raw/master/images/https-11.png">
-<meta property="og:updated_time" content="2019-01-27T15:10:29.806Z">
+<meta property="og:updated_time" content="2019-01-27T15:14:22.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解读 https 通信">
 <meta name="twitter:description" content="简介在浏览器与服务器之间进行通信主要有 http 和 https 两种方式。对于 http 而言，这是一种明文传输的通信协议，这就让客户端与服务器之间的明文通信容易让黑客窃取甚至篡改，无法保证安全。因而引入了 https 协议，即HTTP+SSL/TLS，这是一种在 http 协议的基础上加入了 SSL 层进行加解密保护，保证客户端和服务器之间的通信是安全的。">
@@ -344,8 +344,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-27T23:10:29+08:00">
-                2019-01-27 23:10:29
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-27T23:14:22+08:00">
+                2019-01-27 23:14:22
               </time>
             
           </span>
@@ -441,6 +441,7 @@
 <p>使用数字证书进行通信的过程大致如下：首先客户端向服务器发送一个请求，服务器进行响应，同时把自己的数字证书发送给客户端，客户端对证书进行解析验证证书可靠性并获取服务端的公钥，然后用这个公钥对约定的秘钥进行加密发送给服务器，后续服务器和客户端之间用这个约定的秘钥进行对称加密的通信，其大致图示如下</p>
 <p><img src="https://github.com/guozhchun/guozhchun.github.io/raw/master/images/https-11.png" alt="数字证书通信"></p>
 <p>用此版本进行通信，攻击者虽然也可以拦截并解密服务器发送包含公钥的数字证书，但是其却无法伪造服务器公钥，因为新计算的hash值与数字证书中的数字签名的hash值不一样，而因为攻击者没有证书发行机构的私钥，因此也无法伪造数字签名，这样客户端就能确保收到的公钥是服务器的公钥。在确认这一步后，接着约定秘钥的过程，攻击者因为没有服务器的私钥，也无法窥探和篡改，从而保证约定秘钥的过程也是安全的。在约定秘钥后，后续的通信使用对称加密的方式，攻击者因为没有对应的秘钥，因此也无法窥探和篡改通信消息。至此，可以确定用数字证书的方式进行http通信是安全可靠的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>https 是使用数字证书，结合了对称加密算法、非对称加密算法和哈希算法的建立在 http 之上的安全通信协议。虽然其比 http 多了很多认证的步骤，但是其贵在安全，而这也是 web 应用中很重要的一个特征，因此在 web 应用中应该尽可能地使用 https 协议代替 http 协议进行通信。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 刘欣. 码农翻身[M]. 北京：电子工业出版社，2018</p>
 
       
@@ -621,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#https-使用的算法"><span class="nav-number">2.</span> <span class="nav-text">https 使用的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密"><span class="nav-number">2.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对称加密"><span class="nav-number">2.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希算法"><span class="nav-number">2.3.</span> <span class="nav-text">哈希算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#https「演进过程」"><span class="nav-number">3.</span> <span class="nav-text">https「演进过程」</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http-版本"><span class="nav-number">3.1.</span> <span class="nav-text">http 版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密版本"><span class="nav-number">3.2.</span> <span class="nav-text">对称加密版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对称加密版本"><span class="nav-number">3.3.</span> <span class="nav-text">非对称加密版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密与非对称加密结合版本"><span class="nav-number">3.4.</span> <span class="nav-text">对称加密与非对称加密结合版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字证书版本"><span class="nav-number">3.5.</span> <span class="nav-text">数字证书版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#https-使用的算法"><span class="nav-number">2.</span> <span class="nav-text">https 使用的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密"><span class="nav-number">2.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对称加密"><span class="nav-number">2.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希算法"><span class="nav-number">2.3.</span> <span class="nav-text">哈希算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#https「演进过程」"><span class="nav-number">3.</span> <span class="nav-text">https「演进过程」</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http-版本"><span class="nav-number">3.1.</span> <span class="nav-text">http 版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密版本"><span class="nav-number">3.2.</span> <span class="nav-text">对称加密版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对称加密版本"><span class="nav-number">3.3.</span> <span class="nav-text">非对称加密版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密与非对称加密结合版本"><span class="nav-number">3.4.</span> <span class="nav-text">对称加密与非对称加密结合版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字证书版本"><span class="nav-number">3.5.</span> <span class="nav-text">数字证书版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
