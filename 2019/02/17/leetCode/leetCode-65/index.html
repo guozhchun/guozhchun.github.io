@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给出数字 n 和数字 k，要求在数字1…n中找出 k 个数字的组合。题目链接：点我">
+<meta name="description" content="问题描述给定一个字符串，判断这个字符串是否是数字（包括小数和指数）。题目没有明确说明什么情况下该字符串是合法的，需要靠自己猜测。大致的规则如下：  只能包含 0~9、.、+、-、e、E 首尾可以允许有空格，但是中间不允许有空格 只能出现一个小数点，且小数点在 e/E 的前面 只能出现一个 e/E，并且不能出现在第一位和最后一位 +/- 只能出现在第一位或者 e/E 的后一位，后面必须有数字或小数点">
 <meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-77:Combinations">
-<meta property="og:url" content="http://yoursite.com/2018/06/29/leetCode/leetCode-77/index.html">
+<meta property="og:title" content="leetCode-65:Valid Number">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/leetCode/leetCode-65/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给出数字 n 和数字 k，要求在数字1…n中找出 k 个数字的组合。题目链接：点我">
+<meta property="og:description" content="问题描述给定一个字符串，判断这个字符串是否是数字（包括小数和指数）。题目没有明确说明什么情况下该字符串是合法的，需要靠自己猜测。大致的规则如下：  只能包含 0~9、.、+、-、e、E 首尾可以允许有空格，但是中间不允许有空格 只能出现一个小数点，且小数点在 e/E 的前面 只能出现一个 e/E，并且不能出现在第一位和最后一位 +/- 只能出现在第一位或者 e/E 的后一位，后面必须有数字或小数点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-29T15:44:17.604Z">
+<meta property="og:updated_time" content="2019-02-17T06:45:27.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-77:Combinations">
-<meta name="twitter:description" content="问题描述给出数字 n 和数字 k，要求在数字1…n中找出 k 个数字的组合。题目链接：点我">
+<meta name="twitter:title" content="leetCode-65:Valid Number">
+<meta name="twitter:description" content="问题描述给定一个字符串，判断这个字符串是否是数字（包括小数和指数）。题目没有明确说明什么情况下该字符串是合法的，需要靠自己猜测。大致的规则如下：  只能包含 0~9、.、+、-、e、E 首尾可以允许有空格，但是中间不允许有空格 只能出现一个小数点，且小数点在 e/E 的前面 只能出现一个 e/E，并且不能出现在第一位和最后一位 +/- 只能出现在第一位或者 e/E 的后一位，后面必须有数字或小数点">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/29/leetCode/leetCode-77/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/17/leetCode/leetCode-65/"/>
 
 
 
 
 
-  <title>leetCode-77:Combinations | ChunNote</title>
+  <title>leetCode-65:Valid Number | ChunNote</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/leetCode/leetCode-77/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/leetCode/leetCode-65/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-77:Combinations</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-65:Valid Number</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-29T23:21:14+08:00">
-                2018-06-29 23:21:14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-17T14:11:01+08:00">
+                2019-02-17 14:11:01
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-29T23:44:17+08:00">
-                2018-06-29 23:44:17
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-17T14:45:27+08:00">
+                2019-02-17 14:45:27
               </time>
             
           </span>
@@ -369,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/29/leetCode/leetCode-77/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/29/leetCode/leetCode-77/" itemprop="commentsCount"></span>
+                <a href="/2019/02/17/leetCode/leetCode-65/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/02/17/leetCode/leetCode-65/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -398,14 +398,44 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出数字 n 和数字 k，要求在数字1…n中找出 k 个数字的组合。题目链接：<strong><a href="https://leetcode.com/problems/combinations/description/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个字符串，判断这个字符串是否是数字（包括小数和指数）。题目没有明确说明什么情况下该字符串是合法的，需要靠自己猜测。大致的规则如下：</p>
+<ul>
+<li>只能包含 <code>0~9</code>、<code>.</code>、<code>+</code>、<code>-</code>、<code>e</code>、<code>E</code></li>
+<li>首尾可以允许有空格，但是中间不允许有空格</li>
+<li>只能出现一个小数点，且小数点在 e/E 的前面</li>
+<li>只能出现一个 e/E，并且不能出现在第一位和最后一位</li>
+<li>+/- 只能出现在第一位或者 e/E 的后一位，后面必须有数字或小数点</li>
+<li>允许小数点前没有数字，也允许小数点后没有数字，但是小数点前或后这两个位置至少要有一个位置有数字</li>
+</ul>
 <a id="more"></a>
 <h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：n = 4, k = 2</p>
-<p>输出：[[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]</p>
+<p>输入：”   0.1   “</p>
+<p>输出：true</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题主要使用回溯算法进行求解。需要用 k 轮迭代来获取 k 个数字的值，在每轮迭代中，依次遍历数字 i~n （第一轮：遍历1~n，第二轮遍历2~n，第三轮遍历3~n，…），对每个数字加进列表中，如果列表中的个数刚好是k，则将这个列表放如结果集中。代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">int</span> start, List&lt;Integer&gt; items, List&lt;List&lt;Integer&gt;&gt; result)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (items.size() == k)</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;Integer&gt; tempItems = <span class="keyword">new</span> ArrayList&lt;&gt;(items);</span><br><span class="line">            result.add(tempItems);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            items.add(i);</span><br><span class="line">            helper(n, k, i + <span class="number">1</span>, items, result);</span><br><span class="line">            items.remove(items.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combine(<span class="keyword">int</span> n, <span class="keyword">int</span> k) </span><br><span class="line">    &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; k)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        helper(n, k, <span class="number">1</span>, <span class="keyword">new</span> ArrayList&lt;&gt;(), result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输入：”+.1”</p>
+<p>输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：”3.”</p>
+<p>输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：”.”</p>
+<p>输出：false</p>
+</blockquote>
+<blockquote>
+<p>输入：”+E3”</p>
+<p>输出：false</p>
+</blockquote>
+<blockquote>
+<p>输入：”-3.e-2”</p>
+<p>输出：true</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="使用正则"><a href="#使用正则" class="headerlink" title="使用正则"></a>使用正则</h2><p>此题是要判断输入的字符串是否是一个数字，因此可以直接使用正则表达式进行全匹配。正则表达式为：<code>\\s*[-+]{0,1}((\\d*\\.){0,1}\\d+|\\d+\\.)([eE][-+]{0,1}\\d+){0,1}\\s*</code>。其中，前后两个 <code>\\s*</code> 是为了匹配前后的空格，<code>[-+]{0,1}</code> 用于匹配正负符号，<code>((\\d*\\.){0,1}\\d+|\\d+\\.)</code> 用于匹配整数和小数部分，<code>([eE][-+]{0,1}\\d+){0,1}</code> 用于匹配指数部分。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 前后两个 \\s* 是去除前后的空格</span></span><br><span class="line">        <span class="comment">// ((\\d*\\.)&#123;0,1&#125;\\d+|\\d+\\.) 匹配 3 或 3.3 或  3. 或  .3 的不带指数（e）的小数或整数</span></span><br><span class="line">        <span class="comment">// ([eE][-+]&#123;0,1&#125;\\d+)&#123;0,1&#125; 匹配指数(e)部分的数字</span></span><br><span class="line">        Pattern pattern = Pattern.compile(<span class="string">"\\s*[-+]&#123;0,1&#125;((\\d*\\.)&#123;0,1&#125;\\d+|\\d+\\.)([eE][-+]&#123;0,1&#125;\\d+)&#123;0,1&#125;\\s*"</span>);</span><br><span class="line">        Matcher matcher = pattern.matcher(s);</span><br><span class="line">        <span class="keyword">return</span> matcher.matches();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历字符串"><a href="#遍历字符串" class="headerlink" title="遍历字符串"></a>遍历字符串</h2><p>使用正则表达式进行求解虽然直观简洁，但是其速度比较慢。因此可以使用遍历字符串的方式，在遍历的过程中，对每个字符进行判断，遇到不符合规则的返回 false 结束遍历。此方式可以提供效率，但是其却比较复杂啰嗦，也很容易遗漏一些情况。其代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 判断字符是否是 0 ~ 9 的数字</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isCharNumber</span><span class="params">(<span class="keyword">char</span> ch)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        String str = s.trim();</span><br><span class="line">        <span class="keyword">int</span> length = str.length();</span><br><span class="line">        <span class="keyword">if</span> (length == <span class="number">0</span> || (length == <span class="number">1</span> &amp;&amp; str.charAt(<span class="number">0</span>) == <span class="string">'.'</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> decimalIndex = -<span class="number">1</span>;     <span class="comment">// 小数点的位置下标</span></span><br><span class="line">        <span class="keyword">int</span> exponentialIndex = -<span class="number">1</span>; <span class="comment">// e/E 的位置下标</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">char</span> ch = str.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (isCharNumber(ch))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 小数点只能出现一次，且必须在 e 的前面</span></span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">'.'</span> &amp;&amp; decimalIndex == -<span class="number">1</span> &amp;&amp; exponentialIndex == -<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 小数点前或后至少要有一个数字</span></span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; !isCharNumber(str.charAt(i + <span class="number">1</span>)))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (i == length - <span class="number">1</span> &amp;&amp; !isCharNumber(str.charAt(i - <span class="number">1</span>)))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> ((i != <span class="number">0</span> &amp;&amp; !isCharNumber(str.charAt(i - <span class="number">1</span>))) &amp;&amp; (i != length - <span class="number">1</span> &amp;&amp; !isCharNumber(str.charAt(i + <span class="number">1</span>))))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                decimalIndex = i;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 符号只能出现在第一位或 e 的后面一位，且不能是最后一位</span></span><br><span class="line">            <span class="comment">// 由于初始化 exponentialIndex = -1，因此当出现在第一位时，exponentialIndex + 1 == 0 也能成立</span></span><br><span class="line">            <span class="keyword">if</span> ((ch == <span class="string">'+'</span> || ch == <span class="string">'-'</span>) &amp;&amp; exponentialIndex + <span class="number">1</span> == i &amp;&amp; i != length - <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// + - 后面必须有数字或小数点</span></span><br><span class="line">                <span class="comment">// 前面已经判断了 i != length - 1，此处不用再判断</span></span><br><span class="line">                <span class="keyword">char</span> nextChar = str.charAt(i + <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (!isCharNumber(nextChar) &amp;&amp; nextChar != <span class="string">'.'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// e 只能出现一次，并且不能出现在第一位和最后一位</span></span><br><span class="line">            <span class="keyword">if</span> ((ch == <span class="string">'e'</span> || ch == <span class="string">'E'</span>) &amp;&amp; exponentialIndex == -<span class="number">1</span> &amp;&amp; i != <span class="number">0</span> &amp;&amp; i != length -<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                exponentialIndex = i;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -438,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/28/leetCode/leetCode-33/" rel="next" title="leetCode-33:Search in Rotated Sorted Array">
-                <i class="fa fa-chevron-left"></i> leetCode-33:Search in Rotated Sorted Array
+              <a href="/2019/02/08/leetCode/leetCode-8/" rel="next" title="leetCode-8:String to Integer (atoi)">
+                <i class="fa fa-chevron-left"></i> leetCode-8:String to Integer (atoi)
               </a>
             
           </div>
@@ -447,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/30/leetCode/leetCode-347/" rel="prev" title="leetCode-347:Top K Frequent Elements">
-                leetCode-347:Top K Frequent Elements <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用正则"><span class="nav-number">3.1.</span> <span class="nav-text">使用正则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历字符串"><span class="nav-number">3.2.</span> <span class="nav-text">遍历字符串</span></a></li></ol></li></ol></div>
             
 
           </div>
