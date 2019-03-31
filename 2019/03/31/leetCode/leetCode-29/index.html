@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给出一个数组，要求找出比这个数组组成的数字大的最小的那个数字组合，如果没有找到，则输出这个数组组成的数字的最小值的组合。题目链接：点我">
+<meta name="description" content="问题描述给定一个被除数和除数（都是 int  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 int 类型，则返回 -2147483648 （商小于 -2147483648 时）或 2147483647 （商大于 2147483647 时）。题目链接：点我">
 <meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-31:Next Permutation">
-<meta property="og:url" content="http://yoursite.com/2018/06/08/leetCode/leetCode-31/index.html">
+<meta property="og:title" content="leetCode-29:Divide Two Integers">
+<meta property="og:url" content="http://yoursite.com/2019/03/31/leetCode/leetCode-29/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给出一个数组，要求找出比这个数组组成的数字大的最小的那个数字组合，如果没有找到，则输出这个数组组成的数字的最小值的组合。题目链接：点我">
+<meta property="og:description" content="问题描述给定一个被除数和除数（都是 int  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 int 类型，则返回 -2147483648 （商小于 -2147483648 时）或 2147483647 （商大于 2147483647 时）。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/31_Next_Permutation.gif">
-<meta property="og:updated_time" content="2018-06-08T14:19:00.190Z">
+<meta property="og:updated_time" content="2019-03-31T07:13:34.743Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-31:Next Permutation">
-<meta name="twitter:description" content="问题描述给出一个数组，要求找出比这个数组组成的数字大的最小的那个数字组合，如果没有找到，则输出这个数组组成的数字的最小值的组合。题目链接：点我">
-<meta name="twitter:image" content="http://yoursite.com/images/31_Next_Permutation.gif">
+<meta name="twitter:title" content="leetCode-29:Divide Two Integers">
+<meta name="twitter:description" content="问题描述给定一个被除数和除数（都是 int  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 int 类型，则返回 -2147483648 （商小于 -2147483648 时）或 2147483647 （商大于 2147483647 时）。题目链接：点我">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/08/leetCode/leetCode-31/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/31/leetCode/leetCode-29/"/>
 
 
 
 
 
-  <title>leetCode-31:Next Permutation | ChunNote</title>
+  <title>leetCode-29:Divide Two Integers | ChunNote</title>
   
 
 
@@ -289,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/leetCode/leetCode-31/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/31/leetCode/leetCode-29/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -306,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-31:Next Permutation</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-29:Divide Two Integers</h1>
         
 
         <div class="post-meta">
@@ -318,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T21:24:49+08:00">
-                2018-06-08 21:24:49
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-31T14:36:01+08:00">
+                2019-03-31 14:36:01
               </time>
             
 
@@ -334,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-08T22:19:00+08:00">
-                2018-06-08 22:19:00
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T15:13:34+08:00">
+                2019-03-31 15:13:34
               </time>
             
           </span>
@@ -371,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/08/leetCode/leetCode-31/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/08/leetCode/leetCode-31/" itemprop="commentsCount"></span>
+                <a href="/2019/03/31/leetCode/leetCode-29/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/03/31/leetCode/leetCode-29/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -400,40 +398,25 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个数组，要求找出比这个数组组成的数字大的最小的那个数字组合，如果没有找到，则输出这个数组组成的数字的最小值的组合。题目链接：<strong><a href="https://leetcode.com/problems/next-permutation/description/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个被除数和除数（都是 <code>int</code>  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 <code>int</code> 类型，则返回 <code>-2147483648</code> （商小于 -2147483648 时）或 <code>2147483647</code> （商大于 2147483647 时）。题目链接：<strong><a href="https://leetcode.com/problems/divide-two-integers/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
-<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><p>由于函数没有返回值，是直接更改的输入的数组，因此此处的输出指更改后的数组的值</p>
-<blockquote>
-<p>输入：[1,1,2]</p>
-<p>输出：[1,2,1]</p>
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：10   3</p>
+<p>输出：3</p>
 </blockquote>
 <blockquote>
-<p>输入：[3,2,1]</p>
-<p>输出：[1,2,3]</p>
+<p>输入：-7    3</p>
+<p>输出：-2</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此解法主要参考leetcode上文章的解法，详细参考点击<strong><a href="https://leetcode.com/articles/next-permutation/" target="_blank" rel="noopener">这里</a></strong></p>
-<p>主要过程如下：</p>
-<ul>
-<li>先从数组右边向左边查找，找到右边数字比左边数字大的值，记录此时较小的值，如果没找到，则逆序整个数组，结束。</li>
-<li>从数组右边向左边查找，找出第一个比上一步中找到的值大的值，交换这两个值。此时第一步中记录的值后面的值呈降序排列的状态（后面证明）。</li>
-<li>将第一步找到的值后面的降序排列的值逆序，使其呈升序排列，此时得到结果。</li>
-</ul>
-<p>其过程大致如下图所示：</p>
-<p><img src="/images/31_Next_Permutation.gif" alt="31_Next_Permutation.gif"></p>
 <blockquote>
-<p>说明：此图片来自<a href="https://leetcode.com/articles/next-permutation/" target="_blank" rel="noopener">https://leetcode.com/articles/next-permutation</a></p>
+<p>输入：-2147483648    1</p>
+<p>输出：2147483647</p>
+<p>解释：在数学上，-2147483648 / 1 = -2147483648，但是这个结果超过 int 类型的存储范围，所以返回结果是 int 类型的最大值 2147483647</p>
 </blockquote>
-<p>现在证明在交换两个数之后，后面的数字是降序排列的。由于交换前，后面片段的是降序排列的，所以只需要证明交换后前后三个数是降序的即可。假设要将 <code>a[i]</code> 和 <code>a[j]</code> 进行交换，则必有以下不等式成立</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a[j + 1] &lt; a[i] &lt; a[j]                 </span><br><span class="line">a[j + 1] &lt; a[j] &lt; a[j - 1]</span><br></pre></td></tr></table></figure>
-<p>现在要证明交换后 <code>a[j + 1] &lt;= a[i] &lt;= a[j - 1]</code>。用反证法进行证明。</p>
-<p>先证明 <code>a[j + 1] &lt;= a[i]</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">假设 a[j + 1] &gt; a[i]</span><br><span class="line">与已知 a[j + 1] &lt; a[i] 矛盾</span><br><span class="line">故 a[j + 1] &lt;= a[i] 成立</span><br></pre></td></tr></table></figure>
-<p>现在证明<code>a[i] &lt;= a[j - 1]</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">假设 a[i] &gt; a[j - 1]</span><br><span class="line">由于 a[j + 1] &lt; a[j] &lt; a[j - 1]</span><br><span class="line">所以 a[i] &gt; a[j - 1] &gt; a[j]，与已知 a[i] &lt; a[j]矛盾</span><br><span class="line">故 a[i] &lt;= a[j - 1] 成立</span><br></pre></td></tr></table></figure>
-<p>综上所述，在交换值后，后面的值仍然维持者降序的顺序。</p>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此问题要求不能使用除法、乘法和求余运算，因此最简单的做法就是暴力相减，从被除数中一直减去除数，直到被除数小于除数，记录相减的次数，即使商。但是，这种做法超时了。</p>
+<p>根据题目的提示，可以使用二分查找的思路进行求解。当一个数 <code>A1</code> 除以 2 后，其结果 <code>A2</code> 小于被除数<code>B</code>时，说明 <code>A1</code> 除 <code>B</code> 的商是 1，如果 <code>A2</code> 大于被除数，说明 <code>A1 / B</code> 的商至少是 <code>A2 / B</code> 的商的两倍。顺着这个思路，可以一直将被除数除 2 后与除数进行比较，直到被除数小于除数时，记录相除的次数 n，此时可以根据相除的次数得到最小的商是 <code>2^(n - 1)</code>，同时将最开始的被除数减去 <code>除数 * 2^(n - 1)</code>得到新的被除数，将新的被除数与除数进行新的相除计算得到其结果，最后将这两个结果进行相加得到最终的商。由于整个过程是对 2 进行相除和相乘的操作，可以用相应的位运算进行代替，从而避免使用乘法和除法。</p>
 <p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 找到值比右边数字小的下标，找不到返回-1</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">findLessIndex</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt;= <span class="number">1</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> i - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 找到要交换的下标：要求值比nums[index]大，找不到返回-1</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">findSwapIndex</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; nums[index])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 交换数组下标i和j的值</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 对数组[startIndex,endIndex]范围内的数字进行逆序</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> endRange = (endIndex - startIndex + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; endRange; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(nums, startIndex + i, endIndex - i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lessIndex = findLessIndex(nums);</span><br><span class="line">        <span class="comment">// 该数字是最大的数，直接逆序后返回</span></span><br><span class="line">        <span class="keyword">if</span> (lessIndex == -<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            reverse(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> swapIndex = findSwapIndex(nums, lessIndex);</span><br><span class="line">        <span class="comment">// 没找到要交换的数字，说明lessIndex位置后面的数字都比这个数大，直接逆序后面的数字</span></span><br><span class="line">        <span class="keyword">if</span> (swapIndex == -<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            reverse(nums, lessIndex + <span class="number">1</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 找打要交换的数字，则交换，此时lessIndex后面的数字是倒序排序的，需要将其升序排序得到最小值</span></span><br><span class="line">        swap(nums, lessIndex, swapIndex);</span><br><span class="line">        reverse(nums, lessIndex + <span class="number">1</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h1><p><a href="https://leetcode.com/articles/next-permutation/" target="_blank" rel="noopener">https://leetcode.com/articles/next-permutation/</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 先于 divisor == Integer.MIN_VALUE 的判断</span></span><br><span class="line">        <span class="comment">// 主要是为了避免 divisor 和 divisor 都是 Integer.MIN_VALUE 的情况</span></span><br><span class="line">        <span class="keyword">if</span> (dividend == divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 先在此处进行判断，主要是为了后续方便对 divisor 转换成整数的操作</span></span><br><span class="line">        <span class="keyword">if</span> (divisor == Integer.MIN_VALUE)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sign = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 确保除数大于 0</span></span><br><span class="line">        <span class="keyword">if</span> (divisor &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sign = -sign;</span><br><span class="line">            divisor = -divisor;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 确保被除数大于 0</span></span><br><span class="line">        <span class="keyword">if</span> (dividend &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sign = -sign;</span><br><span class="line">            <span class="comment">// 保证将被除数转为正数后不会超出整数的范围</span></span><br><span class="line">            <span class="keyword">if</span> (dividend == Integer.MIN_VALUE)</span><br><span class="line">            &#123;</span><br><span class="line">                dividend += divisor;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            dividend = -dividend;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 经过上述操作，已经将被除数和除数转成正数，此处进行正数相除操作</span></span><br><span class="line">        <span class="keyword">int</span> quotient = dividePositiveNum(dividend, divisor);</span><br><span class="line">        <span class="comment">// 确保结果不会超过整数的范围</span></span><br><span class="line">        <span class="keyword">if</span> (quotient &gt; Integer.MAX_VALUE - count)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> sign &gt; <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        count = count + quotient;</span><br><span class="line">        <span class="keyword">return</span> sign &gt; <span class="number">0</span> ? count: -count;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">dividePositiveNum</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (dividend == divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 此处初始化为 -1，避免后续对其进行减一操作</span></span><br><span class="line">        <span class="comment">// 程序运行到此处时， dividend 必然大于 divisor，则 powCount 必然大于等于 0</span></span><br><span class="line">        <span class="keyword">int</span> powCount = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> tempDividend = dividend;</span><br><span class="line">        <span class="keyword">while</span> (tempDividend &gt; divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            tempDividend = tempDividend &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            powCount++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> partQuotient = <span class="number">1</span> &lt;&lt; powCount;</span><br><span class="line">        <span class="keyword">int</span> partMultiNum = divisor &lt;&lt; powCount;</span><br><span class="line">        <span class="keyword">int</span> remaindDividend = dividend - partMultiNum;</span><br><span class="line">        <span class="keyword">return</span> partQuotient + dividePositiveNum(remaindDividend, divisor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -466,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/08/leetCode/leetCode-47/" rel="next" title="leetCode-47:Permutations II">
-                <i class="fa fa-chevron-left"></i> leetCode-47:Permutations II
+              <a href="/2019/03/24/thread-pool/" rel="next" title="谈谈线程池">
+                <i class="fa fa-chevron-left"></i> 谈谈线程池
               </a>
             
           </div>
@@ -475,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/10/leetCode/leetCode-60/" rel="prev" title="leetCode-60:Permutation Sequence">
-                leetCode-60:Permutation Sequence <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +596,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考来源"><span class="nav-number">4.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
             
 
           </div>
