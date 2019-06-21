@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-23:Merge k Sorted Lists]]></title>
+    <url>%2F2019%2F06%2F21%2FleetCode%2FleetCode-23%2F</url>
+    <content type="text"><![CDATA[问题描述给定 k 个有序的链表，要求将其合并成一个有序的链表返回。题目链接：点我 样例输入输出 输入：[1-&gt;4-&gt;5, 1-&gt;3-&gt;4, 2-&gt;6] 输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6 输入：[] 输出：[] 问题解法利用归并排序的思路，将列表中两两分组，对每组中的两个链表，运用合并两个有序链表的做法将其合并成一个有序的链表，将这些合并后的链表继续两两分组，重复上述过程，直到最后只剩下一个链表，就是合并后的有序的链表。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; private ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123; if (l1 == null) &#123; return l2; &#125; if (l2 == null) &#123; return l1; &#125; ListNode p1 = l1; ListNode p2 = l2; if (p1.val &gt; p2.val) &#123; p1 = l2; p2 = l1; &#125; ListNode head = p1; while (p2 != null) &#123; while (p1.next != null &amp;&amp; p1.next.val &lt; p2.val) &#123; p1 = p1.next; &#125; ListNode temp = p1.next; p1.next = p2; p1 = p2; p2 = temp; &#125; return head; &#125; public ListNode mergeKLists(ListNode[] lists) &#123; if (lists == null || lists.length == 0) &#123; return null; &#125; while (lists.length &gt; 1) &#123; ListNode[] temp = new ListNode[(lists.length + 1) / 2]; int index = 0; for (int i = 0; i &lt; lists.length; ) &#123; if (i + 1 &lt; lists.length) &#123; temp[index] = mergeTwoLists(lists[i], lists[i + 1]); i += 2; &#125; else &#123; temp[index] = lists[i]; i++; &#125; index++; &#125; lists = temp; &#125; return lists[0]; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-21:Merge Two Sorted Lists]]></title>
     <url>%2F2019%2F06%2F21%2FleetCode%2FleetCode-21%2F</url>
     <content type="text"><![CDATA[问题描述给定两个有序链表，要求将其合并成一个有序链表返回。题目链接：点我 样例输入输出 输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4 输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 输入：1-&gt;2-&gt;3-&gt;4, 1 输出：1-&gt;1-&gt;2-&gt;3-&gt;4 问题解法直接用归并法即可。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123; if (l1 == null) &#123; return l2; &#125; if (l2 == null) &#123; return l1; &#125; ListNode p1 = l1; ListNode p2 = l2; if (p1.val &gt; p2.val) &#123; p1 = l2; p2 = l1; &#125; ListNode head = p1; while (p2 != null) &#123; while (p1.next != null &amp;&amp; p1.next.val &lt; p2.val) &#123; p1 = p1.next; &#125; ListNode temp = p1.next; p1.next = p2; p1 = p2; p2 = temp; &#125; return head; &#125;&#125;]]></content>
