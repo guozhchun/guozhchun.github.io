@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-71]]></title>
+    <url>%2F2019%2F08%2F16%2FleetCode%2FleetCode-71%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[java8 思维导图]]></title>
     <url>%2F2019%2F08%2F11%2Fjava8-mind%2F</url>
     <content type="text"><![CDATA[前言java8 中提供了很多方便开发人员的特性，包括：lambda 表达式、流操作、默认函数等。本文主要是将这些特性以思维导图的方式进行总结，方便后续复习。 思维导图]]></content>
