@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用 javadoc2 插件快速生成 javadoc 注释]]></title>
+    <url>%2F2019%2F08%2F24%2Ftools-javadoc2%2F</url>
+    <content type="text"><![CDATA[前言最近项目新增一个指标：代码中每个 protected、public 方法和成员变量都必须有 javadoc 注释，由于存在大量不符合规范的历史代码。如果一个个找出手工添加，必将花费大量的精力。所以寻求插件批量解决。javadoc2 插件刚好可以匹配这些要求。 Javadoc2 插件使用在 File -&gt; Settings -&gt; Plugin 中搜索 javadoc2，点击安装，重启 Intellij IDEA。 在 settings 中找到 javadoc2，根据自己需要进行设置调整 选中要生成 javadoc 注释的包或文件，右键，在弹出菜单中，选择 JavaDocs -&gt; Create JavaDocs for all elements 修改前后对比截图如下 修改前 修改后]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>javadoc</tag>
+        <tag>plugin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-71:Simplify Path]]></title>
     <url>%2F2019%2F08%2F16%2FleetCode%2FleetCode-71%2F</url>
     <content type="text"><![CDATA[问题描述给定一个字符串表示 unix 系统下的绝对路径，要求将其转成最简单的等价路径。路径不能以 / 结尾（只有/的例外）。题目链接：点我 样例输入输出 输入：/home/ 输出：/home 输入：/a/../../b/../c//.// 输出：/c 问题解法根据 / 将输入的路径进行分割，用一个新的数组存储最终路径的每个目录元素。遍历分割后的字符串数组，如果遇到 .. 则将存储目录元素的数组中删掉一个元素，否则加入新的目录元素。最后将存在目录元素的字符串数组用 / 进行连接，即是最终的答案。代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243class Solution &#123; public String simplifyPath(String path) &#123; String[] elements = path.split("/"); String[] temp = new String[elements.length]; int index = 0; for (int i = 1; i &lt; elements.length; i++) &#123; if (".".equals(elements[i]) || "".equals(elements[i])) &#123; continue; &#125; if ("..".equals(elements[i])) &#123; index--; if (index &lt; 0) &#123; index = 0; &#125; &#125; else &#123; temp[index] = elements[i]; index++; &#125; &#125; StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; index; i++) &#123; sb.append("/").append(temp[i]); &#125; if (sb.length() == 0) &#123; sb.append("/"); &#125; return sb.toString(); &#125;&#125;]]></content>
