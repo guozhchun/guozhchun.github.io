@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="ChunNote">
 <meta property="og:description" content="问题描述给定一个二维列表，表示一个正三角形，要求找出从三角形的顶点到底部经过的路径的最小值。每次移动只能本数字的左下相邻或者右下相邻的数字移动。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-10T07:30:16.945Z">
+<meta property="og:updated_time" content="2019-11-10T07:40:40.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetCode-120:Triangle">
 <meta name="twitter:description" content="问题描述给定一个二维列表，表示一个正三角形，要求找出从三角形的顶点到底部经过的路径的最小值。每次移动只能本数字的左下相邻或者右下相邻的数字移动。题目链接：点我">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-10T15:30:16+08:00">
-                2019-11-10 15:30:16
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-10T15:40:40+08:00">
+                2019-11-10 15:40:40
               </time>
             
           </span>
@@ -401,18 +401,11 @@
         <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个二维列表，表示一个正三角形，要求找出从三角形的顶点到底部经过的路径的最小值。每次移动只能本数字的左下相邻或者右下相邻的数字移动。题目链接：<strong><a href="https://leetcode.com/problems/triangle/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
 <h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：[[2],[3,4],[6,5,7],[4,1,8,3]]， 表示的三角形如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; [</span><br><span class="line">&gt;      [2],</span><br><span class="line">&gt;     [3,4],</span><br><span class="line">&gt;    [6,5,7],</span><br><span class="line">&gt;   [4,1,8,3]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>输入：[[2],[3,4],[6,5,7],[4,1,8,3]]， 表示的三角形如下：<br>&nbsp;&nbsp;&nbsp;&nbsp;2<br>&nbsp;&nbsp;3,4<br>&nbsp;6,5,7<br>4,1,8,3<br>输出：11。其经过的路径为：2-&gt;3-&gt;5-&gt;1</p>
 </blockquote>
 <blockquote>
-<p>输出：11。其经过的路径为：2-&gt;3-&gt;5-&gt;1</p>
-</blockquote>
-<blockquote>
-<p>输入：[[2],[3,4],[6,5,7],[4,10,8,3]]， 表示的三角形如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; [</span><br><span class="line">&gt;      [2],</span><br><span class="line">&gt;     [3,4],</span><br><span class="line">&gt;    [6,5,7],</span><br><span class="line">&gt;   [4,10,8,3]</span><br><span class="line">&gt; ]</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>输出：151。其经过的路径为：2-&gt;3-&gt;6-&gt;4</p>
+<p>输入：[[2],[3,4],[6,5,7],[4,10,8,3]]， 表示的三角形如下：<br>&nbsp;&nbsp;&nbsp;&nbsp;2<br>&nbsp;&nbsp;3,&nbsp;4<br>&nbsp;6,&nbsp;5,&nbsp;7<br>4,10,8,3</p>
+<p>输出：15。其经过的路径为：2-&gt;3-&gt;6-&gt;4</p>
 </blockquote>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="二维数组动态规划"><a href="#二维数组动态规划" class="headerlink" title="二维数组动态规划"></a>二维数组动态规划</h2><p>根据题目要求，可以得知，假设 <code>sum[i][j]</code> 表示三角形从顶点开始到达第 <code>i</code> 行第 <code>j</code> 列位置的路径和，则 <code>sum[i][j] = sum[i - 1][j - 1] + a[i][j]</code>  或者 <code>sum[i][j] = sum[i - 1][j] + a[i][j]</code>。因此，只要比较这两个值，就能得到从三角形顶点到达此位置的路径的和的最小值。按照此算法，依次算出当前行每个位置的最小值，然后将这些值进行比较，取出最小值就是三角形顶点到达底部的路径最小和。代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (triangle == <span class="keyword">null</span> || triangle.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> size = triangle.size();</span><br><span class="line">        <span class="keyword">int</span>[][] sum = <span class="keyword">new</span> <span class="keyword">int</span>[size][size];</span><br><span class="line">        sum[<span class="number">0</span>][<span class="number">0</span>] = triangle.get(<span class="number">0</span>).get(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[i][<span class="number">0</span>] = sum[i - <span class="number">1</span>][<span class="number">0</span>] + triangle.get(i).get(<span class="number">0</span>);</span><br><span class="line">            sum[i][i] = sum[i - <span class="number">1</span>][i - <span class="number">1</span>] + triangle.get(i).get(i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum[i][j] = Math.min(sum[i - <span class="number">1</span>][j - <span class="number">1</span>], sum[i - <span class="number">1</span>][j]) + triangle.get(i).get(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = sum[size - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; size; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            result = Math.min(sum[size - <span class="number">1</span>][j], result);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
