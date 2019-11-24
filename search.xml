@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-150:Evaluate Reverse Polish Notation]]></title>
+    <url>%2F2019%2F11%2F24%2FleetCode%2FleetCode-150%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个字符串数组，表示算术的后缀表达式，并且保证这个表达式是合法的，要求算出这个表达式的值。题目链接：点我 样例输入输出 输入：[“2”, “1”, “+”, “3”, “*”] 输出：9 解释：((2 + 1) * 3) = 9 输入：[“10”, “6”, “9”, “3”, “+”, “-11”, ““, “/“, ““, “17”, “+”, “5”, “+”] 输出：22 解释：((10 (6 / ((9 + 3) -11))) + 17) + 5 = ((10 (6 / (12 -11))) + 17) + 5 = ((10 (6 / -132)) + 17) + 5 = ((10 0) + 17) + 5 = (0 + 17) + 5 = 17 + 5 = 22 问题解法用栈来保存运算的数，遍历数组，如果遇到数字，则压入栈中，如果遇到运算符合，则弹出栈顶元素作为第二个操作数，再弹出栈顶元素作为第一个运算数，对其进行运算得到结果压入栈中。运算结束后，栈顶的元素就是表达式的结果。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748class Solution&#123; public int evalRPN(String[] tokens) &#123; if (tokens == null || tokens.length == 0) &#123; return 0; &#125; Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); for (int i = 0; i &lt; tokens.length; i++) &#123; if (tokens[i].equals("+")) &#123; int second = stack.pop(); int first = stack.pop(); int result = first + second; stack.push(result); &#125; else if (tokens[i].equals("-")) &#123; int second = stack.pop(); int first = stack.pop(); int result = first - second; stack.push(result); &#125; else if (tokens[i].equals("*")) &#123; int second = stack.pop(); int first = stack.pop(); int result = first * second; stack.push(result); &#125; else if (tokens[i].equals("/")) &#123; int second = stack.pop(); int first = stack.pop(); int result = first / second; stack.push(result); &#125; else &#123; stack.push(Integer.parseInt(tokens[i])); &#125; &#125; return stack.pop(); &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-115:Distinct Subsequences]]></title>
     <url>%2F2019%2F11%2F17%2FleetCode%2FleetCode-115%2F</url>
     <content type="text"><![CDATA[问题描述给定两个字符串 S 和 T，要求找出 S 中的子字符串（保留S 字符串的顺序并在 S 字符串中去掉 0 个或多个字符剩下字符串）中与 T 字符串相等的个数。题目链接：点我 样例输入输出 输入：S = “rabbbit”, T = “rabbit” 输出：3 输入：S = “babgbag”, T = “bag” 输出：5 问题解法采用动态规划的方式，用 dp[i][j] 表示 S 串前 i 个字符构成的字符串，其经过变换得到的子字符串等于 T 串前 j 个字符构成的子字符串的个数。动态转移方程为：如果 S[i] 和 T[j] 相等，那 dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]，如果 S[i] 和 T[j] 不相等，那 dp[i][j] = dp[i - 1][j]。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647class Solution&#123; public int numDistinct(String s, String t) &#123; if (s == null || t == null || s.length() == 0 || t.length() == 0) &#123; return 0; &#125; int sLength = s.length(); int tLength = t.length(); int[][] dp = new int[sLength][tLength]; if (s.charAt(0) == t.charAt(0)) &#123; dp[0][0] = 1; &#125; for (int i = 1; i &lt; sLength; i++) &#123; if (s.charAt(i) == t.charAt(0)) &#123; dp[i][0] = dp[i - 1][0] + 1; &#125; else &#123; dp[i][0] = dp[i - 1][0]; &#125; &#125; for (int i = 1; i &lt; sLength; i++) &#123; for (int j = 1; j &lt; tLength; j++) &#123; if (s.charAt(i) == t.charAt(j)) &#123; dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]; &#125; else &#123; dp[i][j] = dp[i - 1][j]; &#125; &#125; &#125; return dp[sLength - 1][tLength - 1]; &#125;&#125;]]></content>
