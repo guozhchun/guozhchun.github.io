@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-210:Course Schedule II]]></title>
+    <url>%2FleetCode%2FleetCode-210%2F</url>
+    <content type="text"><![CDATA[问题描述给出一个数字表示课程的数量，再给出一个二维数组表示课程的依赖关系，如 [0, 1] 表示课程 1 必须在课程 0 之前完成。要求找出课程的先后学习顺序，如果给出的课程依赖关系不能存在循环依赖，则返回空数组。题目链接：点我 样例输入输出 输入：2, [[1, 0]] 输出：[0,1] 输入：2, [[0, 1], [1, 0]] 输出：[] 问题解法直接用拓扑排序进行求解，将每次的学习的课程保存在数组中，最后判断是否存在循环依赖关系，如果存在则返回空数组，否则返回结果数组。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950class Solution&#123; public int[] findOrder(int numCourses, int[][] prerequisites) &#123; int[] nodeIns = new int[numCourses]; for (int i = 0; i &lt; prerequisites.length; i++) &#123; nodeIns[prerequisites[i][0]]++; &#125; List&lt;Integer&gt; courses = new ArrayList&lt;&gt;(); for (int i = 0; i &lt; numCourses; i++) &#123; if (nodeIns[i] == 0) &#123; courses.add(i); &#125; &#125; int[] studyCoures = new int[numCourses]; int index = 0; while (!courses.isEmpty()) &#123; int course = courses.get(0); courses.remove(0); studyCoures[index] = course; index++; for (int i = 0; i &lt; prerequisites.length; i++) &#123; if (prerequisites[i][1] == course) &#123; nodeIns[prerequisites[i][0]]--; if (nodeIns[prerequisites[i][0]] == 0) &#123; courses.add(prerequisites[i][0]); &#125; &#125; &#125; &#125; if (index == numCourses) &#123; return studyCoures; &#125; else &#123; return new int[0]; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-547:Friend Circles]]></title>
     <url>%2FleetCode%2FleetCode-547%2F</url>
     <content type="text"><![CDATA[问题描述给定一个 n * n 的二维数组，用来表示班级成员的朋友关系。如果 M[i][j] 值为 1，表示第 i 人和第 j 人是朋友关系，如果值为 0，表示第 i 人和第 j 人不是朋友关系。朋友关系具有传递性，如 a 和 b 是朋友，b 和 c 是朋友，则 a 和 c 也是朋友。要求找出有班级中多少个朋友圈。题目链接：点我 样例输入输出 输入： [[1,1,0],[1,1,1],[0,1,1]] 输出：1 输入： [[1,1,0],[1,1,0],[0,0,1]] 输出：2 问题解法用并查集算法进行解答。假设每个人都有一个上层的朋友，如果该成员没有任何朋友，则其上层的朋友就是自己。首先，先初始化每个人的上层朋友，然后遍历二维数组，对每一对朋友关系，都分别找出这两个成员的最上层的朋友，如果值不相等，则将其合并，最后再遍历定义的上层朋友的数组，统计上层朋友是自己的成员个数，就是班级朋友圈的个数。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849class Solution&#123; private int findRoot(int[] friend, int i) &#123; while (friend[i] != i) &#123; i = friend[i]; &#125; return i; &#125; public int findCircleNum(int[][] M) &#123; int n = M.length; int[] friend = new int[n]; for (int i = 0; i &lt; M.length; i++) &#123; friend[i] = i; &#125; for (int i = 0; i &lt; n; i++) &#123; for (int j = i + 1; j &lt; n; j++) &#123; if (M[i][j] == 1) &#123; int iRoot = findRoot(friend, i); int jRoot = findRoot(friend, j); if (iRoot != jRoot) &#123; friend[iRoot] = jRoot; &#125; &#125; &#125; &#125; int count = 0; for (int i = 0; i &lt; n; i++) &#123; if (friend[i] == i) &#123; count++; &#125; &#125; return count; &#125;&#125;]]></content>
