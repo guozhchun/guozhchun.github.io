@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,leetCode," />
 
 
 
@@ -79,15 +79,18 @@
 
 
 
-<meta name="keywords" content="guozhchun, ChunNote">
+<meta name="description" content="问题描述给定一个数字 n，要求在 n * n 的棋盘上摆放 n 个皇后，使得各个皇后间不会互相攻击，输出所有可能的结果的总数。题目链接：点我">
+<meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-52">
+<meta property="og:title" content="leetCode-52:N-Queens II">
 <meta property="og:url" content="http://yoursite.com/leetCode/leetCode-52/index.html">
 <meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="问题描述给定一个数字 n，要求在 n * n 的棋盘上摆放 n 个皇后，使得各个皇后间不会互相攻击，输出所有可能的结果的总数。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-25T10:21:11.911Z">
+<meta property="og:updated_time" content="2020-04-25T10:38:09.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-52">
+<meta name="twitter:title" content="leetCode-52:N-Queens II">
+<meta name="twitter:description" content="问题描述给定一个数字 n，要求在 n * n 的棋盘上摆放 n 个皇后，使得各个皇后间不会互相攻击，输出所有可能的结果的总数。题目链接：点我">
 
 
 
@@ -123,7 +126,7 @@
 
 
 
-  <title>leetCode-52 | ChunNote</title>
+  <title>leetCode-52:N-Queens II | ChunNote</title>
   
 
 
@@ -301,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-52</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-52:N-Queens II</h1>
         
 
         <div class="post-meta">
@@ -329,12 +332,34 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-25T18:21:11+08:00">
-                2020-04-25 18:21:11
+              <time title="更新于" itemprop="dateModified" datetime="2020-04-25T18:38:09+08:00">
+                2020-04-25 18:38:09
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -373,7 +398,21 @@
       
 
       
-        
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个数字 <code>n</code>，要求在 <code>n * n</code> 的棋盘上摆放 <code>n</code> 个皇后，使得各个皇后间不会互相攻击，输出所有可能的结果的总数。题目链接：<strong><a href="https://leetcode.com/problems/n-queens-ii/" target="_blank" rel="noopener">点我</a></strong></p>
+<a id="more"></a>
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：4</p>
+<p>输出：2</p>
+</blockquote>
+<blockquote>
+<p>输入：12</p>
+<p>输出： 14200 </p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题跟 <a href="https://guozhchun.github.io/leetCode/leetCode-51/" target="_blank" rel="noopener">LeetCode-51</a> 题目类似，只不过是把结果集合换成了结果数量，因此可以在其基础上进行修改，将结果集变成数量。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dx = &#123;-<span class="number">1</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] dy = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[][] occupy;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">char</span>[][] grid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cellNum;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        init(n);</span><br><span class="line">        <span class="keyword">return</span> searchQueen(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">searchQueen</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> total)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cellNum == num)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> total + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cellNum; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (occupy[num][i] == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                grid[num][i] = <span class="string">'Q'</span>;</span><br><span class="line">                handleOccupy(num, i, <span class="number">1</span>);</span><br><span class="line">                total = searchQueen(num + <span class="number">1</span>, total);</span><br><span class="line">                grid[num][i] = <span class="string">'.'</span>;</span><br><span class="line">                handleOccupy(num, i, -<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleOccupy</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> step)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        occupy[row][col] += step;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dx.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> nextX = row + dx[i];</span><br><span class="line">            <span class="keyword">int</span> nextY = col + dy[i];</span><br><span class="line">            <span class="keyword">while</span> (isInBoundary(nextX, nextY))</span><br><span class="line">            &#123;</span><br><span class="line">                occupy[nextX][nextY] += step;</span><br><span class="line">                nextX = nextX + dx[i];</span><br><span class="line">                nextY = nextY + dy[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isInBoundary</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> col)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> row &gt;= <span class="number">0</span> &amp;&amp; row &lt; cellNum &amp;&amp; col &gt;=<span class="number">0</span> &amp;&amp; col &lt; cellNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cellNum = n;</span><br><span class="line">        grid = <span class="keyword">new</span> <span class="keyword">char</span>[n][n];</span><br><span class="line">        occupy = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                grid[i][j] = <span class="string">'.'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="另一种解法"><a href="#另一种解法" class="headerlink" title="另一种解法"></a>另一种解法</h2><p>上面的解法是在每次放置皇后完成后，立即处理棋盘，设置棋盘上不能放置皇后的位置。另一种做法是放置皇后完成后不做处理，将判断是否能放置皇后的计算步骤延后（提前）处理。由于不用棋盘的放置结果，因此可以不用存储棋盘的信息。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> searchQueen(n, <span class="number">0</span>, <span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">searchQueen</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> total, List&lt;Integer&gt; queenCols)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = queenCols.size();</span><br><span class="line">        <span class="keyword">if</span> (n == row)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> total + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (canPlace(queenCols, row, i))</span><br><span class="line">            &#123;</span><br><span class="line">                queenCols.add(i);</span><br><span class="line">                total = searchQueen(n, total, queenCols);</span><br><span class="line">                queenCols.remove(queenCols.size() - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">canPlace</span><span class="params">(List&lt;Integer&gt; queenCols, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = queenCols.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (queenCols.get(i) == col)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> dx = Math.abs(i - row);</span><br><span class="line">            <span class="keyword">int</span> dy = Math.abs(queenCols.get(i) - col);</span><br><span class="line">            <span class="keyword">if</span> (dx == dy)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -387,6 +426,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
+          
+        </div>
       
 
       
@@ -464,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -525,6 +581,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#另一种解法"><span class="nav-number">3.1.</span> <span class="nav-text">另一种解法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
