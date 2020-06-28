@@ -19,7 +19,7 @@ categories: leetCode
 
 # 问题解法
 
-此题跟 [leetCode-15:3sum](https://guozhchun.github.io/2018/06/01/leetCode/leetCode-15/) 类似，只是需要在其外层多加一层循环遍历另一个数字即可。代码如下
+此题跟 [leetCode-15:3sum](https://guozhchun.github.io/leetCode/leetCode-15/) 类似，只是需要在其外层多加一层循环遍历另一个数字即可。代码如下
 
 ```java
 class Solution 

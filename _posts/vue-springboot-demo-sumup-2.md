@@ -450,7 +450,7 @@ vue 组件有三个主要点：定义组件、注册组件、使用组件、组�
 
 ## 其他问题
 
-请见：[一个微型项目中期总结](https://guozhchun.github.io/2019/06/02/vue-springboot-demo-sumup-1/) 中 「遇到的问题及解决方案」章节
+请见：[一个微型项目中期总结](https://guozhchun.github.io/vue-springboot-demo-sumup-1/) 中 「遇到的问题及解决方案」章节
 
 # 参考资料
 
