@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-87:Scramble String]]></title>
+    <url>%2FleetCode%2FleetCode-87%2F</url>
+    <content type="text"><![CDATA[问题描述将一个字符串递归分割，可以用一棵二叉树来表示。将这颗树上非叶子节点的两节点进行交换得到一颗新的二叉树（也是一个新的字符串）。现在给出两个字符串，要求判断第一个字符串是否能经过上述变化（允许多次或者递归变化）得到第二个字符串。题目链接：点我 样例输入输出 输入：s1 = “great”, s2 = “rgeat” 输出：true 输入：”abcde”, s2 = “caebd” 输出：false 问题解法仔细观察分析，可以确定，如果 s1 和 s2 可以相互转换，那么必然存在一个分割点将两个字符串切开，假设 s1 切割为 s11 和 s12， s2 切割为 s21 和 s22，使得 s11 和 s21、s12 和 s22 可以相互转换，或者 s11 和 s22、s12 和 s21 可以相互转换。 因此，可以用动态规划进行求解。假设 dp[i][j][k] 表示 s1 字符串中从 i 位置开始 k 个字符构成的字符串与 s2 字符串中从 j 位置开始 k 个字符构成的字符串两者的转换结果（true 或者 false，能相互转换为 true，否则为 false），则动态转移方程为：dp[i][j][k] = (dp[i][j][m] &amp;&amp; dp[i + m][j + m][k - m]) || (dp[i][j + k - m][m] &amp;&amp; dp[i + m][j][k - m]) (1 &lt;= m &lt; k)。dp[0][0][length] 的结果就是最终的结果。为了使动态转移方程在计算过程中能够获取到表达式中每个计算项的值（确保表达式中每个计算项在本次计算之前已经得到相应的结果），i、j 的循环需要从后往前，k 的循环从前往后。代码如下 1234567891011121314151617181920212223242526272829303132333435class Solution&#123; public boolean isScramble(String s1, String s2) &#123; if (s1.length() != s2.length()) &#123; return false; &#125; int len = s1.length(); boolean[][][] dp = new boolean[len][len][len + 1]; for (int i = len - 1; i &gt;= 0; i--) &#123; for (int j = len - 1; j &gt;= 0; j--) &#123; for (int k = 1; k &lt;= len - j &amp;&amp; k &lt;= len - i; k++) &#123; dp[i][j][k] = s1.substring(i, i + k).equals(s2.substring(j, j + k)); for (int m = 1; m &lt; k; m++) &#123; boolean temp = dp[i][j][m] &amp;&amp; dp[i + m][j + m][k - m]; boolean temp2 = dp[i][j + k - m][m] &amp;&amp; dp[i + m][j][k - m]; dp[i][j][k] = dp[i][j][k] || temp || temp2; if (dp[i][j][k]) &#123; break; &#125; &#125; &#125; &#125; &#125; return dp[0][0][len]; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-135:Candy]]></title>
     <url>%2FleetCode%2FleetCode-135%2F</url>
     <content type="text"><![CDATA[问题描述给定一个数组，表示每个小孩的排名，现在给小孩分配糖果，要求满足：每个小孩至少分到一个糖果，排名比旁边高的小孩分配到的糖果要多于旁边的小孩。求出分配的糖果数量总和最小的值。题目链接：点我 样例输入输出 输入：[1,0,2] 输出：5 解释：第一个小孩分配 2 个糖果，第二个小孩分配 1 个糖果，第三个小孩分配 2 个糖果 输入：[1,2,2] 输出：4 输出：第一个小孩分配 1 个糖果，第二个小孩分配 2 个糖果，第三个小孩分配 1 个糖果 问题解法要让分配的糖果总数最小，就需要在每个人拥有一个糖果后，找出数组中的升序序列和降序序列，然后对这子序列的小孩的糖果数依次加一（升序序列：从左到右，依次加一；降序序列：从右到左，依次加一）。代码如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263class Solution&#123; public int candy(int[] ratings) &#123; if (ratings == null || ratings.length == 0) &#123; return 0; &#125; if (ratings.length == 1) &#123; return 1; &#125; int begin = 0; int index = begin + 1; int sum = ratings.length; while (index &lt; ratings.length) &#123; // 找出升序序列 while (index &lt; ratings.length &amp;&amp; ratings[index - 1] &lt; ratings[index]) &#123; index++; &#125; int top = index - 1; // 找出降序序列 while (index &lt; ratings.length &amp;&amp; ratings[index - 1] &gt; ratings[index]) &#123; index++; &#125; if (top - begin &gt; index - top - 1) &#123; // top 放在升序序列中 int ascendingLength = top - begin + 1; sum += ascendingLength * (ascendingLength - 1) / 2; int descendingLength = index - top - 1; sum += descendingLength * (descendingLength - 1) / 2; &#125; else &#123; // top 放在降序序列中 int ascendingLength = top - begin; sum += ascendingLength * (ascendingLength - 1) / 2; int descendingLength = index - top; sum += descendingLength * (descendingLength - 1) / 2; &#125; // 排名相等，不用额外分配糖果，直接跳过 while (index &lt; ratings.length &amp;&amp; ratings[index - 1] == ratings[index]) &#123; index++; &#125; begin = index - 1; &#125; return sum; &#125;&#125;]]></content>
