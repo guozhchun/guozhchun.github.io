@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,leetCode," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta name="keywords" content="guozhchun, ChunNote">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ChunNote">
-<meta property="og:url" content="http://yoursite.com/categories/hexo/index.html">
+<meta name="description" content="问题描述给定一个链表，用 L0→L1→…→Ln-1→Ln 表示，要求在不改变节点值的情况下将链表改成以下顺序：L0→Ln→L1→Ln-1→L2→Ln-2→…。题目链接：点我">
+<meta name="keywords" content="java,leetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetCode-143:Reorder List">
+<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-143/index.html">
 <meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="问题描述给定一个链表，用 L0→L1→…→Ln-1→Ln 表示，要求在不改变节点值的情况下将链表改成以下顺序：L0→Ln→L1→Ln-1→L2→Ln-2→…。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-09T04:56:04.918Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ChunNote">
+<meta name="twitter:title" content="leetCode-143:Reorder List">
+<meta name="twitter:description" content="问题描述给定一个链表，用 L0→L1→…→Ln-1→Ln 表示，要求在不改变节点值的情况下将链表改成以下顺序：L0→Ln→L1→Ln-1→L2→Ln-2→…。题目链接：点我">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-143/"/>
 
 
 
 
 
-  <title>分类: hexo | ChunNote</title>
+  <title>leetCode-143:Reorder List | ChunNote</title>
   
 
 
@@ -141,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,83 +273,213 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>hexo<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-143/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/hexoBlogTimeModify/" itemprop="url">
-              
-                <span itemprop="name">hexo博客修改时间</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">leetCode-143:Reorder List</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-02T17:20:02+08:00"
-              content="2018-06-02" >
-          06-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-09T12:42:59+08:00">
+                2020-08-09 12:42:59
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-08-09T12:56:04+08:00">
+                2020-08-09 12:56:04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/leetCode/leetCode-143/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-143/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/hexo-pluins/" itemprop="url">
-              
-                <span itemprop="name">几个好用的hexo插件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-31T22:09:44+08:00"
-              content="2018-05-31" >
-          05-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个链表，用 <code>L0→L1→…→Ln-1→Ln</code> 表示，要求在不改变节点值的情况下将链表改成以下顺序：<code>L0→Ln→L1→Ln-1→L2→Ln-2→…</code>。题目链接：<strong><a href="https://leetcode.com/problems/reorder-list" target="_blank" rel="noopener">点我</a></strong></p>
+<a id="more"></a>
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：1-&gt;2-&gt;3-&gt;4</p>
+<p>输出：1-&gt;4-&gt;2-&gt;3</p>
+</blockquote>
+<blockquote>
+<p>输入：1-&gt;2-&gt;3-&gt;4-&gt;5</p>
+<p>输出：1-&gt;5-&gt;2-&gt;4-&gt;3</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题最简单的解法就是遍历一遍，在遍历过程中用一个数组来存储每个节点，然后遍历数组中的节点，根据规则将每个节点的 <code>next</code> 指针指向对应节点即可。但是这种做法需要花费 <code>O(n)</code> 的空间复杂度。一般而言，leetcode 上链表的题目，都是用 <code>O(1)</code> 的空间复杂度进行求解的。针对此题，一种 <code>O(1)</code>的空间复杂度的解法如下：</p>
+<ul>
+<li>首先将链表对半拆分，拆成两个子链表。可以用快慢指针进行拆分，时间复杂度为 <code>O(n)</code>，空间复杂度为 <code>O(1)</code></li>
+<li><p>其次，对后半部分的链接进行倒序。时间复杂度为 <code>O(n)</code>，空间复杂度为 <code>O(1)</code></p>
+</li>
+<li><p>最后，合并前后两个子链表。时间复杂度为 <code>O(n)</code>，空间复杂度为 <code>O(1)</code></p>
+</li>
+</ul>
+<p>总体而言，时间复杂度为 <code>O(n)</code>，空间复杂度为 <code>O(1)</code></p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// split the list</span></span><br><span class="line">        ListNode half = head;</span><br><span class="line">        ListNode next = head;</span><br><span class="line">        ListNode prevEnd = head;</span><br><span class="line">        <span class="keyword">while</span> (next != <span class="keyword">null</span> &amp;&amp; next.next != <span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            next = next.next.next;</span><br><span class="line">            prevEnd = half;</span><br><span class="line">            half = half.next;</span><br><span class="line">        &#125;</span><br><span class="line">        prevEnd.next = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// reverse the post half list</span></span><br><span class="line">        ListNode postHead = reverseList(half);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// merge two half list</span></span><br><span class="line">        mergeList(head, postHead);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mergeList</span><span class="params">(ListNode firstHead, ListNode secondHead)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ListNode first = firstHead;</span><br><span class="line">        ListNode second = secondHead;</span><br><span class="line">        <span class="keyword">while</span> (first != <span class="keyword">null</span> &amp;&amp; first.next != <span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode secondNext = second.next;</span><br><span class="line">            second.next = first.next;</span><br><span class="line">            first.next = second;</span><br><span class="line">            first = second.next;</span><br><span class="line">            second = secondNext;</span><br><span class="line">        &#125;</span><br><span class="line">        first.next = second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ListNode dummyNode = <span class="keyword">new</span> ListNode(-<span class="number">1</span>, head);</span><br><span class="line">        <span class="keyword">while</span> (head.next != <span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode next = head.next;</span><br><span class="line">            head.next = next.next;</span><br><span class="line">            next.next = dummyNode.next;</span><br><span class="line">            dummyNode.next = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummyNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetCode/leetCode-87/" rel="next" title="leetCode-87:Scramble String">
+                <i class="fa fa-chevron-left"></i> leetCode-87:Scramble String
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -353,6 +487,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -373,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -434,6 +588,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -561,6 +731,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -607,6 +781,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'guozhchun',
+            repo: 'hexoBlog-gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '89ff35fde983e6004c09d9e506593d84fd1b2812',
+            
+                client_id: '5d3ec7fef82f79d6c062'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
