@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给定一个被除数和除数（都是 int  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 int 类型，则返回 -2147483648 （商小于 -2147483648 时）或 2147483647 （商大于 2147483647 时）。题目链接：点我">
+<meta name="description" content="问题描述给定一个整数数组，要求在 O(n) 的时间复杂度内找出数组中最长连续序列的元素个数。题目链接：点我">
 <meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-29:Divide Two Integers">
-<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-29/index.html">
+<meta property="og:title" content="leetCode-128:Longest Consecutive Sequence">
+<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-128/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给定一个被除数和除数（都是 int  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 int 类型，则返回 -2147483648 （商小于 -2147483648 时）或 2147483647 （商大于 2147483647 时）。题目链接：点我">
+<meta property="og:description" content="问题描述给定一个整数数组，要求在 O(n) 的时间复杂度内找出数组中最长连续序列的元素个数。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-31T07:13:34.743Z">
+<meta property="og:updated_time" content="2020-08-23T08:34:39.266Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-29:Divide Two Integers">
-<meta name="twitter:description" content="问题描述给定一个被除数和除数（都是 int  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 int 类型，则返回 -2147483648 （商小于 -2147483648 时）或 2147483647 （商大于 2147483647 时）。题目链接：点我">
+<meta name="twitter:title" content="leetCode-128:Longest Consecutive Sequence">
+<meta name="twitter:description" content="问题描述给定一个整数数组，要求在 O(n) 的时间复杂度内找出数组中最长连续序列的元素个数。题目链接：点我">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-29/"/>
+  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-128/"/>
 
 
 
 
 
-  <title>leetCode-29:Divide Two Integers | ChunNote</title>
+  <title>leetCode-128:Longest Consecutive Sequence | ChunNote</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-29/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-128/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-29:Divide Two Integers</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-128:Longest Consecutive Sequence</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-31T14:36:01+08:00">
-                2019-03-31 14:36:01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-23T16:16:27+08:00">
+                2020-08-23 16:16:27
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T15:13:34+08:00">
-                2019-03-31 15:13:34
+              <time title="更新于" itemprop="dateModified" datetime="2020-08-23T16:34:39+08:00">
+                2020-08-23 16:34:39
               </time>
             
           </span>
@@ -369,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/leetCode/leetCode-29/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-29/" itemprop="commentsCount"></span>
+                <a href="/leetCode/leetCode-128/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-128/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -398,25 +398,20 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个被除数和除数（都是 <code>int</code>  类型），要求在不使用除法、乘法、求余运算的前提下，算出商。如果得出的结果超过 <code>int</code> 类型，则返回 <code>-2147483648</code> （商小于 -2147483648 时）或 <code>2147483647</code> （商大于 2147483647 时）。题目链接：<strong><a href="https://leetcode.com/problems/divide-two-integers/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个整数数组，要求在 <code>O(n)</code> 的时间复杂度内找出数组中最长连续序列的元素个数。题目链接：<strong><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
 <h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：10   3</p>
-<p>输出：3</p>
+<p>输入：[100, 4, 200, 1, 3, 2]</p>
+<p>输出：4</p>
+<p>说明：最长连续序列为 1 2 3 4，序列中元素个数为 4</p>
 </blockquote>
 <blockquote>
-<p>输入：-7    3</p>
-<p>输出：-2</p>
+<p>输入：[1, 2, 3, 4, 6, 7, 8, 9, 10]</p>
+<p>输出：5</p>
+<p>说明：最长连续序列为 6 7 8 9 10，序列中元素个数为 5</p>
 </blockquote>
-<blockquote>
-<p>输入：-2147483648    1</p>
-<p>输出：2147483647</p>
-<p>解释：在数学上，-2147483648 / 1 = -2147483648，但是这个结果超过 int 类型的存储范围，所以返回结果是 int 类型的最大值 2147483647</p>
-</blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此问题要求不能使用除法、乘法和求余运算，因此最简单的做法就是暴力相减，从被除数中一直减去除数，直到被除数小于除数，记录相减的次数，即使商。但是，这种做法超时了。</p>
-<p>根据题目的提示，可以使用二分查找的思路进行求解。当一个数 <code>A1</code> 除以 2 后，其结果 <code>A2</code> 小于被除数<code>B</code>时，说明 <code>A1</code> 除 <code>B</code> 的商是 1，如果 <code>A2</code> 大于被除数，说明 <code>A1 / B</code> 的商至少是 <code>A2 / B</code> 的商的两倍。顺着这个思路，可以一直将被除数除 2 后与除数进行比较，直到被除数小于除数时，记录相除的次数 n，此时可以根据相除的次数得到最小的商是 <code>2^(n - 1)</code>，同时将最开始的被除数减去 <code>除数 * 2^(n - 1)</code>得到新的被除数，将新的被除数与除数进行新的相除计算得到其结果，最后将这两个结果进行相加得到最终的商。由于整个过程是对 2 进行相除和相乘的操作，可以用相应的位运算进行代替，从而避免使用乘法和除法。</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 先于 divisor == Integer.MIN_VALUE 的判断</span></span><br><span class="line">        <span class="comment">// 主要是为了避免 divisor 和 divisor 都是 Integer.MIN_VALUE 的情况</span></span><br><span class="line">        <span class="keyword">if</span> (dividend == divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 先在此处进行判断，主要是为了后续方便对 divisor 转换成整数的操作</span></span><br><span class="line">        <span class="keyword">if</span> (divisor == Integer.MIN_VALUE)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sign = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 确保除数大于 0</span></span><br><span class="line">        <span class="keyword">if</span> (divisor &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sign = -sign;</span><br><span class="line">            divisor = -divisor;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 确保被除数大于 0</span></span><br><span class="line">        <span class="keyword">if</span> (dividend &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sign = -sign;</span><br><span class="line">            <span class="comment">// 保证将被除数转为正数后不会超出整数的范围</span></span><br><span class="line">            <span class="keyword">if</span> (dividend == Integer.MIN_VALUE)</span><br><span class="line">            &#123;</span><br><span class="line">                dividend += divisor;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            dividend = -dividend;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 经过上述操作，已经将被除数和除数转成正数，此处进行正数相除操作</span></span><br><span class="line">        <span class="keyword">int</span> quotient = dividePositiveNum(dividend, divisor);</span><br><span class="line">        <span class="comment">// 确保结果不会超过整数的范围</span></span><br><span class="line">        <span class="keyword">if</span> (quotient &gt; Integer.MAX_VALUE - count)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> sign &gt; <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        count = count + quotient;</span><br><span class="line">        <span class="keyword">return</span> sign &gt; <span class="number">0</span> ? count: -count;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">dividePositiveNum</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (dividend == divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 此处初始化为 -1，避免后续对其进行减一操作</span></span><br><span class="line">        <span class="comment">// 程序运行到此处时， dividend 必然大于 divisor，则 powCount 必然大于等于 0</span></span><br><span class="line">        <span class="keyword">int</span> powCount = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> tempDividend = dividend;</span><br><span class="line">        <span class="keyword">while</span> (tempDividend &gt; divisor)</span><br><span class="line">        &#123;</span><br><span class="line">            tempDividend = tempDividend &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            powCount++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> partQuotient = <span class="number">1</span> &lt;&lt; powCount;</span><br><span class="line">        <span class="keyword">int</span> partMultiNum = divisor &lt;&lt; powCount;</span><br><span class="line">        <span class="keyword">int</span> remaindDividend = dividend - partMultiNum;</span><br><span class="line">        <span class="keyword">return</span> partQuotient + dividePositiveNum(remaindDividend, divisor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>遍历数组，将数组中每个元素放在 map 中，然后重新遍历数组中每个元素，以该元素为起点，每次加一，看新的数字是否在 map 中，如果在，则说明新的数字存在数组，同时也说明这个新的数字与当前元素是能构成连续序列的，如果不在，则说明新的数字不在数组中，结束循环。同样，以该元素为终点，每次减一，重复上述步骤，直到条件不满足为止。这样就能找出包含当前元素的最长序列的起始和终止的数字，进而获取到包含当前元素的最长序列的元素个数。在循环遍历数组时，每次比较最长序列的元素个数，取其最大值，当数组遍历完成时，变量保存的最大值就是求解的值。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Map&lt;Integer, Boolean&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(nums.length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums)</span><br><span class="line">        &#123;</span><br><span class="line">            map.put(num, <span class="keyword">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> maxCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (!map.get(num))</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">                <span class="keyword">int</span> next = num + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (!map.getOrDefault(next, <span class="keyword">true</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                    map.put(next, <span class="keyword">true</span>);</span><br><span class="line">                    count++;</span><br><span class="line">                    next = next + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> front = num - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (!map.getOrDefault(front, <span class="keyword">true</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                    map.put(front, <span class="keyword">true</span>);</span><br><span class="line">                    count++;</span><br><span class="line">                    front = front - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (count &gt; maxCount)</span><br><span class="line">                &#123;</span><br><span class="line">                    maxCount = count;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> maxCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -449,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/thread-pool/" rel="next" title="谈谈线程池">
-                <i class="fa fa-chevron-left"></i> 谈谈线程池
+              <a href="/leetCode/leetCode-124/" rel="next" title="leetCode-124:Binary Tree Maximum Path Sum">
+                <i class="fa fa-chevron-left"></i> leetCode-124:Binary Tree Maximum Path Sum
               </a>
             
           </div>
@@ -458,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/leetCode/leetCode-89/" rel="prev" title="leetCode-89:Gray Code">
-                leetCode-89:Gray Code <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
