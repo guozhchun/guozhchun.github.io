@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-924:Minimize Malware Spread]]></title>
+    <url>%2FleetCode%2FleetCode-924%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个二维矩阵，表示网络中的各个节点的连通性，graph[i][j] = 1 表示 i 和 j 是连通的，graph[i][j] = 0 表示 i、j 不连通。给定一个 initial 数组，数组元素表示网络中被病毒感染的节点，病毒感染具有传播性。要求从 initial 数组中删除某个节点，使网络中被病毒感染的节点数最少。如果存在多个节点，则返回数字最小的节点。题目链接：点我 样例输入输出 输入：graph = [[1,1,0],[1,1,0],[0,0,1]], initial = [0,1] 输出：0 输入：graph = [[1,1,1],[1,1,1],[1,1,1]], initial = [1,2] 输出：1 问题解法使用并查集算法，找出网络中有多少个隔离的集群，分别计算每个集群中的节点数。遍历 initial 数组，剔除同一个集群下的元素，对剩下的元素，分别获取其所在集群的节点数，取其最大值，此时对应的元素就是要剔除的节点。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172class Solution&#123; public int minMalwareSpread(int[][] graph, int[] initial) &#123; // 初始化 int[] parents = new int[graph.length]; for (int i = 0; i &lt; parents.length; i++) &#123; parents[i] = i; &#125; // 使用并查集找出网络中隔离的集群 for (int i = 0; i &lt; graph.length; i++) &#123; for (int j = 0; j &lt; i; j++) &#123; if (graph[i][j] == 1) &#123; int iParent = findParent(parents, i); int jParent = findParent(parents, j); if (iParent != jParent) &#123; parents[iParent] = jParent; &#125; &#125; &#125; &#125; // 计算网络中隔离的集群每个集群的节点数 Map&lt;Integer, Integer&gt; childrenCountMap = new HashMap&lt;&gt;(); for (int i = 0; i &lt; parents.length; i++) &#123; int root = findParent(parents, parents[i]); childrenCountMap.put(root, childrenCountMap.getOrDefault(root, 0) + 1); &#125; // 找出 initial 中处于同个集群的节点 Map&lt;Integer, Integer&gt; duplicateMap = new HashMap&lt;&gt;(); for (int i = 0; i &lt; initial.length; i++) &#123; int root = findParent(parents, initial[i]); duplicateMap.put(root, duplicateMap.getOrDefault(root, 0) + 1); &#125; // 找出 initial 中元素所在的集群中拥有最多节点数的集群 Arrays.sort(initial); int node = initial[0]; int maxNum = -1; for (int i = 0; i &lt; initial.length; i++) &#123; int root = findParent(parents, initial[i]); if (duplicateMap.get(root) == 1 &amp;&amp; childrenCountMap.get(root) &gt; maxNum) &#123; maxNum = childrenCountMap.get(root); node = initial[i]; &#125; &#125; return node; &#125; private int findParent(int[] parents, int i) &#123; while (parents[i] != i) &#123; i = parents[i]; &#125; return i; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-133:Clone Graph]]></title>
     <url>%2FleetCode%2FleetCode-133%2F</url>
     <content type="text"><![CDATA[问题描述给定一个无向连通图，要求将图进行深拷贝。题目链接：点我 问题解法使用深搜算法遍历每个节点，为了保证遍历过程中邻节点的正确性，将已经访问过的节点存在数组中，后续查找邻节点时直接从数组中进行获取，这样既能保证节点的正确性，也能提高访问效率。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/*// Definition for a Node.class Node &#123; public int val; public List&lt;Node&gt; neighbors; public Node() &#123;&#125; public Node(int _val,List&lt;Node&gt; _neighbors) &#123; val = _val; neighbors = _neighbors; &#125;&#125;;*/class Solution&#123; public Node cloneGraph(Node node) &#123; if (node == null) &#123; return node; &#125; Node[] nodes = new Node[101]; copy(node, nodes, new boolean[101]); return nodes[node.val]; &#125; private void copy(Node source, Node[] nodes, boolean[] visited) &#123; if (visited[source.val]) &#123; return; &#125; visited[source.val] = true; if (nodes[source.val] == null) &#123; nodes[source.val] = new Node(source.val, new ArrayList&lt;&gt;()); &#125; Node dest = nodes[source.val]; for (Node neighbor : source.neighbors) &#123; copy(neighbor, nodes, visited); dest.neighbors.add(nodes[neighbor.val]); &#125; &#125;&#125;]]></content>
