@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,jvm," />
+  <meta name="keywords" content="java,leetCode," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="概述在部分程序中，需要进行性能调优，此时需要改变java虚拟机的各个内存区域的默认大小或改变垃圾回收器的策略，而这需要通过改变java虚拟机参数来完成。本文主要记录其中几个常用的参数。">
-<meta name="keywords" content="java,jvm">
+<meta name="description" content="问题描述给定一个只包含小写字母的字符串，要求去除其中重复的字母，返回保留原先字母顺序的最小字典序的字符串。题目链接：点我">
+<meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="部分 java 虚拟机参数">
-<meta property="og:url" content="http://yoursite.com/jvm/jvm-parameter/index.html">
+<meta property="og:title" content="leetCode-316:Remove Duplicate Letters">
+<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-316/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="概述在部分程序中，需要进行性能调优，此时需要改变java虚拟机的各个内存区域的默认大小或改变垃圾回收器的策略，而这需要通过改变java虚拟机参数来完成。本文主要记录其中几个常用的参数。">
+<meta property="og:description" content="问题描述给定一个只包含小写字母的字符串，要求去除其中重复的字母，返回保留原先字母顺序的最小字典序的字符串。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-05T09:59:34.486Z">
+<meta property="og:updated_time" content="2020-09-20T07:31:25.121Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="部分 java 虚拟机参数">
-<meta name="twitter:description" content="概述在部分程序中，需要进行性能调优，此时需要改变java虚拟机的各个内存区域的默认大小或改变垃圾回收器的策略，而这需要通过改变java虚拟机参数来完成。本文主要记录其中几个常用的参数。">
+<meta name="twitter:title" content="leetCode-316:Remove Duplicate Letters">
+<meta name="twitter:description" content="问题描述给定一个只包含小写字母的字符串，要求去除其中重复的字母，返回保留原先字母顺序的最小字典序的字符串。题目链接：点我">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/jvm/jvm-parameter/"/>
+  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-316/"/>
 
 
 
 
 
-  <title>部分 java 虚拟机参数 | ChunNote</title>
+  <title>leetCode-316:Remove Duplicate Letters | ChunNote</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/jvm/jvm-parameter/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-316/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">部分 java 虚拟机参数</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-316:Remove Duplicate Letters</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-16T16:45:29+08:00">
-                2018-06-16 16:45:29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-20T15:11:38+08:00">
+                2020-09-20 15:11:38
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-05T17:59:34+08:00">
-                2018-08-05 17:59:34
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-20T15:31:25+08:00">
+                2020-09-20 15:31:25
               </time>
             
           </span>
@@ -351,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jvm/" itemprop="url" rel="index">
-                    <span itemprop="name">jvm</span>
+                  <a href="/categories/leetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetCode</span>
                   </a>
                 </span>
 
@@ -369,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/jvm/jvm-parameter/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/jvm/jvm-parameter/" itemprop="commentsCount"></span>
+                <a href="/leetCode/leetCode-316/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-316/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -398,146 +398,19 @@
       
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在部分程序中，需要进行性能调优，此时需要改变java虚拟机的各个内存区域的默认大小或改变垃圾回收器的策略，而这需要通过改变java虚拟机参数来完成。本文主要记录其中几个常用的参数。</p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个只包含小写字母的字符串，要求去除其中重复的字母，返回保留原先字母顺序的最小字典序的字符串。题目链接：<strong><a href="https://leetcode.com/problems/remove-duplicate-letters/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
-<h1 id="内存参数列表"><a href="#内存参数列表" class="headerlink" title="内存参数列表"></a>内存参数列表</h1><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-Xms</td>
-<td>堆的最小值</td>
-<td>-Xms20m表示堆的最小值为20m</td>
-</tr>
-<tr>
-<td>-Xmx</td>
-<td>堆的最大值</td>
-<td>-Xmx20m表示堆的最大值为20m</td>
-</tr>
-<tr>
-<td>-Xss</td>
-<td>栈的容量大小</td>
-<td>Xss128k：栈的大小为128k</td>
-</tr>
-<tr>
-<td>-XX:PermSize</td>
-<td>方法区内存初始化值</td>
-<td>-XX:PermSize=10M表示方法区初始化内存大小为10M</td>
-</tr>
-<tr>
-<td>-XX:MaxPermSize</td>
-<td>方法区内存最大值</td>
-<td>-XX:MaxPermSize=10M表示方法区内存最大值为10M</td>
-</tr>
-<tr>
-<td>-XX:MaxDirectMemorySize</td>
-<td>直接内存大小，不指定时，默认与java堆最大值(-Xmx值)一样</td>
-<td>-XX:MaxDirectMemorySize=10M表示直接内存大小为10M</td>
-</tr>
-</tbody>
-</table>
-<h1 id="垃圾收集器参数列表"><a href="#垃圾收集器参数列表" class="headerlink" title="垃圾收集器参数列表"></a>垃圾收集器参数列表</h1><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Xmn</td>
-<td>新生代大小。如：-Xmn10m表示新生代大小为10m</td>
-</tr>
-<tr>
-<td>UseSerialGC</td>
-<td>虚拟机运行在Client模式下的默认值，打开此开关后，使用Serial + Serial Old的收集器组合进行内存回收</td>
-</tr>
-<tr>
-<td>UseParNewGC</td>
-<td>打开此开关后，使用ParNew + Serial Old的收集器组合进行内存回收</td>
-</tr>
-<tr>
-<td>UseConcMarkSweepGC</td>
-<td>打开此开关后，使用ParNew + CMS + Serial Old的收集器组合进行内容回收。Serial Old收集器将作为CMS收集器出现Concurrent Mode Failure失败后的后背收集器使用</td>
-</tr>
-<tr>
-<td>UseParallelGC</td>
-<td>虚拟机运行在Server模式下的默认值，打开此开关后，使用ParallelScavenge + Serial Old(PS MarkSweep)的收集器组合进行内存回收</td>
-</tr>
-<tr>
-<td>UseParallelOldGC</td>
-<td>打开此开关后，使用Parallel Scavenge + Parallel Old的收集器组合进行内存回收</td>
-</tr>
-<tr>
-<td>SurvivorRatio</td>
-<td>新生代中Eden区域与Survivor区域的容量比值，默认为8，代表Eden:Survivor=8:1</td>
-</tr>
-<tr>
-<td>PretenureSizeThreshold</td>
-<td>直接晋升到老年代的对象大小，设置这个参数后，大于这个参数的对象将直接在老年代分配</td>
-</tr>
-<tr>
-<td>MaxTenuringThreshold</td>
-<td>晋升到老年代的对象年龄。每个对象在坚持过一次Minor GC之后，年龄就增加1，当超过这个参数值时就进入老年代</td>
-</tr>
-<tr>
-<td>UseAdaptiveSizePolicy</td>
-<td>动态调整java堆中各个区域的大小以及进入老年代的年龄</td>
-</tr>
-<tr>
-<td>HandlePromotionFailure</td>
-<td>是否运行分配担保失败，即老年代的剩余空间不足以应付新生代的整个Eden和Survivor区的所有对象都存活的极端情况</td>
-</tr>
-<tr>
-<td>ParallelGCThreads</td>
-<td>设置并行GC时进行内存回收的线程数</td>
-</tr>
-<tr>
-<td>GCTimeRatio</td>
-<td>GC时间占总时间的比率，默认值为99，即允许1%的GC时间。仅在使用Parallel Scavenge收集器时生效</td>
-</tr>
-<tr>
-<td>MaxGCPauseMillis</td>
-<td>设置GC的最大停顿时间。仅在使用Parallel Scavenge收集器时生效</td>
-</tr>
-<tr>
-<td>CMSInitiatingOccupancyFraction</td>
-<td>设置CMS收集器在老年代空间被使用多少后出发垃圾收集。默认值为68%。仅在使用CMS收集器时生效</td>
-</tr>
-<tr>
-<td>UseCMSCompactAtFullCollection</td>
-<td>设置CMS收集器在完成垃圾收集后是否要进行一次内存碎片整理。仅在CMS收集器时生效</td>
-</tr>
-<tr>
-<td>CMSFullGCsBeforeCompaction</td>
-<td>设置CMS收集器在进行若干次垃圾收集后再启动一次内存碎片整理。仅在使用CMS收集器时生效</td>
-</tr>
-</tbody>
-</table>
-<h1 id="辅助参数列表"><a href="#辅助参数列表" class="headerlink" title="辅助参数列表"></a>辅助参数列表</h1><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-XX:+HeapDumpOnOutOfMemoryError</td>
-<td>在虚拟机出现内存溢出异常时Dump出当前的内存堆栈存储快照</td>
-</tr>
-<tr>
-<td>-XX:+PrintGCDetails</td>
-<td>在发生垃圾收集行为时打印内存日志，并且在进程退出的时候输出当前的内存各区域分配情况</td>
-</tr>
-</tbody>
-</table>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明，深入理解Java虚拟机：JVM高级特性与最佳实践[M]，北京：机械工业出版社，2013</p>
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：”bcabc”</p>
+<p>输出：”abc”</p>
+</blockquote>
+<blockquote>
+<p>输入：”cbacdcbc”</p>
+<p>输出：”acdb”</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>使用栈，遍历字符串，对每个字符进行以下判断：如果栈中元素包含了当前元素，则跳过当前元素继续下一个字符的判断；如果栈不为空，则取出栈顶的元素与当前字符进行判断，如果比当前字符大并且在当前字符后面还存在栈顶的字符，则将栈顶的字符弹出，直到栈顶字符比当前字符小或栈为空时停止，然后将当前元素入栈。最后栈中的元素序列就是求解的值。此解法参考：<a href="https://leetcode-cn.com/problems/remove-duplicate-letters/solution/qu-chu-zhong-fu-zi-mu-by-leetcode/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicate-letters/solution/qu-chu-zhong-fu-zi-mu-by-leetcode/</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">removeDuplicateLetters</span><span class="params">(String s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] charCounts = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch : s.toCharArray())</span><br><span class="line">        &#123;</span><br><span class="line">            charCounts[ch - <span class="string">'a'</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch : s.toCharArray())</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            charCounts[ch - <span class="string">'a'</span>]--;</span><br><span class="line">            <span class="keyword">if</span> (stack.contains(ch))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &gt; ch &amp;&amp; charCounts[stack.peek() - <span class="string">'a'</span>] &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            stack.push(ch);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            sb.append(stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/remove-duplicate-letters/solution/qu-chu-zhong-fu-zi-mu-by-leetcode/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicate-letters/solution/qu-chu-zhong-fu-zi-mu-by-leetcode/</a></p>
 
       
     </div>
@@ -557,7 +430,7 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/jvm/" rel="tag"># jvm</a>
+            <a href="/tags/leetCode/" rel="tag"># leetCode</a>
           
         </div>
       
@@ -570,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/jvm/jvm-memory-model/" rel="next" title="jvm 内存模型">
-                <i class="fa fa-chevron-left"></i> jvm 内存模型
+              <a href="/leetCode/leetCode-131/" rel="next" title="leetCode-131:Palindrome Partitioning">
+                <i class="fa fa-chevron-left"></i> leetCode-131:Palindrome Partitioning
               </a>
             
           </div>
@@ -579,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/design-pattern/decorator-pattern/" rel="prev" title="装饰者模式">
-                装饰者模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -721,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存参数列表"><span class="nav-number">2.</span> <span class="nav-text">内存参数列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾收集器参数列表"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集器参数列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#辅助参数列表"><span class="nav-number">4.</span> <span class="nav-text">辅助参数列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
