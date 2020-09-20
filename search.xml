@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-412:Remove K Digits]]></title>
+    <url>%2FleetCode%2FleetCode-412%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个包含非负整数的字符串 num （num 中没有前置 0）和一个数字 k，要求在 num 中剔除 k 个字符，使得剩下的字符串代表的数字最小。题目链接：点我 样例输入输出 输入：num = “1432219”, k = 3 输出：”1219” 输入：num = “10200”, k = 1 输出：”200” 解释：删除第一个 1，剩下 0200，去除前置 0，返回 200 问题解法用一个字符串来存储剔除后剩下的字符，遍历原有字符串，对当前字符进行判断，如果当前字符是 0，则判断存储的结果字符串中的第一个和最后一个字符串，哪个大则剔除哪个，如果当前字符比存储结果字符串的最后一位小，则剔除存储结果字符串的最后一位，直到当前字符比存储结果的最后一位大时为止，然后将当前字符加入到结果字符串中。当然，为了不多删字符，每次剔除字符时需要计数并与 k 进行比较，只有剔除的数量小于 k 才能剔除。最后，当遍历完字符串后，如果剔除的字符数量还是小于 k ，则从结果字符串中末尾剔除直到剔除数量等于 k 为止。然后再剔除结果字符串的前置 0，最后判断是否是空字符串，如果是则返回 “0”，否则返回当前的结果字符串。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061class Solution&#123; public String removeKdigits(String num, int k) &#123; int count = 0; StringBuilder result = new StringBuilder(); for (int i = 0; i &lt; num.length(); i++) &#123; char ch = num.charAt(i); if (ch == '0') &#123; while (result.length() &gt; 0 &amp;&amp; count &lt; k) &#123; // 比较结果字符串中第一个和最后一个的字符，哪个大则删除哪个 int index = 0; if (result.charAt(0) &lt; result.charAt(result.length() - 1)) &#123; index = result.length() - 1; &#125; // 0 只会出现在最前面，此时剔除 0 不用计数 if (result.charAt(index) != '0') &#123; count++; &#125; result.deleteCharAt(index); &#125; &#125; else &#123; while (result.length() &gt; 0 &amp;&amp; result.charAt(result.length() - 1) &gt; ch &amp;&amp; count &lt; k) &#123; result.deleteCharAt(result.length() - 1); count++; &#125; &#125; result.append(ch); &#125; // 到这里是，结果字符串中已经是递增的序列了，如果还有需要剔除的，只删除末尾部分即可 while (count &lt; k) &#123; result.deleteCharAt(result.length() - 1); count++; &#125; // 剔除前置 0 while (result.length() &gt; 0 &amp;&amp; result.charAt(0) == '0') &#123; result.deleteCharAt(0); &#125; if (result.length() == 0) &#123; return "0"; &#125; return result.toString(); &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-316:Remove Duplicate Letters]]></title>
     <url>%2FleetCode%2FleetCode-316%2F</url>
     <content type="text"><![CDATA[问题描述给定一个只包含小写字母的字符串，要求去除其中重复的字母，返回保留原先字母顺序的最小字典序的字符串。题目链接：点我 样例输入输出 输入：”bcabc” 输出：”abc” 输入：”cbacdcbc” 输出：”acdb” 问题解法使用栈，遍历字符串，对每个字符进行以下判断：如果栈中元素包含了当前元素，则跳过当前元素继续下一个字符的判断；如果栈不为空，则取出栈顶的元素与当前字符进行判断，如果比当前字符大并且在当前字符后面还存在栈顶的字符，则将栈顶的字符弹出，直到栈顶字符比当前字符小或栈为空时停止，然后将当前元素入栈。最后栈中的元素序列就是求解的值。此解法参考：https://leetcode-cn.com/problems/remove-duplicate-letters/solution/qu-chu-zhong-fu-zi-mu-by-leetcode/ 12345678910111213141516171819202122232425262728293031323334353637class Solution&#123; public String removeDuplicateLetters(String s) &#123; int[] charCounts = new int[26]; for (char ch : s.toCharArray()) &#123; charCounts[ch - 'a']++; &#125; Stack&lt;Character&gt; stack = new Stack&lt;&gt;(); for (char ch : s.toCharArray()) &#123; charCounts[ch - 'a']--; if (stack.contains(ch)) &#123; continue; &#125; while (!stack.isEmpty() &amp;&amp; stack.peek() &gt; ch &amp;&amp; charCounts[stack.peek() - 'a'] &gt; 0) &#123; stack.pop(); &#125; stack.push(ch); &#125; StringBuilder sb = new StringBuilder(); while (!stack.isEmpty()) &#123; sb.append(stack.pop()); &#125; return sb.reverse().toString(); &#125;&#125; 参考资料https://leetcode-cn.com/problems/remove-duplicate-letters/solution/qu-chu-zhong-fu-zi-mu-by-leetcode/]]></content>
