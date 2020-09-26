@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-435:Non-overlapping Intervals]]></title>
+    <url>%2FleetCode%2FleetCode-435%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个表示区间集合的二维数组，要求移除某些区间，使各个区间之间没有重叠，将最小的移除区间数返回。题目链接：点我 样例输入输出 输入：[[1,2],[2,3],[3,4],[1,3]] 输出：1 解释：移除区间 [1, 3]，剩下的区间 [1, 2], [2, 3], [3, 4] 不会重叠 输入：[[1,2],[2,3],[3,4]] 输出：0 问题解法先将区间进行排序，然后依次遍历，判断当前区间是否要移除，判断的条件为： 如果当前区间与上一个保留的区间重叠，则判断当前区间是否包含在上个保留区间中，如果被包含，则移除上个保留区间，通过将当前区间设置为上个保留区间 如果当前区间没有与上个保留区间重叠，则更新当前区间为上个保留区间 代码如下 12345678910111213141516171819202122232425262728293031323334353637383940class Solution&#123; public int eraseOverlapIntervals(int[][] intervals) &#123; Arrays.sort(intervals, (a, b) -&gt; &#123; if (a[0] &lt; b[0]) &#123; return -1; &#125; if (a[0] &gt; b[0]) &#123; return 1; &#125; return a[1] - b[1]; &#125;); int lastIndex = 0; int count = 0; for (int i = 1; i &lt; intervals.length; i++) &#123; if (intervals[i][0] &gt;= intervals[lastIndex][0] &amp;&amp; intervals[i][0] &lt; intervals[lastIndex][1]) &#123; // 考虑：[[1, 5], [2, 3], [3, 4], [4, 5]] 的情况 if (intervals[i][1] &lt;= intervals[lastIndex][1]) &#123; lastIndex = i; &#125; count++; &#125; else &#123; lastIndex = i; &#125; &#125; return count; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-412:Remove K Digits]]></title>
     <url>%2FleetCode%2FleetCode-412%2F</url>
     <content type="text"><![CDATA[问题描述给定一个包含非负整数的字符串 num （num 中没有前置 0）和一个数字 k，要求在 num 中剔除 k 个字符，使得剩下的字符串代表的数字最小。题目链接：点我 样例输入输出 输入：num = “1432219”, k = 3 输出：”1219” 输入：num = “10200”, k = 1 输出：”200” 解释：删除第一个 1，剩下 0200，去除前置 0，返回 200 问题解法用一个字符串来存储剔除后剩下的字符，遍历原有字符串，对当前字符进行判断，如果当前字符是 0，则判断存储的结果字符串中的第一个和最后一个字符串，哪个大则剔除哪个，如果当前字符比存储结果字符串的最后一位小，则剔除存储结果字符串的最后一位，直到当前字符比存储结果的最后一位大时为止，然后将当前字符加入到结果字符串中。当然，为了不多删字符，每次剔除字符时需要计数并与 k 进行比较，只有剔除的数量小于 k 才能剔除。最后，当遍历完字符串后，如果剔除的字符数量还是小于 k ，则从结果字符串中末尾剔除直到剔除数量等于 k 为止。然后再剔除结果字符串的前置 0，最后判断是否是空字符串，如果是则返回 “0”，否则返回当前的结果字符串。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061class Solution&#123; public String removeKdigits(String num, int k) &#123; int count = 0; StringBuilder result = new StringBuilder(); for (int i = 0; i &lt; num.length(); i++) &#123; char ch = num.charAt(i); if (ch == '0') &#123; while (result.length() &gt; 0 &amp;&amp; count &lt; k) &#123; // 比较结果字符串中第一个和最后一个的字符，哪个大则删除哪个 int index = 0; if (result.charAt(0) &lt; result.charAt(result.length() - 1)) &#123; index = result.length() - 1; &#125; // 0 只会出现在最前面，此时剔除 0 不用计数 if (result.charAt(index) != '0') &#123; count++; &#125; result.deleteCharAt(index); &#125; &#125; else &#123; while (result.length() &gt; 0 &amp;&amp; result.charAt(result.length() - 1) &gt; ch &amp;&amp; count &lt; k) &#123; result.deleteCharAt(result.length() - 1); count++; &#125; &#125; result.append(ch); &#125; // 到这里是，结果字符串中已经是递增的序列了，如果还有需要剔除的，只删除末尾部分即可 while (count &lt; k) &#123; result.deleteCharAt(result.length() - 1); count++; &#125; // 剔除前置 0 while (result.length() &gt; 0 &amp;&amp; result.charAt(0) == '0') &#123; result.deleteCharAt(0); &#125; if (result.length() == 0) &#123; return "0"; &#125; return result.toString(); &#125;&#125;]]></content>
