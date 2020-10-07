@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-685:Redundant Connection II]]></title>
+    <url>%2FleetCode%2FleetCode-685%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个二维数组表示边 [u, v] 的集合，每条边表示 u 到 v 有一条连线，且 u 是 v 的父节点，这些边连接后构成一个有向连通图，其中存在一条多余的边，要求将这条边找出并剔除，使得剩下的图不存在环结构，同时仍然保持是一个有向的连通图。如果存在多条边，则返回最后出现的那条边。题目链接：点我 样例输入输出 输入：[[1,2], [2,3], [3,4], [4,1], [1,5]] 输出：[4,1] 输入：[[2,1], [3,1], [4,2], [1,4]] 输出：[2,1] 问题解法此题跟 LeetCode-684 类似，不同的是 LeetCode-684 是无向图，而这题是有向图。针对此题，仍然可以使用并查集进行求解，不同的是不能单纯的判断是否存在环，否则对于输入[[2,1], [3,1], [4,2], [1,4]] 得到的结果是 [1,4] 而不是 [2,1]。针对此问题，观察得知，可能存在某个节点的入度为 2，即某个节点拥有两个父节点，这两条边必然需要去除一条边。所以，可以在排除这两条边的情况下运用并查集构建图，然后依次加入这两条边，如果加入某条边时构成了环，说明这条边是多余的，需要去除。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970class Solution&#123; public int[] findRedundantDirectedConnection(int[][] edges) &#123; int[] parents = new int[edges.length + 1]; boolean[] isUsed = new boolean[edges.length + 1]; int duplicateNode = -1; for (int[] edge : edges) &#123; if (isUsed[edge[1]]) &#123; duplicateNode = edge[1]; break; &#125; isUsed[edge[1]] = true; &#125; List&lt;int[]&gt; remainEdgeList = new LinkedList&lt;&gt;(); for (int[] edge : edges) &#123; if (edge[1] != duplicateNode) &#123; if (isFindEdge(parents, edge)) &#123; return edge; &#125; &#125; else &#123; remainEdgeList.add(edge); &#125; &#125; for (int[] edge : remainEdgeList) &#123; if (isFindEdge(parents, edge)) &#123; return edge; &#125; &#125; return new int[0]; &#125; private boolean isFindEdge(int[] parents, int[] edge) &#123; int uParent = findParent(parents, edge[0]); int vParent = findParent(parents, edge[1]); if (uParent == vParent) &#123; return true; &#125; parents[vParent] = uParent; return false; &#125; private int findParent(int[] parents, int i) &#123; if (parents[i] == 0) &#123; return i; &#125; int root = findParent(parents, parents[i]); parents[i] = root; return root; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-684:Redundant Connection]]></title>
     <url>%2FleetCode%2FleetCode-684%2F</url>
     <content type="text"><![CDATA[问题描述给定一个二维数组表示边的集合，每条边表示从某个低数字的节点到高数字的节点的连线，这些边连接后构成一个无向连通图，其中存在一条边，使得这个无向连通图存在一个环，要求将这条边找出并剔除，使得剩下的图不存在环结构，同时仍然保持是一个无向的连通图。如果存在多条边，则返回最后出现的那条边。题目链接：点我 样例输入输出 输入：[[1,2], [1,3], [2,3]] 输出：[2,3] 输入：[[1,2], [2,3], [3,4], [1,4], [1,5]] 输出：[1,4] 问题解法使用并查集算法，对输入的边的节点分别查找其根节点，如果相同，则说明这是一条多余的边，否则合并当前的边。代码如下 123456789101112131415161718192021222324252627282930313233343536373839class Solution&#123; public int[] findRedundantConnection(int[][] edges) &#123; int[] parents = new int[edges.length + 1]; for (int i = 0; i &lt; parents.length; i++) &#123; parents[i] = i; &#125; for (int[] edge : edges) &#123; int uParent = findParent(parents, edge[0]); int vParent = findParent(parents, edge[1]); if (uParent != vParent) &#123; parents[uParent] = vParent; &#125; else &#123; return new int[]&#123;edge[0], edge[1]&#125;; &#125; &#125; return new int[] &#123;0, 0&#125;; &#125; private int findParent(int[] parents, int i) &#123; if (i == parents[i]) &#123; return i; &#125; int root = findParent(parents, parents[i]); parents[i] = root; return root; &#125;&#125;]]></content>
