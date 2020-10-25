@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-165:Compare Version Numbers]]></title>
+    <url>%2FleetCode%2FleetCode-165%2F</url>
+    <content type="text"><![CDATA[问题描述给定两个字符串，分别由数字和. 构成，表示两个版本号，要求对这两个版本号进行比较，如果第一个小于第二个，则返回 -1，如果第一个大于第二个，则返回 1，否则返回 0。题目链接：点我 样例输入输出 输入：version1 = “1.01”, version2 = “1.001” 输出：0 输入：version1 = “0.1”, version2 = “1.1” 输出：-1 问题解法直接用 split 函数对 . 进行分割，分别比较每个子字符串（将子字符串转成 10 进制数字进行比较，目的是取出前置 0 的干扰）。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748class Solution&#123; public int compareVersion(String version1, String version2) &#123; String[] v1s = version1.split("\\."); String[] v2s = version2.split("\\."); int len = v1s.length &lt; v2s.length ? v1s.length : v2s.length; for (int i = 0; i &lt; len; i++) &#123; int temp = Integer.parseInt(v1s[i], 10) - Integer.parseInt(v2s[i], 10); if (temp &gt; 0) &#123; return 1; &#125; if (temp &lt; 0) &#123; return -1; &#125; &#125; if (len == v1s.length) &#123; for (int i = v1s.length; i &lt; v2s.length; i++) &#123; int temp = Integer.parseInt(v2s[i], 10); if (temp &gt; 0) &#123; return -1; &#125; &#125; &#125; else &#123; for (int i = v2s.length; i &lt; v1s.length; i++) &#123; int temp = Integer.parseInt(v1s[i], 10); if (temp &gt; 0) &#123; return 1; &#125; &#125; &#125; return 0; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-151:Reverse Words in a String]]></title>
     <url>%2FleetCode%2FleetCode-151%2F</url>
     <content type="text"><![CDATA[问题描述给定一个字符串，由单词和空格组成，要求将字符串中单词进行倒序（单词间用一个空格分隔）。题目链接：点我 样例输入输出 输入：” Bob Loves Alice “ 输出：”Alice Loves Bob” 输入：”a good example” 输出：”example good a” 问题解法解法一使用 split 函数对字符串按空格分隔，然后从后往前拼接字符串。这种做法简单，但是消耗空间比较多。代码如下 1234567891011121314151617181920212223class Solution&#123; public String reverseWords(String s) &#123; if (s == null || s.length() == 0) &#123; return s; &#125; String[] words = s.split(" "); StringBuilder sb = new StringBuilder(); for (int i = words.length - 1; i &gt;= 0; i--) &#123; if (words[i].length() &gt; 0) &#123; sb.append(words[i]).append(" "); &#125; &#125; sb.deleteCharAt(sb.length() - 1); return sb.toString(); &#125;&#125; 解法二从后往前遍历字符串，遇到非空格的字符，则从此处向前查找最后一个空格，然后切割出单词进行拼接。代码如下 123456789101112131415161718192021222324class Solution&#123; public String reverseWords(String s) &#123; if (s == null || s.length() == 0) &#123; return s; &#125; StringBuilder sb = new StringBuilder(); for (int i = s.length() - 1; i &gt;= 0; i--) &#123; if (s.charAt(i) != ' ') &#123; int spaceIndex = s.lastIndexOf(' ', i); sb.append(s.substring(spaceIndex + 1, i + 1)).append(" "); i = spaceIndex; &#125; &#125; sb.deleteCharAt(sb.length() - 1); return sb.toString(); &#125;&#125;]]></content>
