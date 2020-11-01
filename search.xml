@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-322:Coin Change]]></title>
+    <url>%2FleetCode%2FleetCode-322%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个数组，表示硬币的面额，每种硬币数量不限，给定另一个目标数字，要求使用最小数量的硬币，将其组合起来值等于目标值。找到则返回最小的硬币数量，找不到则返回 -1。题目链接：点我 样例输入输出 输入：coins = [1,2,5], amount = 11 输出：3 解释：硬币组合为 5 + 5 +1 输入：coins = [2], amount = 3 输出：-1 问题解法刚开始想用贪心的算法，按从大到小的排序对每种硬币计算其所需要的数量，但是发现一个问题，贪心找出来的第一个答案可能不是最小硬币的数量，如 coins = [7, 6, 2], amount = 18，用上述贪心算法找到的答案是 7 + 7 + 2 + 2，总共 4 个，但是事实存在更小的硬币组合：6 + 6 + 6，总共 3 个。所以单纯用贪心算法是不能正确求解的。查看题目提示，是用动态规划进行求解。假设 dp[i] 表示用硬币组合 i 金额所需要的最小数量，则 dp[i] = min(dp[i], dp[i - coins[j]] + 1) ，代码如下 123456789101112131415161718192021222324252627282930class Solution&#123; public int coinChange(int[] coins, int amount) &#123; int[] dp = new int[amount + 1]; Arrays.fill(dp, -1); dp[0] = 0; for (int i = 1; i &lt;= amount; i++) &#123; for (int j = 0; j &lt; coins.length; j++) &#123; if (i == coins[j]) &#123; dp[i] = 1; continue; &#125; if (i - coins[j] &gt; 0 &amp;&amp; dp[i - coins[j]] != -1) &#123; if (dp[i] == -1 || dp[i] &gt; dp[i - coins[j]] + 1) &#123; dp[i] = dp[i - coins[j]] + 1; &#125; &#125; &#125; &#125; return dp[amount]; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-165:Compare Version Numbers]]></title>
     <url>%2FleetCode%2FleetCode-165%2F</url>
     <content type="text"><![CDATA[问题描述给定两个字符串，分别由数字和. 构成，表示两个版本号，要求对这两个版本号进行比较，如果第一个小于第二个，则返回 -1，如果第一个大于第二个，则返回 1，否则返回 0。题目链接：点我 样例输入输出 输入：version1 = “1.01”, version2 = “1.001” 输出：0 输入：version1 = “0.1”, version2 = “1.1” 输出：-1 问题解法直接用 split 函数对 . 进行分割，分别比较每个子字符串（将子字符串转成 10 进制数字进行比较，目的是取出前置 0 的干扰）。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748class Solution&#123; public int compareVersion(String version1, String version2) &#123; String[] v1s = version1.split("\\."); String[] v2s = version2.split("\\."); int len = v1s.length &lt; v2s.length ? v1s.length : v2s.length; for (int i = 0; i &lt; len; i++) &#123; int temp = Integer.parseInt(v1s[i], 10) - Integer.parseInt(v2s[i], 10); if (temp &gt; 0) &#123; return 1; &#125; if (temp &lt; 0) &#123; return -1; &#125; &#125; if (len == v1s.length) &#123; for (int i = v1s.length; i &lt; v2s.length; i++) &#123; int temp = Integer.parseInt(v2s[i], 10); if (temp &gt; 0) &#123; return -1; &#125; &#125; &#125; else &#123; for (int i = v2s.length; i &lt; v1s.length; i++) &#123; int temp = Integer.parseInt(v1s[i], 10); if (temp &gt; 0) &#123; return 1; &#125; &#125; &#125; return 0; &#125;&#125;]]></content>
