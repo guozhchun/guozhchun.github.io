@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给定一个字符串数组，表示算术的后缀表达式，并且保证这个表达式是合法的，要求算出这个表达式的值。题目链接：点我">
+<meta name="description" content="问题描述给定一个整数数组，要求从数组中找出连续子数组，使得子数组中的元素乘积最大，将最大乘积值返回。题目链接：点我">
 <meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-150:Evaluate Reverse Polish Notation">
-<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-150/index.html">
+<meta property="og:title" content="leetCode-152:Maximum Product Subarray">
+<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-152/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给定一个字符串数组，表示算术的后缀表达式，并且保证这个表达式是合法的，要求算出这个表达式的值。题目链接：点我">
+<meta property="og:description" content="问题描述给定一个整数数组，要求从数组中找出连续子数组，使得子数组中的元素乘积最大，将最大乘积值返回。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-24T07:54:04.035Z">
+<meta property="og:updated_time" content="2020-11-08T07:17:55.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-150:Evaluate Reverse Polish Notation">
-<meta name="twitter:description" content="问题描述给定一个字符串数组，表示算术的后缀表达式，并且保证这个表达式是合法的，要求算出这个表达式的值。题目链接：点我">
+<meta name="twitter:title" content="leetCode-152:Maximum Product Subarray">
+<meta name="twitter:description" content="问题描述给定一个整数数组，要求从数组中找出连续子数组，使得子数组中的元素乘积最大，将最大乘积值返回。题目链接：点我">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-150/"/>
+  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-152/"/>
 
 
 
 
 
-  <title>leetCode-150:Evaluate Reverse Polish Notation | ChunNote</title>
+  <title>leetCode-152:Maximum Product Subarray | ChunNote</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-150/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-152/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-150:Evaluate Reverse Polish Notation</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-152:Maximum Product Subarray</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-24T15:36:22+08:00">
-                2019-11-24 15:36:22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-08T14:45:37+08:00">
+                2020-11-08 14:45:37
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-24T15:54:04+08:00">
-                2019-11-24 15:54:04
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-08T15:17:55+08:00">
+                2020-11-08 15:17:55
               </time>
             
           </span>
@@ -369,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/leetCode/leetCode-150/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-150/" itemprop="commentsCount"></span>
+                <a href="/leetCode/leetCode-152/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-152/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -398,20 +398,24 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个字符串数组，表示算术的后缀表达式，并且保证这个表达式是合法的，要求算出这个表达式的值。题目链接：<strong><a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个整数数组，要求从数组中找出连续子数组，使得子数组中的元素乘积最大，将最大乘积值返回。题目链接：<strong><a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
 <h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：[“2”, “1”, “+”, “3”, “*”]</p>
-<p>输出：9</p>
-<p>解释：((2 + 1) * 3) = 9</p>
+<p>输入：[2,3,-2,4]</p>
+<p>输出：6</p>
 </blockquote>
 <blockquote>
-<p>输入：[“10”, “6”, “9”, “3”, “+”, “-11”, “<em>“, “/“, “</em>“, “17”, “+”, “5”, “+”]</p>
-<p>输出：22</p>
-<p>解释：((10 * (6 / ((9 + 3) * -11))) + 17) + 5 = ((10 * (6 / (12 * -11))) + 17) + 5 = ((10 * (6 / -132)) + 17) + 5 = ((10 * 0) + 17) + 5 = (0 + 17) + 5 = 17 + 5 = 22</p>
+<p>输入：[-2,0,-1]</p>
+<p>输出：0</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>用栈来保存运算的数，遍历数组，如果遇到数字，则压入栈中，如果遇到运算符合，则弹出栈顶元素作为第二个操作数，再弹出栈顶元素作为第一个运算数，对其进行运算得到结果压入栈中。运算结束后，栈顶的元素就是表达式的结果。代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">evalRPN</span><span class="params">(String[] tokens)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (tokens == <span class="keyword">null</span> || tokens.length == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tokens.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (tokens[i].equals(<span class="string">"+"</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> second = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> first = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> result = first + second;</span><br><span class="line">                stack.push(result);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (tokens[i].equals(<span class="string">"-"</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> second = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> first = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> result = first - second;</span><br><span class="line">                stack.push(result);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (tokens[i].equals(<span class="string">"*"</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> second = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> first = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> result = first * second;</span><br><span class="line">                stack.push(result);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (tokens[i].equals(<span class="string">"/"</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> second = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> first = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> result = first / second;</span><br><span class="line">                stack.push(result);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                stack.push(Integer.parseInt(tokens[i]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="解决一：暴力"><a href="#解决一：暴力" class="headerlink" title="解决一：暴力"></a>解决一：暴力</h2><p>此问题最简单直接的方式，就是两层 for 循环直接暴力求解。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> product = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> current = nums[i];</span><br><span class="line">            product = Math.max(current, product);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                current = current * nums[j];</span><br><span class="line">                product = Math.max(current, product);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> product;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解法二：动态规划"><a href="#解法二：动态规划" class="headerlink" title="解法二：动态规划"></a>解法二：动态规划</h2><p>暴力求解比较耗时，稍微好点的方式是使用动态规划。此解法参考：</p>
+<p>用 <code>dpMaxs[i]</code> 表示以 <code>nums[i]</code> 结尾的连续子数组的乘积的最大值，用 <code>dpMins[i]</code> 表示以 <code>nums[i]</code> 结尾的连续子数组的乘积的最小值。考虑 <code>nums[i]</code> 是正负数的情况。如果是正数，那前面的乘积必须得是正数，且值越大越好。如果是负数，那前面的乘积必须是负数，且值越小越好。所以就有以下的动态转换方程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dpMaxs[i] = max(dpMaxs[i - <span class="number">1</span>] * nums[i], dpMins[i - <span class="number">1</span>] * nums[i], nums[i])</span><br><span class="line">dpMins[i] = min(dpMaxs[i - <span class="number">1</span>] * nums[i], dpMins[i - <span class="number">1</span>] * nums[i], nums[i])</span><br></pre></td></tr></table></figure>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dpMaxs = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">int</span>[] dpMins = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"></span><br><span class="line">        Arrays.fill(dpMaxs, Integer.MIN_VALUE);</span><br><span class="line">        Arrays.fill(dpMins, Integer.MAX_VALUE);</span><br><span class="line"></span><br><span class="line">        dpMaxs[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        dpMins[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            dpMaxs[i] = Math.max(Math.max(dpMaxs[i - <span class="number">1</span>] * nums[i], dpMins[i - <span class="number">1</span>] * nums[i]), nums[i]);</span><br><span class="line">            dpMins[i] = Math.min(Math.min(dpMaxs[i - <span class="number">1</span>] * nums[i], dpMins[i - <span class="number">1</span>] * nums[i]), nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(dpMaxs).max().getAsInt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode-cn.com/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/</a></p>
 
       
     </div>
@@ -444,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/leetCode/leetCode-115/" rel="next" title="leetCode-115:Distinct Subsequences">
-                <i class="fa fa-chevron-left"></i> leetCode-115:Distinct Subsequences
+              <a href="/leetCode/leetCode-322/" rel="next" title="leetCode-322:Coin Change">
+                <i class="fa fa-chevron-left"></i> leetCode-322:Coin Change
               </a>
             
           </div>
@@ -453,10 +457,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/leetCode/leetCode-454/" rel="prev" title="leetCode-454:4Sum II">
-                leetCode-454:4Sum II <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -595,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决一：暴力"><span class="nav-number">3.1.</span> <span class="nav-text">解决一：暴力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二：动态规划"><span class="nav-number">3.2.</span> <span class="nav-text">解法二：动态规划</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

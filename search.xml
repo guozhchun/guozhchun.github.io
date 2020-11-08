@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-152:Maximum Product Subarray]]></title>
+    <url>%2FleetCode%2FleetCode-152%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个整数数组，要求从数组中找出连续子数组，使得子数组中的元素乘积最大，将最大乘积值返回。题目链接：点我 样例输入输出 输入：[2,3,-2,4] 输出：6 输入：[-2,0,-1] 输出：0 问题解法解决一：暴力此问题最简单直接的方式，就是两层 for 循环直接暴力求解。代码如下 12345678910111213141516171819class Solution&#123; public int maxProduct(int[] nums) &#123; int product = nums[0]; for (int i = 0; i &lt; nums.length; i++) &#123; int current = nums[i]; product = Math.max(current, product); for (int j = i + 1; j &lt; nums.length; j++) &#123; current = current * nums[j]; product = Math.max(current, product); &#125; &#125; return product; &#125;&#125; 解法二：动态规划暴力求解比较耗时，稍微好点的方式是使用动态规划。此解法参考： 用 dpMaxs[i] 表示以 nums[i] 结尾的连续子数组的乘积的最大值，用 dpMins[i] 表示以 nums[i] 结尾的连续子数组的乘积的最小值。考虑 nums[i] 是正负数的情况。如果是正数，那前面的乘积必须得是正数，且值越大越好。如果是负数，那前面的乘积必须是负数，且值越小越好。所以就有以下的动态转换方程： 12dpMaxs[i] = max(dpMaxs[i - 1] * nums[i], dpMins[i - 1] * nums[i], nums[i])dpMins[i] = min(dpMaxs[i - 1] * nums[i], dpMins[i - 1] * nums[i], nums[i]) 代码如下 123456789101112131415161718192021class Solution&#123; public int maxProduct(int[] nums) &#123; int[] dpMaxs = new int[nums.length]; int[] dpMins = new int[nums.length]; Arrays.fill(dpMaxs, Integer.MIN_VALUE); Arrays.fill(dpMins, Integer.MAX_VALUE); dpMaxs[0] = nums[0]; dpMins[0] = nums[0]; for (int i = 1; i &lt; nums.length; i++) &#123; dpMaxs[i] = Math.max(Math.max(dpMaxs[i - 1] * nums[i], dpMins[i - 1] * nums[i]), nums[i]); dpMins[i] = Math.min(Math.min(dpMaxs[i - 1] * nums[i], dpMins[i - 1] * nums[i]), nums[i]); &#125; return Arrays.stream(dpMaxs).max().getAsInt(); &#125;&#125; 参考资料https://leetcode-cn.com/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-322:Coin Change]]></title>
     <url>%2FleetCode%2FleetCode-322%2F</url>
     <content type="text"><![CDATA[问题描述给定一个数组，表示硬币的面额，每种硬币数量不限，给定另一个目标数字，要求使用最小数量的硬币，将其组合起来值等于目标值。找到则返回最小的硬币数量，找不到则返回 -1。题目链接：点我 样例输入输出 输入：coins = [1,2,5], amount = 11 输出：3 解释：硬币组合为 5 + 5 +1 输入：coins = [2], amount = 3 输出：-1 问题解法刚开始想用贪心的算法，按从大到小的排序对每种硬币计算其所需要的数量，但是发现一个问题，贪心找出来的第一个答案可能不是最小硬币的数量，如 coins = [7, 6, 2], amount = 18，用上述贪心算法找到的答案是 7 + 7 + 2 + 2，总共 4 个，但是事实存在更小的硬币组合：6 + 6 + 6，总共 3 个。所以单纯用贪心算法是不能正确求解的。查看题目提示，是用动态规划进行求解。假设 dp[i] 表示用硬币组合 i 金额所需要的最小数量，则 dp[i] = min(dp[i], dp[i - coins[j]] + 1) ，代码如下 123456789101112131415161718192021222324252627282930class Solution&#123; public int coinChange(int[] coins, int amount) &#123; int[] dp = new int[amount + 1]; Arrays.fill(dp, -1); dp[0] = 0; for (int i = 1; i &lt;= amount; i++) &#123; for (int j = 0; j &lt; coins.length; j++) &#123; if (i == coins[j]) &#123; dp[i] = 1; continue; &#125; if (i - coins[j] &gt; 0 &amp;&amp; dp[i - coins[j]] != -1) &#123; if (dp[i] == -1 || dp[i] &gt; dp[i - coins[j]] + 1) &#123; dp[i] = dp[i - coins[j]] + 1; &#125; &#125; &#125; &#125; return dp[amount]; &#125;&#125;]]></content>
