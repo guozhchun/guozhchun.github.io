@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-138:Copy List with Random Pointer]]></title>
+    <url>%2FleetCode%2FleetCode-138%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个链表，链表的节点中有个随机指针，指向链表中的任何一个节点，或者指向空。要求将这个链表进行深度拷贝。题目链接：点我 样例输入输出无 问题解法用一个 map 存储原先老节点和新节点的对应关系，第一次循环遍历链表，复制链表的 next 指针指向的内容，同时将新老节点的映射关系进行存储。第二次循环遍历链表，根据原先链表节点的随机指针指向的节从 map 中取出对应的新节点，并将当前遍历到的新节点的随机指针指向这个新的随机节点，从而完成链表随机指针的复制。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/*// Definition for a Node.class Node &#123; int val; Node next; Node random; public Node(int val) &#123; this.val = val; this.next = null; this.random = null; &#125;&#125;*/class Solution&#123; public Node copyRandomList(Node head) &#123; if (head == null) &#123; return null; &#125; Map&lt;Node, Node&gt; map = new HashMap&lt;&gt;(); Node newHead = new Node(head.val); map.put(head, newHead); Node p = head.next; Node current = newHead; while (p != null) &#123; Node pNew = new Node(p.val); current.next = pNew; map.put(p, pNew); p = p.next; current = current.next; &#125; p = head; while (p != null) &#123; Node pNew = map.get(p); pNew.random = map.get(p.random); p = p.next; &#125; return newHead; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-154:Find Minimum in Rotated Sorted Array II]]></title>
     <url>%2FleetCode%2FleetCode-154%2F</url>
     <content type="text"><![CDATA[问题描述给定一个升序的整形数组，数组中包含重复数字，要求找出数组中最小的数字。题目链接：点我 样例输入输出 输入：[1,3,5] 输出：1 输入：[2,2,2,0,1] 输出：0 问题解法此题跟 LeetCode-153 类似，只不过此处在数组中加入了重复元素。做法跟原先也差不多，只需要在进行二分查找前对重复元素进行排除处理即可。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243class Solution&#123; public int findMin(int[] nums) &#123; if (nums[0] &lt; nums[nums.length - 1]) &#123; return nums[0]; &#125; int start = 0; int end = nums.length - 1; while (start + 1 != end &amp;&amp; start &lt; end) &#123; while (start &lt; end &amp;&amp; nums[start] == nums[start + 1]) &#123; start++; &#125; while (start &lt; end &amp;&amp; nums[end] == nums[end - 1]) &#123; end--; &#125; // 先判断一下跳出循环，避免在计算 middle 时将 middle 变成了 start，从而遗漏元素 if (start + 1 == end) &#123; break; &#125; int middle = (start + end) / 2; if (nums[start] &lt; nums[middle]) &#123; start = middle; &#125; else &#123; end = middle; &#125; &#125; return Math.min(nums[start], nums[end]); &#125;&#125;]]></content>
