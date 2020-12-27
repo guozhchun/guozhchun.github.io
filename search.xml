@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-147:Insertion Sort List]]></title>
+    <url>%2FleetCode%2FleetCode-147%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个链表，要求用插入排序的方式对链表进行升序排序。题目链接：点我 样例输入输出 输入：4-&gt;2-&gt;1-&gt;3 输出：1-&gt;2-&gt;3-&gt;4 输入：-1-&gt;5-&gt;3-&gt;4-&gt;0 输出：-1-&gt;0-&gt;3-&gt;4-&gt;5 问题解法直接使用插入排序的算法进行排序。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode insertionSortList(ListNode head) &#123; if (head == null) &#123; return head; &#125; ListNode dummy = new ListNode(Integer.MIN_VALUE, head); ListNode p = head; while (p.next != null) &#123; ListNode current = p.next; ListNode q = dummy; boolean isMove = true; while (q.next != current) &#123; if (q.next.val &lt; current.val) &#123; q = q.next; &#125; else &#123; p.next = current.next; current.next =q.next; q.next = current; isMove = false; break; &#125; &#125; if (isMove) &#123; p = p.next; &#125; &#125; return dummy.next; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-138:Copy List with Random Pointer]]></title>
     <url>%2FleetCode%2FleetCode-138%2F</url>
     <content type="text"><![CDATA[问题描述给定一个链表，链表的节点中有个随机指针，指向链表中的任何一个节点，或者指向空。要求将这个链表进行深度拷贝。题目链接：点我 样例输入输出无 问题解法用一个 map 存储原先老节点和新节点的对应关系，第一次循环遍历链表，复制链表的 next 指针指向的内容，同时将新老节点的映射关系进行存储。第二次循环遍历链表，根据原先链表节点的随机指针指向的节从 map 中取出对应的新节点，并将当前遍历到的新节点的随机指针指向这个新的随机节点，从而完成链表随机指针的复制。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/*// Definition for a Node.class Node &#123; int val; Node next; Node random; public Node(int val) &#123; this.val = val; this.next = null; this.random = null; &#125;&#125;*/class Solution&#123; public Node copyRandomList(Node head) &#123; if (head == null) &#123; return null; &#125; Map&lt;Node, Node&gt; map = new HashMap&lt;&gt;(); Node newHead = new Node(head.val); map.put(head, newHead); Node p = head.next; Node current = newHead; while (p != null) &#123; Node pNew = new Node(p.val); current.next = pNew; map.put(p, pNew); p = p.next; current = current.next; &#125; p = head; while (p != null) &#123; Node pNew = map.get(p); pNew.random = map.get(p.random); p = p.next; &#125; return newHead; &#125;&#125;]]></content>
