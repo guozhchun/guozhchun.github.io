@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-82:Remove Duplicates from Sorted List II]]></title>
+    <url>%2FleetCode%2FleetCode-82%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个有序链表，要求将链表中的所有重复节点（包括自己）全部删除。题目链接：点我 样例输入输出 输入：1-&gt;2-&gt;2-&gt;2-&gt;3 输出：1-&gt;3 输入：1-&gt;1-&gt;1-&gt;2 输出：2 问题解法此题比较简单，直接遍历判断删除即可。代码如下 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode deleteDuplicates(ListNode head) &#123; ListNode dummy = new ListNode(-1, head); ListNode p = dummy; while (p.next != null) &#123; ListNode next = p.next; while (next.next != null &amp;&amp; next.val == next.next.val) &#123; next = next.next; &#125; if (p.next != next) &#123; p.next = next.next; &#125; else &#123; p = p.next; &#125; &#125; return dummy.next; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-83:Remove Duplicates from Sorted List]]></title>
     <url>%2FleetCode%2FleetCode-83%2F</url>
     <content type="text"><![CDATA[问题描述给定一个有序链表，要求将链表中的重复节点删除。题目链接：点我 样例输入输出 输入：1-&gt;1-&gt;2 输出：1-&gt;2 输入：1-&gt;1-&gt;2-&gt;3-&gt;3 输出：1-&gt;2-&gt;3 问题解法此题比较简单，直接遍历判断删除即可。代码如下 123456789101112131415161718192021222324252627282930313233343536/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode deleteDuplicates(ListNode head) &#123; if (head == null) &#123; return head; &#125; ListNode prev = head; while (prev.next != null) &#123; ListNode current = prev.next; if (prev.val == current.val) &#123; prev.next = current.next; &#125; else &#123; prev = prev.next; &#125; &#125; return head; &#125;&#125;]]></content>
