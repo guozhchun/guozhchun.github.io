@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-162:Find Peak Element]]></title>
+    <url>%2FleetCode%2FleetCode-162%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个整形数组，要求找出数组中任意一个 peak元素下标（peak元素定义：比左边和右边的元素值都大）。题目链接：点我 样例输入输出 输入：nums = [1,2,3,1] 输出：2 说明：元素 3 比左边元素 2 大，比右边元素 1 大，所以返回其下标 2 输入：nums = [1,2,1,3,5,6,4] 输出：5 说明：元素 6 比左边元素 5 大，比右边元素 4 大，故返回其下标 5。另外，如果返回下标 1 也是正确的，因为元素 2 比左边元素 1 和右边元素 1 都大，所以下标 1 的元素也是一个 peak 元素 问题解法解法一：遍历直接使用 for 循环进行遍历查找，找到就直接返回下标。代码如下 1234567891011121314151617181920class Solution&#123; public int findPeakElement(int[] nums) &#123; if (nums.length &lt;=1 || nums[0] &gt; nums[1]) &#123; return 0; &#125; for (int i = 1; i &lt; nums.length - 1; i++) &#123; if (nums[i] &gt; nums[i - 1] &amp;&amp; nums[i] &gt; nums[i + 1]) &#123; return i; &#125; &#125; return nums.length - 1; &#125;&#125; 解法二：二分查找此种解法参考：https://leetcode.com/problems/find-peak-element/solution/。主要是将数组中间元素与相邻元素进行比较，如果中间元素刚好比相邻的元素都大，那么这个元素下标就是要找的值。如果中间元素比左边元素大，说明在当前范围内中间元素呈上升的趋势，所以要找目标值只能在右侧查找，反之，则在左侧进行查找。代码如下 12345678910111213141516171819202122232425262728class Solution&#123; public int findPeakElement(int[] nums) &#123; int left = 0; int right = nums.length - 1; while (left &lt; right) &#123; int middle = (left + right) / 2; if (nums[middle] &gt; nums[middle + 1] &amp;&amp; middle &gt; 0 &amp;&amp; nums[middle] &gt; nums[middle - 1]) &#123; return middle; &#125; if (nums[middle] &gt; nums[middle + 1]) &#123; right = middle - 1; &#125; else &#123; left = middle + 1; &#125; &#125; // 只能是 left，不能是 right，因为 [2, 1] 时，right 是 -1 return left; &#125;&#125; 参考资料https://leetcode.com/problems/find-peak-element/solution/]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-82:Remove Duplicates from Sorted List II]]></title>
     <url>%2FleetCode%2FleetCode-82%2F</url>
     <content type="text"><![CDATA[问题描述给定一个有序链表，要求将链表中的所有重复节点（包括自己）全部删除。题目链接：点我 样例输入输出 输入：1-&gt;2-&gt;2-&gt;2-&gt;3 输出：1-&gt;3 输入：1-&gt;1-&gt;1-&gt;2 输出：2 问题解法此题比较简单，直接遍历判断删除即可。代码如下 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode deleteDuplicates(ListNode head) &#123; ListNode dummy = new ListNode(-1, head); ListNode p = dummy; while (p.next != null) &#123; ListNode next = p.next; while (next.next != null &amp;&amp; next.val == next.next.val) &#123; next = next.next; &#125; if (p.next != next) &#123; p.next = next.next; &#125; else &#123; p = p.next; &#125; &#125; return dummy.next; &#125;&#125;]]></content>
