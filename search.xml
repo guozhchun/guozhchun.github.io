@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-213:House Robber II]]></title>
+    <url>%2FleetCode%2FleetCode-213%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个首尾相连的环形数组，表示每个房间的金钱。有一个小偷要从这些房间中将金钱偷走，但是不能偷相邻的两个房间。问小偷能偷走的最大金钱数。题目链接：点我 样例输入输出 输入：[2,3,2] 输出：3 说明：小偷偷编号为 1（金钱为 3）的房间，总价值为 3。不能偷编号 0（金钱为2）和编号 2 （金钱为 2）的房间，因为这两个房间是相邻的 输入：[1,2,3,1] 输出：4 说明：小偷偷编号 0（金钱为1）和编号 2 （金钱为 3）的房间，总价值为 4 问题解法此题跟 LeetCode-198 类似，只不过多了个条件，数组是首尾相连的。所以可以基于 LeetCode-198 的基础，分别作出两种假设，第一种是第一个房间不偷，那最后一个房间就可以偷，此时可以用 LeetCode-198 的解法求出小偷能偷到的最大价值。第二种是第一个房间偷，那最后一个房间不偷，此时同样用 LeetCode-198 的解法求出小偷能偷到的最大价值。将这两种方式下的值进行比较，返回其最大值，就是本题的解。代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940class Solution&#123; public int rob(int[] nums) &#123; if (nums == null || nums.length == 0) &#123; return 0; &#125; if (nums.length == 1) &#123; return nums[0]; &#125; if (nums.length == 2) &#123; return Math.max(nums[0], nums[1]); &#125; // 第一个不偷 int[] dp = new int[nums.length]; dp[0] = 0; dp[1] = nums[1]; for (int i = 2; i &lt; nums.length; i++) &#123; dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]); &#125; // 第一个偷 int[] dp2 = new int[nums.length]; dp2[0] = nums[0]; dp2[1] = nums[0]; for (int i = 2; i &lt; nums.length - 1; i++) &#123; dp2[i] = Math.max(dp2[i - 2] + nums[i], dp2[i - 1]); &#125; return Math.max(dp[nums.length - 1], dp2[nums.length - 2]); &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-198:House Robber]]></title>
     <url>%2FleetCode%2FleetCode-198%2F</url>
     <content type="text"><![CDATA[问题描述给定一个数组，表示每个房间的金钱。有一个小偷要从这些房间中将金钱偷走，但是不能偷相邻的两个房间。问小偷能偷走的最大金钱数。题目链接：点我 样例输入输出 输入：[1,2,3,1] 输出：4 说明：小偷偷编号 0（金钱为1）和编号 2 （金钱为 3）的房间，总价值为 4 输入：[2,7,9,3,1] 输出：12 说明：小偷偷编号 0 （金钱为 2）、编号 2（金钱为 9）、编号为 4（金钱为 1）的房间，总价值 12 问题解法用动态规划进行求解。假设用 dp[i] 表示从 0 到 i 的房间中，小偷能获取的最大价值。则动态转移方程为 dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])。代码如下 12345678910111213141516171819202122232425class Solution&#123; public int rob(int[] nums) &#123; if (nums == null || nums.length == 0) &#123; return 0; &#125; if (nums.length == 1) &#123; return nums[0]; &#125; int[] dp = new int[nums.length]; dp[0] = nums[0]; dp[1] = Math.max(nums[0], nums[1]); for (int i = 2; i &lt; nums.length; i++) &#123; dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]); &#125; return dp[nums.length - 1]; &#125;&#125;]]></content>
