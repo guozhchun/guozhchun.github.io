@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-201:Bitwise AND of Numbers Range]]></title>
+    <url>%2FleetCode%2FleetCode-201%2F</url>
+    <content type="text"><![CDATA[问题描述给定两个整数，第一个数小于第二个数，要求求出这两个数（包含）之间的所有数的二进制数 “与” 运算后的结果。题目链接：点我 样例输入输出 输入：[5, 7] 输出：4 说明：5 的二进制数是 101，6 的二进制数是110，7 的二进制数是 111，三个二进制数求与运算后是 100，对应 10 进制数 4 输入：[0, 1] 输出：0 说明：0 的二进制数是 0，1 的二进制数是 1，两者求与运算后是 0，对应 10 进制数 0 问题解法此题参考 https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/shu-zi-fan-wei-an-wei-yu-by-leetcode-solution/。从两个数围起来的范围数进行分析，对这些数进行求与运算，实际上是求边界数的二进制数的公共前缀。因此只需要将边界值的数向右移位直到两者相等，再向左移动对应的位数即可得到答案。代码如下 123456789101112131415class Solution&#123; public int rangeBitwiseAnd(int m, int n) &#123; int count = 0; while (m &lt; n) &#123; m = m &gt;&gt; 1; n = n &gt;&gt; 1; count++; &#125; return m &lt;&lt; count; &#125;&#125; 参考资料https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/shu-zi-fan-wei-an-wei-yu-by-leetcode-solution/]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-81:Search in Rotated Sorted Array II]]></title>
     <url>%2FleetCode%2FleetCode-81%2F</url>
     <content type="text"><![CDATA[问题描述给定一个包含重复元素的旋转升序数组，要求用 O(log n) 的时间复杂度查找某个元素是否在数组中。题目链接：点我 样例输入输出 输入：[4,5,6,7,0,1,2] 0 输出：true 输入：[4,5,6,7,0,1,2] 9 输出：false 问题解法要求在 O(log n) 的时间复杂度查找某个元素是否在数组中，很明显需要用二分查找。当前数组是剔除了重复元素，就是一个简单旋转升序数组中查找元素的解法。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172class Solution &#123; public boolean search(int[] nums, int target) &#123; int start = 0; int end = nums.length - 1; while (start &lt;= end) &#123; int middle = (start + end) / 2; if (nums[middle] == target || nums[start] == target || nums[end] == target) &#123; return true; &#125; // 剔除重复元素 if (end &gt; middle &amp;&amp; nums[end] == nums[end - 1]) &#123; while (end &gt; middle &amp;&amp; nums[end] == nums[end - 1]) &#123; end--; &#125; end--; continue; &#125; if (start &lt; middle &amp;&amp; nums[start] == nums[start + 1]) &#123; while (start &lt; middle &amp;&amp; nums[start] == nums[start + 1]) &#123; start++; &#125; start++; continue; &#125; if (nums[start] == nums[end] &amp;&amp; start &lt; end) &#123; while (nums[start] == nums[end] &amp;&amp; start &lt; end) &#123; start++; end--; &#125; continue; &#125; // 二分查找 if (nums[middle] &lt; target) &#123; if (nums[end] &lt; target) &#123; end = middle - 1; &#125; else &#123; start = middle + 1; &#125; &#125; else &#123; if (nums[start] &lt; target) &#123; end = middle - 1; &#125; else &#123; start = middle + 1; &#125; &#125; &#125; return false; &#125;&#125;]]></content>
