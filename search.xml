@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-209:Minimum Size Subarray Sum]]></title>
+    <url>%2FleetCode%2FleetCode-209%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个正整数数组和一个正整数，要求找出数组中连续子数组的元素和等于目标元素，返回最小的子数组的元素个数。如果没有满足要求，则返回 0 。题目链接：点我 样例输入输出 输入：target = 7, nums = [2,3,1,2,4,3] 输出：2 输入：target = 11, nums = [1,1,1,1,1,1,1,1] 输出：0 问题解法使用首尾两个指针表示子数组的范围。首先，移动右边指针直到子数组元素和大于等于目标数字，计算此刻的子数组元素个数，然后移动左边的指针，直至子数组元素和小于目标数字。在这个过程中，不断更新最小子数组的元素个数。待遍历结束，判断是否有满足要求的子数组，如果有，则返回计算出来的最小子数组元素个数，如果没有，则返回 0。代码如下 1234567891011121314151617181920212223242526272829class Solution&#123; public int minSubArrayLen(int target, int[] nums) &#123; int start = 0; int end = start; int sum = 0; int count = Integer.MAX_VALUE; while (end &lt; nums.length) &#123; sum += nums[end]; end++; while (sum &gt;= target) &#123; count = Math.min(count, end - start); if (count == 1) &#123; return 1; &#125; sum -= nums[start]; start++; &#125; &#125; return count == Integer.MAX_VALUE ? 0 : count; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-201:Bitwise AND of Numbers Range]]></title>
     <url>%2FleetCode%2FleetCode-201%2F</url>
     <content type="text"><![CDATA[问题描述给定两个整数，第一个数小于第二个数，要求求出这两个数（包含）之间的所有数的二进制数 “与” 运算后的结果。题目链接：点我 样例输入输出 输入：[5, 7] 输出：4 说明：5 的二进制数是 101，6 的二进制数是110，7 的二进制数是 111，三个二进制数求与运算后是 100，对应 10 进制数 4 输入：[0, 1] 输出：0 说明：0 的二进制数是 0，1 的二进制数是 1，两者求与运算后是 0，对应 10 进制数 0 问题解法此题参考 https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/shu-zi-fan-wei-an-wei-yu-by-leetcode-solution/。从两个数围起来的范围数进行分析，对这些数进行求与运算，实际上是求边界数的二进制数的公共前缀。因此只需要将边界值的数向右移位直到两者相等，再向左移动对应的位数即可得到答案。代码如下 123456789101112131415class Solution&#123; public int rangeBitwiseAnd(int m, int n) &#123; int count = 0; while (m &lt; n) &#123; m = m &gt;&gt; 1; n = n &gt;&gt; 1; count++; &#125; return m &lt;&lt; count; &#125;&#125; 参考资料https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/shu-zi-fan-wei-an-wei-yu-by-leetcode-solution/]]></content>

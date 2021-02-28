@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述给定一个只包含数字 0 和 1 的矩阵，要求找出其中只包含 1 构成的矩形的最大面积。题目链接：点我">
+<meta name="description" content="问题描述给定一个正整数数组和一个正整数，要求找出数组中连续子数组的元素和等于目标元素，返回最小的子数组的元素个数。如果没有满足要求，则返回 0 。题目链接：点我">
 <meta name="keywords" content="java,leetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetCode-85:Maximal Rectangle">
-<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-85/index.html">
+<meta property="og:title" content="leetCode-209:Minimum Size Subarray Sum">
+<meta property="og:url" content="http://yoursite.com/leetCode/leetCode-209/index.html">
 <meta property="og:site_name" content="ChunNote">
-<meta property="og:description" content="问题描述给定一个只包含数字 0 和 1 的矩阵，要求找出其中只包含 1 构成的矩形的最大面积。题目链接：点我">
+<meta property="og:description" content="问题描述给定一个正整数数组和一个正整数，要求找出数组中连续子数组的元素和等于目标元素，返回最小的子数组的元素个数。如果没有满足要求，则返回 0 。题目链接：点我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-30T15:54:25.531Z">
+<meta property="og:updated_time" content="2021-02-28T07:26:58.325Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetCode-85:Maximal Rectangle">
-<meta name="twitter:description" content="问题描述给定一个只包含数字 0 和 1 的矩阵，要求找出其中只包含 1 构成的矩形的最大面积。题目链接：点我">
+<meta name="twitter:title" content="leetCode-209:Minimum Size Subarray Sum">
+<meta name="twitter:description" content="问题描述给定一个正整数数组和一个正整数，要求找出数组中连续子数组的元素和等于目标元素，返回最小的子数组的元素个数。如果没有满足要求，则返回 0 。题目链接：点我">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-85/"/>
+  <link rel="canonical" href="http://yoursite.com/leetCode/leetCode-209/"/>
 
 
 
 
 
-  <title>leetCode-85:Maximal Rectangle | ChunNote</title>
+  <title>leetCode-209:Minimum Size Subarray Sum | ChunNote</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-85/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-209/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozhchun">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetCode-85:Maximal Rectangle</h1>
+          <h1 class="post-title" itemprop="name headline">leetCode-209:Minimum Size Subarray Sum</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-30T23:20:17+08:00">
-                2019-09-30 23:20:17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-28T15:19:15+08:00">
+                2021-02-28 15:19:15
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-30T23:54:25+08:00">
-                2019-09-30 23:54:25
+              <time title="更新于" itemprop="dateModified" datetime="2021-02-28T15:26:58+08:00">
+                2021-02-28 15:26:58
               </time>
             
           </span>
@@ -369,8 +369,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/leetCode/leetCode-85/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-85/" itemprop="commentsCount"></span>
+                <a href="/leetCode/leetCode-209/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/leetCode/leetCode-209/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -398,20 +398,18 @@
       
 
       
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个只包含数字 0 和 1 的矩阵，要求找出其中只包含 1 构成的矩形的最大面积。题目链接：<strong><a href="https://leetcode.com/problems/maximal-rectangle/" target="_blank" rel="noopener">点我</a></strong></p>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个正整数数组和一个正整数，要求找出数组中连续子数组的元素和等于目标元素，返回最小的子数组的元素个数。如果没有满足要求，则返回 0 。题目链接：<strong><a href="https://leetcode.com/problems/minimum-size-subarray-sum/" target="_blank" rel="noopener">点我</a></strong></p>
 <a id="more"></a>
 <h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
-<p>输入：[[“1”,”0”,”1”,”0”,”0”],[“1”,”0”,”1”,”1”,”1”],[“1”,”1”,”1”,”1”,”1”],[“1”,”0”,”0”,”1”,”0”]]</p>
-<p>输出：6</p>
+<p>输入：target = 7, nums = [2,3,1,2,4,3]</p>
+<p>输出：2</p>
 </blockquote>
 <blockquote>
-<p>输入：[[“1”], [“0”], [“1”]]</p>
-<p>输出：1</p>
+<p>输入：target = 11, nums = [1,1,1,1,1,1,1,1]</p>
+<p>输出：0</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="解法一：栈"><a href="#解法一：栈" class="headerlink" title="解法一：栈"></a>解法一：栈</h2><p>将此题转换成<a href="https://leetcode.com/problems/largest-rectangle-in-histogram" target="_blank" rel="noopener">leetCode84:Largest Rectangle in Histogram</a>直方图来求解。分别以矩阵的每一行为基准，以该行上方的数据构造成 leetCode84 题中的直方图，求解出该直方图的最大矩形。当遍历完矩阵每一行求出每个直方图的最大面积后，将这些最大面积进行比较返回其中的最大值即可。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalRectangle</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix[<span class="number">0</span>].length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> || matrix[i][j] == <span class="string">'0'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = matrix[i][j] - <span class="string">'0'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j] + (matrix[i][j] - <span class="string">'0'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> maxArea = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dp.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            maxArea = Math.max(maxArea, maxRectangleArea(dp[i]));</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> maxArea;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">maxRectangleArea</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxArea = nums[<span class="number">0</span>];</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> h = i == nums.length ? <span class="number">0</span> : nums[i];</span><br><span class="line">            <span class="keyword">while</span> (!stack.empty() &amp;&amp; nums[stack.peek()] &gt; h)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> index = stack.pop();</span><br><span class="line">                <span class="keyword">int</span> width = stack.empty() ? i : i - stack.peek() - <span class="number">1</span>;</span><br><span class="line">                maxArea = Math.max(maxArea, nums[index] * width);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxArea;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二：动态规划"><a href="#解法二：动态规划" class="headerlink" title="解法二：动态规划"></a>解法二：动态规划</h2><p>此题解法主要是参考网上的做法。同样是遍历矩阵每一行，以该行为基准，求出该行上方构成的图形中的最大矩形面积。具体做法是：定义 <code>height[j]</code> 表示该行 <code>j</code> 列所能到达的高度，<code>left[j]</code> 表示该行 <code>j</code> 位置的高度所能延伸到左边的最左下标，<code>right[j]</code> 表示该行 <code>j</code> 位置的高度所能延伸到右边的最右下标。考虑到后续计算的方便，如果当前位置是 <code>0</code>，则 <code>left[j] = 0, right[j] = colNum - 1</code>，此时 <code>height[j] = 0</code>，对于计算以该位置的柱子向左右延伸构成的矩形面积并不会发生改变，都是 <code>0</code>，这是一步取巧的做法。代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalRectangle</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> colNum = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[colNum];</span><br><span class="line">        <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[colNum];</span><br><span class="line">        <span class="keyword">int</span>[] height = <span class="keyword">new</span> <span class="keyword">int</span>[colNum];</span><br><span class="line">        Arrays.fill(right, colNum - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> maxArea = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; colNum; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    height[j] = height[j] + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    height[j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> currentLeft = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; colNum; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    left[j] = Math.max(left[j], currentLeft);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    currentLeft = j + <span class="number">1</span>;</span><br><span class="line">                    left[j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> currentRight = colNum - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = colNum - <span class="number">1</span>; j &gt;=<span class="number">0</span>; j--)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    right[j] = Math.min(right[j], currentRight);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    currentRight = j - <span class="number">1</span>;</span><br><span class="line">                    right[j] = colNum - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; colNum; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                maxArea = Math.max(maxArea, height[j] * (right[j] - left[j] + <span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> maxArea;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>使用首尾两个指针表示子数组的范围。首先，移动右边指针直到子数组元素和大于等于目标数字，计算此刻的子数组元素个数，然后移动左边的指针，直至子数组元素和小于目标数字。在这个过程中，不断更新最小子数组的元素个数。待遍历结束，判断是否有满足要求的子数组，如果有，则返回计算出来的最小子数组元素个数，如果没有，则返回 0。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = start;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> count = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">while</span> (end &lt; nums.length)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += nums[end];</span><br><span class="line">            end++;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (sum &gt;= target)</span><br><span class="line">            &#123;</span><br><span class="line">                count = Math.min(count, end - start);</span><br><span class="line">                <span class="keyword">if</span> (count == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                sum -= nums[start];</span><br><span class="line">                start++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count == Integer.MAX_VALUE ? <span class="number">0</span> : count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -444,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/leetCode/leetCode-84/" rel="next" title="leetCode-84:Largest Rectangle in Histogram">
-                <i class="fa fa-chevron-left"></i> leetCode-84:Largest Rectangle in Histogram
+              <a href="/leetCode/leetCode-201/" rel="next" title="leetCode-201:Bitwise AND of Numbers Range">
+                <i class="fa fa-chevron-left"></i> leetCode-201:Bitwise AND of Numbers Range
               </a>
             
           </div>
@@ -453,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/leetCode/leetCode-43/" rel="prev" title="leetCode-43:Multiply Strings">
-                leetCode-43:Multiply Strings <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -595,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一：栈"><span class="nav-number">3.1.</span> <span class="nav-text">解法一：栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二：动态规划"><span class="nav-number">3.2.</span> <span class="nav-text">解法二：动态规划</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解法"><span class="nav-number">3.</span> <span class="nav-text">问题解法</span></a></li></ol></div>
             
 
           </div>
