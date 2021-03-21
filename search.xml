@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-173:Binary Search Tree Iterator]]></title>
+    <url>%2FleetCode%2FleetCode-173%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个二叉搜索树，要求按照中序输出的方式构造二叉搜索树的迭代器。其中 next 和 hasNext 函数的时间复杂度为 O(1)，空间复杂度为 O(h), h 指树的高度。题目链接：点我 问题解法用一个栈来存储中序遍历过程中的左节点，调用 next 函数时，直接从栈中取出元素，同时判断该节点是否有右节点，如果有，则将该节点右子树的左节点遍历放入栈中。调用 hasNext 函数时，直接判断栈是否有空，为空则返回 false，否则返回 true。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode() &#123;&#125; * TreeNode(int val) &#123; this.val = val; &#125; * TreeNode(int val, TreeNode left, TreeNode right) &#123; * this.val = val; * this.left = left; * this.right = right; * &#125; * &#125; */class BSTIterator&#123; private Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;(); public BSTIterator(TreeNode root) &#123; stack = new Stack&lt;&gt;(); addStack(root); &#125; public int next() &#123; TreeNode current = stack.pop(); addStack(current.right); return current.val; &#125; public boolean hasNext() &#123; return !stack.isEmpty(); &#125; private void addStack(TreeNode root) &#123; TreeNode current = root; while (current != null) &#123; stack.push(current); current = current.left; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-187:Repeated DNA Sequences]]></title>
     <url>%2FleetCode%2FleetCode-187%2F</url>
     <content type="text"><![CDATA[问题描述给定一个字符串，只包含 A、C、G、T 四个字母，要求找出所有长度是10的子字符串（不重复）且该子字符串出现次数大于1次。题目链接：点我 样例输入输出 输入：s = “AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT” 输出：[“AAAAACCCCC”,”CCCCCAAAAA”] 输入：s = “AAAAAAAAAAAAA” 输出：[“AAAAAAAAAA”] 问题解法此题比较简单，直接用一个 set 来存储每个子字符串，每次取出新的字符串时判断是否已经存在，如果存在，则放入结果集中，否则继续取下一个子字符串。代码如下： 12345678910111213141516171819202122class Solution&#123; public List&lt;String&gt; findRepeatedDnaSequences(String s) &#123; Set&lt;String&gt; set = new HashSet&lt;&gt;(); Set&lt;String&gt; result = new HashSet&lt;&gt;(); for (int i = 0; i &lt;= s.length() - 10; i++) &#123; String temp = s.substring(i, i + 10); if (set.contains(temp)) &#123; result.add(temp); &#125; else &#123; set.add(temp); &#125; &#125; return new ArrayList&lt;&gt;(result); &#125;&#125;]]></content>
