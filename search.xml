@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-189:Rotate Array]]></title>
+    <url>%2FleetCode%2FleetCode-189%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个数组和一个非负整数 k，要求将数组末尾 k 个数字进行翻转到数组前面来。题目链接：点我 样例输入输出 输入：nums = [1,2,3,4,5,6,7], k = 3 输出：[5,6,7,1,2,3,4] 解释：第一次旋转后数组为：[7,1,2,3,4,5,6] 第二次旋转后数组为：[6,7,1,2,3,4,5] 第三次旋转后数组为：[5,6,7,1,2,3,4] 输入：nums = [-1,-100,3,99], k = 2 输出：[3,99,-1,-100] 解释：第一次旋转后数组为：[99,-1,-100,3] 第二次旋转后数组为：[3,99,-1,-100] 问题解法解法一暴力解法，按照题意，一次挪动一个元素。此解法时间复杂度为 O(nk)，空间复杂度为 O(1)。代码如下 123456789101112131415161718class Solution&#123; public void rotate(int[] nums, int k) &#123; if (nums == null || nums.length &lt;= 1 || k % nums.length == 0) &#123; return; &#125; int n = k % nums.length; for (int i = 1; i &lt;= n; i++) &#123; int temp = nums[nums.length - 1]; System.arraycopy(nums, 0, nums, 1, nums.length - 1); nums[0] = temp; &#125; &#125;&#125; 解法二利用额外空间存储变化的元素，将旋转的元素列表存储到临时数组中，然后将数组剩余的元素挪到目标位置，最后将临时数组的元素放入原先数组中。此种解法时间复杂度为 O(n)，空间复杂度为 O(k)，代码如下 123456789101112131415class Solution&#123; public void rotate(int[] nums, int k) &#123; if (nums == null || nums.length &lt;= 1 || k % nums.length == 0) &#123; return; &#125; int n = k % nums.length; int[] temp = Arrays.copyOfRange(nums, nums.length - n, nums.length); System.arraycopy(nums, 0, nums, n, nums.length - n); System.arraycopy(temp, 0, nums, 0, n); &#125;&#125; 解法三利用数组翻转的特性，先将数组全部倒序，然后对前 k 个元素进行倒序，再对数组后部分 nums.length - k 个元素进行倒序。此种解法的时间复杂度为 O(n)，空间复杂度为 O(1)。此做法参考：https://leetcode-cn.com/problems/rotate-array/solution/xuan-zhuan-shu-zu-by-leetcode-solution-nipk/ 代码如下 123456789101112131415161718192021222324252627class Solution&#123; public void rotate(int[] nums, int k) &#123; if (nums == null || nums.length &lt;= 1 || k % nums.length == 0) &#123; return; &#125; int n = k % nums.length; reverse(nums, 0, nums.length - 1); reverse(nums, 0, n - 1); reverse(nums, n, nums.length - 1); &#125; private void reverse(int[] nums, int start, int end) &#123; while (start &lt; end) &#123; int temp = nums[start]; nums[start] = nums[end]; nums[end] = temp; start++; end--; &#125; &#125;&#125; 参考资料https://leetcode-cn.com/problems/rotate-array/solution/xuan-zhuan-shu-zu-by-leetcode-solution-nipk/]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-173:Binary Search Tree Iterator]]></title>
     <url>%2FleetCode%2FleetCode-173%2F</url>
     <content type="text"><![CDATA[问题描述给定一个二叉搜索树，要求按照中序输出的方式构造二叉搜索树的迭代器。其中 next 和 hasNext 函数的时间复杂度为 O(1)，空间复杂度为 O(h), h 指树的高度。题目链接：点我 问题解法用一个栈来存储中序遍历过程中的左节点，调用 next 函数时，直接从栈中取出元素，同时判断该节点是否有右节点，如果有，则将该节点右子树的左节点遍历放入栈中。调用 hasNext 函数时，直接判断栈是否有空，为空则返回 false，否则返回 true。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode() &#123;&#125; * TreeNode(int val) &#123; this.val = val; &#125; * TreeNode(int val, TreeNode left, TreeNode right) &#123; * this.val = val; * this.left = left; * this.right = right; * &#125; * &#125; */class BSTIterator&#123; private Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;(); public BSTIterator(TreeNode root) &#123; stack = new Stack&lt;&gt;(); addStack(root); &#125; public int next() &#123; TreeNode current = stack.pop(); addStack(current.right); return current.val; &#125; public boolean hasNext() &#123; return !stack.isEmpty(); &#125; private void addStack(TreeNode root) &#123; TreeNode current = root; while (current != null) &#123; stack.push(current); current = current.left; &#125; &#125;&#125;]]></content>
