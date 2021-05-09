@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-70:Climbing Stairs]]></title>
+    <url>%2FleetCode%2FleetCode-70%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个数字（1 &lt;= n &lt;= 45）表达楼梯的层数，一个人在楼梯底部，每次只能向上走一步或两步，要求找出从楼梯底部到目标楼梯总共有多少种不同的走法。题目链接：点我 样例输入输出 输入：2 输出：2 说明：两种，分别是 1 + 1 或 2 输入：3 输出：3 说明：三种，分别是 1 + 1 +1 或 1 + 2 或 2 + 1 问题解法此题是斐波拉契数列的一种应用，直接用斐波拉契数列的解法进行求解即可。代码如下 12345678910111213141516171819202122class Solution&#123; public int climbStairs(int n) &#123; if (n == 1 || n == 2) &#123; return n; &#125; int first = 1; int second = 2; int current = 3; for (int i = 3; i &lt;= n; i++) &#123; current = first + second; first = second; second = current; &#125; return current; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-227:Basic Calculator II]]></title>
     <url>%2FleetCode%2FleetCode-227%2F</url>
     <content type="text"><![CDATA[问题描述给定一个字符串表达式，只包含数字、空格和 +、-、*、/，已知这个表达式合法，且不会出现负数，对于除法，向下取整，即 3 / 2 = 1。要求求出这个表达式的值。题目链接：点我 样例输入输出 输入：5 / 2 输出：2 输入：4 + 3 *2 输出：10 问题解法针对表达式求值，将中缀表达式转成后缀表达式，然后运用栈进行求解。针对此题，只包含加减乘除，并没有括号，相比而言会简单点。代码如下 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980class Solution&#123; public int calculate(String s) &#123; Stack&lt;Character&gt; opStack = new Stack&lt;&gt;(); Stack&lt;Integer&gt; numStack = new Stack&lt;&gt;(); int num = 0; boolean isAdd = false; for (int i = 0; i &lt; s.length(); i++) &#123; char ch = s.charAt(i); if (Character.isDigit(ch)) &#123; num = num * 10 + (ch - '0'); isAdd = true; continue; &#125; if (isAdd) &#123; numStack.push(num); num = 0; isAdd = false; &#125; if (ch == ' ') &#123; continue; &#125; while (!opStack.isEmpty() &amp;&amp; !isHigh(ch, opStack.peek())) &#123; int second = numStack.pop(); int first = numStack.pop(); numStack.push(calc(first, second, opStack.pop())); &#125; opStack.push(ch); &#125; if (isAdd) &#123; numStack.push(num); &#125; while (!opStack.isEmpty()) &#123; int second = numStack.pop(); int first = numStack.pop(); numStack.push(calc(first, second, opStack.pop())); &#125; return numStack.pop(); &#125; private int calc(int first, int second, char op) &#123; if (op == '+') &#123; return first + second; &#125; if (op == '-') &#123; return first - second; &#125; if (op == '*') &#123; return first * second; &#125; return first / second; &#125; private boolean isHigh(char first, char second) &#123; return (first == '*' || first == '/') &amp;&amp; (second == '+' || second == '-'); &#125;&#125;]]></content>
