@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-136:Single Number]]></title>
+    <url>%2FleetCode%2FleetCode-136%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个非空整数数组，数组中的元素要么出现两次，要么只出现一次。要求在 O(n) 的时间复杂度和 O(1) 的空间复杂度内将数组中只出现一次的数字找到并返回。题目链接：点我 样例输入输出 输入：[1,2,3,4,2,3,1] 输出：4 输入：[1] 输出：1 问题解法此题如果去除时间复杂度和空间复杂度的限制，会有多种解法，其中一种直观的方法是使用 map 存储每个数字出现的次数，然后将出现一次的数字返回。但这不满足题目对空间复杂度的要求。要想在 O(n) 的时间复杂度和 O(1) 的空间复杂度内解答此题，可以利用异或运算的特点，将数组中所有元素进行异或，最终剩下的数字就是只出现一次的数字（出现两次的数字异或后为 0）， 代码如下 12345678910111213class Solution&#123; public int singleNumber(int[] nums) &#123; int result = nums[0]; for (int i = 1; i &lt; nums.length; i++) &#123; result ^= nums[i]; &#125; return result; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-149:Max Points on a Line]]></title>
     <url>%2FleetCode%2FleetCode-149%2F</url>
     <content type="text"><![CDATA[问题描述给定一个二维数组表示二维坐标系上的不同坐标，这些不同的坐标构成了很多条直线，要求直线上拥有最多的坐标数量。题目链接：点我 样例输入输出 输入：points = [[1,1],[2,2],[3,3]] 输出：3 说明：这三个坐标都在同一条直线上 输入：points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]] 输出：4 说明：[3,2],[4,1],[2,3],[1,4] 这四个坐标在同一条直线上 问题解法循环遍历每个坐标，针对每个坐标，找出其他坐标与这个坐标构成的直线，如果斜率相同，说明是同一条直线，则计数加一，同时更新最大的坐标数量。需要注意的是，斜率之间的比较不能使用 double 进行比较，因为这是不准确的，用 BigDecimal 进行比较规避此问题。代码如下 1234567891011121314151617181920212223242526272829303132import java.math.BigDecimal;class Solution&#123; public int maxPoints(int[][] points) &#123; int count = 0; for (int i = 0; i &lt; points.length; i++) &#123; int x1 = points[i][0]; int y1 = points[i][1]; int infiniteCount = 0; Map&lt;BigDecimal, Integer&gt; map = new HashMap&lt;&gt;(); for (int j = i + 1; j &lt; points.length; j++) &#123; int x2 = points[j][0]; int y2 = points[j][1]; if (x1 == x2) &#123; infiniteCount++; count = Math.max(count, infiniteCount); continue; &#125; double k = (y2 - y1) * 1.0 / (x2 - x1); int nums = map.getOrDefault(BigDecimal.valueOf(k), 0) + 1; count = Math.max(count, nums); map.put(BigDecimal.valueOf(k), nums); &#125; &#125; return count + 1; &#125;&#125;]]></content>
