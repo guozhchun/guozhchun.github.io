@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-206:Reverse Linked List]]></title>
+    <url>%2FleetCode%2FleetCode-206%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个链表，要求将其反转。题目链接：点我 样例输入输出 输入：1-&gt;2-&gt;3-&gt;4-&gt;5 输出：5-&gt;4-&gt;3-&gt;2-&gt;1 输入：1 输出：1 问题解法此题很明确，也没什么算法，直接反转即可。代码如下 12345678910111213141516171819202122232425262728293031/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode reverseList(ListNode head) &#123; if (head == null) &#123; return head; &#125; ListNode dummy = new ListNode(-1, head); while (head.next != null) &#123; ListNode p = dummy.next; dummy.next = head.next; head.next = head.next.next; dummy.next.next = p; &#125; return dummy.next; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-80:Remove Duplicates from Sorted Array II]]></title>
     <url>%2FleetCode%2FleetCode-80%2F</url>
     <content type="text"><![CDATA[问题描述给定一个整数数组，数组中的元素非递减排序。要求去除数组中的重复元素，使得每个元素最多出现两次，且仍然保持非递减的顺序。要求空间复杂度为 O(1)。题目链接：点我 样例输入输出 输入：[1,1,1,2,2,3] 输出：5, nums = [1,1,2,2,3,_] 解释：返回有 5 个数据，数组中前 5 个数据是剔除后的结果，数组中后面的数据的值并不重要，可以是任意的值 输入：[0,0,1,1,1,1,2,3,3] 输出：7, nums = [0,0,1,1,2,3,3, _ , _ ,_] 解释：返回有 7 个数据，数组中前 7 个数据是剔除后的结果，数组中后面的数据的值并不重要，可以是任意的值 问题解法本题如果不限制空间复杂度的话，最简单的方式就是新建一个数组来存储结果值，然后遍历原数组进行判断，将符合的值放入新数组中。但是这中做法需要 O(n) 的时间复杂度，并不满足要求。所以需要换种做法。由于数组中可能存在多于的元素，因此先从左到右将不满足条件（有多于 2 个的重复元素）的元素位置找到，然后用另一个指针遍历，将一或者两个重复元素赋值给前一个指针，每次赋值后都将前面的一个指针向后移动一位，最后前面指针的位置就是结果数组中的有效长度。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class Solution &#123; public int removeDuplicates(int[] nums) &#123; int i; int count = 0; for (i = 1; i &lt; nums.length; i++) &#123; if (nums[i] == nums[i - 1]) &#123; count++; &#125; else &#123; count = 0; &#125; if (count == 2) &#123; break; &#125; &#125; int j = i + 1; while (j &lt; nums.length &amp;&amp; nums[i] == nums[j]) &#123; j++; &#125; count = 0; for (; j &lt; nums.length; j++) &#123; if (nums[j] == nums[j - 1]) &#123; count++; &#125; else &#123; count = 0; &#125; if (count &lt; 2) &#123; nums[i] = nums[j]; i++; &#125; &#125; return i; &#125;&#125;]]></content>
