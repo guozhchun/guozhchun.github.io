@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetCode-92:Reverse Linked List II]]></title>
+    <url>%2FleetCode%2FleetCode-92%2F</url>
+    <content type="text"><![CDATA[问题描述给定一个链表和两个数字 left、right，其中1 &lt;= left &lt;= right &lt;= 链表节点数，要求将 [left, right] 区间内的节点进行翻转。题目链接：点我 样例输入输出 输入：head = [1,3,5,7,9], left = 2, right = 4 输出：[1,7,5,3,9] 输入：head = [5], left = 1, right = 1 输出：[5] 问题解法先遍历节点找到开始的地方，然后运用 LeetCode-206 翻转链表的解法对区间内的节点进行翻转。代码如下 12345678910111213141516171819202122232425262728293031323334353637383940414243444546/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode reverseBetween(ListNode head, int left, int right) &#123; int count = 2; ListNode prev = head; if (left == 1) &#123; prev = new ListNode(-1000, head); count = 1; &#125; ListNode p = prev.next; while (count &lt; left) &#123; prev = p; p = p.next; count++; &#125; while (count &lt; right) &#123; ListNode temp = prev.next; prev.next = p.next; p.next = p.next.next; prev.next.next = temp; count++; &#125; if (left == 1) &#123; return prev.next; &#125; return head; &#125;&#125;]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetCode-206:Reverse Linked List]]></title>
     <url>%2FleetCode%2FleetCode-206%2F</url>
     <content type="text"><![CDATA[问题描述给定一个链表，要求将其反转。题目链接：点我 样例输入输出 输入：1-&gt;2-&gt;3-&gt;4-&gt;5 输出：5-&gt;4-&gt;3-&gt;2-&gt;1 输入：1 输出：1 问题解法此题很明确，也没什么算法，直接反转即可。代码如下 12345678910111213141516171819202122232425262728293031/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode() &#123;&#125; * ListNode(int val) &#123; this.val = val; &#125; * ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125; * &#125; */class Solution&#123; public ListNode reverseList(ListNode head) &#123; if (head == null) &#123; return head; &#125; ListNode dummy = new ListNode(-1, head); while (head.next != null) &#123; ListNode p = dummy.next; dummy.next = head.next; head.next = head.next.next; dummy.next.next = p; &#125; return dummy.next; &#125;&#125;]]></content>
