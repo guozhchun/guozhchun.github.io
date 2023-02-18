@@ -1,37 +1,504 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hexo官方提供了很多**插件**方便编写管理文章，以下几个插件是我觉得相对比较好用的插件。 注意：本文均以*NexT*主题 (version: 5.1.4)为基础进行的配置，不同的主题配置不同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个好用的hexo插件">
+<meta property="og:url" content="http://yoursite.com/hexo-pluins/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="hexo官方提供了很多**插件**方便编写管理文章，以下几个插件是我觉得相对比较好用的插件。 注意：本文均以*NexT*主题 (version: 5.1.4)为基础进行的配置，不同的主题配置不同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/registerOAuthApplication.png">
+<meta property="og:image" content="http://yoursite.com/images/gitmentConfig.png">
+<meta property="og:image" content="http://yoursite.com/images/initComments.png">
+<meta property="og:image" content="http://yoursite.com/images/closeTagComments.png">
+<meta property="og:image" content="http://yoursite.com/images/busuanzi.png">
+<meta property="og:image" content="http://yoursite.com/images/localSearch.png">
+<meta property="og:image" content="http://yoursite.com/images/imagesDir.png">
+<meta property="og:image" content="http://yoursite.com/images/useImage.png">
+<meta property="article:published_time" content="2018-05-31T14:09:44.000Z">
+<meta property="article:modified_time" content="2018-06-02T09:59:09.128Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="插件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/registerOAuthApplication.png">
+
+<link rel="canonical" href="http://yoursite.com/hexo-pluins/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>几个好用的hexo插件 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/hexo-pluins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几个好用的hexo插件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-31 22:09:44" itemprop="dateCreated datePublished" datetime="2018-05-31T22:09:44+08:00">2018-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-02 17:59:09" itemprop="dateModified" datetime="2018-06-02T17:59:09+08:00">2018-06-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>hexo官方提供了很多**<a target="_blank" rel="noopener" href="https://hexo.io/plugins/">插件</a>**方便编写管理文章，以下几个插件是我觉得相对比较好用的插件。</p>
+<p><em>注意：本文均以</em>*<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">NexT</a>*<em>主题 (version: 5.1.4)为基础进行的配置，不同的主题配置不同</em></p>
+<span id="more"></span>
+
+<h1 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a>Gitment</h1><p>这个插件主要是用于增加文章的评论的。主要是借助github的issues，文章评论的内容会当成某个仓库issues放在github上。NexT 5.1.4 版本已经集成了这个插件，只需要注册一个OAuth Application，改下主题的相关配置项即可。主要步骤如下</p>
+<h2 id="注册OAuth-Application"><a href="#注册OAuth-Application" class="headerlink" title="注册OAuth Application"></a>注册OAuth Application</h2><p>**<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">点击此处</a>**申请一个新的OAuth Application。如下图所示，需要注意的是Authorization callback URL需要填写自己的hexo网站域名。注册成功后会得到一个<code>Client ID </code>和<code>Client Secret </code>，这两个值是后面配置<code>$&#123;hexoHome&#125;/themes/hexo-theme-next/_config.yml</code>中需要用到的。</p>
+<p><img src="/images/registerOAuthApplication.png" alt="register OAuth Application"></p>
+<h2 id="修改主题的-config-yml配置"><a href="#修改主题的-config-yml配置" class="headerlink" title="修改主题的_config.yml配置"></a>修改主题的_config.yml配置</h2><p>主要是将gitment底下的<code>enable</code>参数改为<code>true</code>，<code>github_user</code>写自己的github用户名，<code>github_repo</code>是用于存放评论内容的issues对应的仓库，必须存在，可以新建一个新的空仓库，也可以放在已有的仓库底下。<code>client_id</code>和<code>client_secret</code>是上一部中申请OAuth Application生成的<code>Client ID </code>和<code>Client Secret </code>。</p>
+<p><img src="/images/gitmentConfig.png" alt="gitment config"></p>
+<h2 id="初始化评论"><a href="#初始化评论" class="headerlink" title="初始化评论"></a>初始化评论</h2><p>配置完插件后，需要对开放评论的界面手动初始化评论才能让其他用户进行评论</p>
+<p><img src="/images/initComments.png" alt="初始化文章评论"></p>
+<h2 id="关闭页面评论"><a href="#关闭页面评论" class="headerlink" title="关闭页面评论"></a>关闭页面评论</h2><p>对于一些不想开放评论功能的界面，可以在对应的页面文件中的开头加入<code>comments: false</code>语句，这样评论区域就不会显示在该页面上了。例如关闭tags页面的评论</p>
+<p><img src="/images/closeTagComments.png" alt="close tag page comments"></p>
+<h1 id="不蒜子"><a href="#不蒜子" class="headerlink" title="不蒜子"></a>不蒜子</h1><p>这个插件主要是用来统计文章和网站的访问量的，具体使用可以参考**<a target="_blank" rel="noopener" href="http://ibruce.info/2015/04/04/busuanzi">官网</a>**。NexT 5.1.4 版本已经集成了这个插件，只需要将<code>$&#123;hexoHome&#125;/themes/hexo-theme-next/_config.yml</code>配置文件中<code>busuanzi_count</code>底下的<code>enable</code>参数改成<code>true</code>即可。其他参数可以参考配置文件中的说明进行修改。</p>
+<p><img src="/images/busuanzi.png" alt="busuanzi config"></p>
+<h1 id="hexo-filter-flowchart"><a href="#hexo-filter-flowchart" class="headerlink" title="hexo-filter-flowchart"></a>hexo-filter-flowchart</h1><p>使用这个插件可以很方便的用markdown画出流程图，由于我使用的markdown编辑器是**<a target="_blank" rel="noopener" href="https://www.typora.io/">Typora</a><strong>，内部集成了flowcharts.js文件，可以使用其画出流程图，对于需要将这些通过Typora画出的流程图上传到网站上并能正常显示，就需要使用</strong><a target="_blank" rel="noopener" href="https://github.com/bubkoo/hexo-filter-flowchart">hexo-filter-flowchart</a>**这个插件了。主要配置如下</p>
+<h2 id="安装flowchart插件"><a href="#安装flowchart插件" class="headerlink" title="安装flowchart插件"></a>安装flowchart插件</h2><p>在<code>$&#123;hexoHome&#125;</code>目录下执行以下命令完成安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-config-yml配置项"><a href="#修改-config-yml配置项" class="headerlink" title="修改 _config.yml配置项"></a>修改 _config.yml配置项</h2><p>在<code> $&#123;hexoHome&#125;/_config.xml</code> 文件中，增加以下的配置项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flowchart:</span><br><span class="line">  # raphael:   # optional, the source url of raphael.js</span><br><span class="line">  # flowchart: # optional, the source url of flowchart.js</span><br><span class="line">  options: # options used for `drawSVG`</span><br></pre></td></tr></table></figure>
+
+<h1 id="local-search"><a href="#local-search" class="headerlink" title="local_search"></a>local_search</h1><p>**<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-generator-searchdb">local_search</a>**这个插件主要是为博客增加搜索功能。主要安装配置如下</p>
+<h2 id="安装hexo-generator-searchdb"><a href="#安装hexo-generator-searchdb" class="headerlink" title="安装hexo-generator-searchdb"></a>安装hexo-generator-searchdb</h2><p>在<code>$&#123;hexoHome&#125;</code>目录下执行以下命令安装hexo-generator-searchdb插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改主题的-config-yml配置-1"><a href="#修改主题的-config-yml配置-1" class="headerlink" title="修改主题的 _config.yml配置"></a>修改主题的 _config.yml配置</h2><p>主要是将<code>local_search</code>底下的<code>enable</code>值改为<code>true</code></p>
+<p><img src="/images/localSearch.png" alt="local search"></p>
+<h1 id="hexo-featured-image"><a href="#hexo-featured-image" class="headerlink" title="hexo-featured-image"></a>hexo-featured-image</h1><p>这个插件主要是使用markdown语法写的图片能够上传到网站上并正常显示的一个插件。只需要安装该插件，然后在<code>$&#123;hexoHome&#125;/source</code>目录底下新建一个<code>images</code>目录用于存放图片即可，在引用图片时图片的路径为<code>/images/yourImageName</code>，因为使用<code>hexo g</code>时会将<code>$&#123;hexoHome&#125;/source/images</code>底下的图片拷贝到<code>$&#123;hexoHome&#125;/public/images目录下</code>。例如：引用图片<code>$&#123;hexoHome&#125;/source/images/localSearch.png</code>需要写<code>![](/images/localSearch.png)</code>。这里有点不太好的地方就是引用的图片在markdown上无法显示，因为本地路径不对（但是发布之后路径是对的，因此在线时可以正常显示）。具体配置可以参考**<a target="_blank" rel="noopener" href="https://github.com/poacher2k/hexo-featured-image">官网</a>**，这里以其最简单的配置进行说明（不修改 _config.yml文件）</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>在<code>$&#123;hexoHome&#125;</code>目录下执行以下命令完成安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-featured-image</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建images目录"><a href="#新建images目录" class="headerlink" title="新建images目录"></a>新建images目录</h2><p>在<code>$&#123;hexoHome&#125;/source</code>目录下新建<code>images</code>目录</p>
+<p><img src="/images/imagesDir.png" alt="create image directory"></p>
+<h2 id="引用图片"><a href="#引用图片" class="headerlink" title="引用图片"></a>引用图片</h2><p>在需要引用图片的地方使用markdown的格式进行引用，需要注意的是引用图片的路径必须为<code>/images/yourImageName</code>。例如引用<code>localSearch.png</code>文件应该写<code>![local search](/images/localSearch.png)</code>。</p>
+<p><img src="/images/useImage.png" alt="use image"></p>
+<h1 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://imsun.net/posts/gitment-introduction/">https://imsun.net/posts/gitment-introduction</a></li>
+<li><a target="_blank" rel="noopener" href="http://ibruce.info/2015/04/04/busuanzi">http://ibruce.info/2015/04/04/busuanzi</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bubkoo/hexo-filter-flowchart">https://github.com/bubkoo/hexo-filter-flowchart</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-generator-searchdb">https://github.com/theme-next/hexo-generator-searchdb</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/poacher2k/hexo-featured-image">https://github.com/poacher2k/hexo-featured-image</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag"># 插件</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/red-black-tree/" rel="prev" title="红黑树">
+      <i class="fa fa-chevron-left"></i> 红黑树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-15/" rel="next" title="leetCode-15:3Sum">
+      leetCode-15:3Sum <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gitment"><span class="nav-number">1.</span> <span class="nav-text">Gitment</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8COAuth-Application"><span class="nav-number">1.1.</span> <span class="nav-text">注册OAuth Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E7%9A%84-config-yml%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">修改主题的_config.yml配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AF%84%E8%AE%BA"><span class="nav-number">1.3.</span> <span class="nav-text">初始化评论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E9%A1%B5%E9%9D%A2%E8%AF%84%E8%AE%BA"><span class="nav-number">1.4.</span> <span class="nav-text">关闭页面评论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E8%92%9C%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">不蒜子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-filter-flowchart"><span class="nav-number">3.</span> <span class="nav-text">hexo-filter-flowchart</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85flowchart%E6%8F%92%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">安装flowchart插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-config-yml%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">3.2.</span> <span class="nav-text">修改 _config.yml配置项</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#local-search"><span class="nav-number">4.</span> <span class="nav-text">local_search</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85hexo-generator-searchdb"><span class="nav-number">4.1.</span> <span class="nav-text">安装hexo-generator-searchdb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E7%9A%84-config-yml%E9%85%8D%E7%BD%AE-1"><span class="nav-number">4.2.</span> <span class="nav-text">修改主题的 _config.yml配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-featured-image"><span class="nav-number">5.</span> <span class="nav-text">hexo-featured-image</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAimages%E7%9B%AE%E5%BD%95"><span class="nav-number">5.2.</span> <span class="nav-text">新建images目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">5.3.</span> <span class="nav-text">引用图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">参考来源</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

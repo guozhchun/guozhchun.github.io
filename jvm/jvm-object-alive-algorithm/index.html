@@ -1,37 +1,483 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="概述java虚拟机会自动进行内存管理和垃圾回收，在进行垃圾回收之前，需要先判定对象是否存活，只有对象“死去”（这里并不是指对象消失，而是指根据算法判定对象可以进行垃圾回收）才能被垃圾回收器进行回收。这里主要有两种对象存活判定算法：引用计数法和可达性分析算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm 对象存活判定算法">
+<meta property="og:url" content="http://yoursite.com/jvm/jvm-object-alive-algorithm/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="概述java虚拟机会自动进行内存管理和垃圾回收，在进行垃圾回收之前，需要先判定对象是否存活，只有对象“死去”（这里并不是指对象消失，而是指根据算法判定对象可以进行垃圾回收）才能被垃圾回收器进行回收。这里主要有两种对象存活判定算法：引用计数法和可达性分析算法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/jvm/reachabilityAnalysis.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/referenceSampleOutput.png">
+<meta property="article:published_time" content="2018-07-01T03:59:14.000Z">
+<meta property="article:modified_time" content="2018-08-05T09:59:19.231Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/jvm/reachabilityAnalysis.png">
+
+<link rel="canonical" href="http://yoursite.com/jvm/jvm-object-alive-algorithm/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>jvm 对象存活判定算法 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/jvm/jvm-object-alive-algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jvm 对象存活判定算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-01 11:59:14" itemprop="dateCreated datePublished" datetime="2018-07-01T11:59:14+08:00">2018-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-08-05 17:59:19" itemprop="dateModified" datetime="2018-08-05T17:59:19+08:00">2018-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index"><span itemprop="name">jvm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>java虚拟机会自动进行内存管理和垃圾回收，在进行垃圾回收之前，需要先判定对象是否存活，只有对象“死去”（这里并不是指对象消失，而是指根据算法判定对象可以进行垃圾回收）才能被垃圾回收器进行回收。这里主要有两种对象存活判定算法：引用计数法和可达性分析算法。</p>
+<span id="more"></span>
+
+<h1 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h1><p>引用计数法（Reference Counting）主要思想是通过给对象增加一个属性用于记录对象被引用的次数，当对象被其他对象引用时计数加一，当某个引用失效时计数减一，如果计数为0，则表示该对象不再被使用，可以在垃圾回收时进行回收。</p>
+<p>引用计数法原理以及实现相对简单，一般情况下使用这个算法并没有太大的问题，但是其有一个很大的缺点，就是不能解决循环引用的问题：如果两个对象循环引用，但是并没有其他对象对这两个对象进行引用，从理论上来讲，这两个对象均是可以被垃圾回收的，但是如果是通过引用计数法的方法来判断是非可以回收的话，因为对这两个对象中的任何一个对象，都存在的引用，所以这两个对象都不会被垃圾回收。这在一定程度上来说会造成内存泄漏，所以目前市场上主流的java虚拟机里面没有选用引用计数法来管理内存。</p>
+<h1 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h1><p>可达性分析（Reachability Analysis）算法主要思想是通过一系列称为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有任何引用链相连（用图论的话来说，就是从GC Roots到这个对象不可达）时，则表示该对象不再被使用，可以在垃圾回收时进行回收。此方法可以避免引用计数法中的循环引用引起的内存泄漏。如下图所示，Object1、Object2在GC Root1的引用链上，Object3、Objcect4在GC Root2的引用链上，因此这四个对象都是存活的对象，不能进行垃圾回收。而Object5和Object6这两个对象虽然存储循环引用，但是并没有在任何GC Roots的引用链上，因此这两个对象是可以进行垃圾回收的对象。</p>
+<p><img src="/images/jvm/reachabilityAnalysis.png" alt="可达性算法图解"></p>
+<p>在java语言中，可作为GC Roots的对象包括以下几种：</p>
+<ul>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI（即Native方法）引用的对象</li>
+</ul>
+<h1 id="java中的引用"><a href="#java中的引用" class="headerlink" title="java中的引用"></a>java中的引用</h1><p>无论是通过引用计数法还是通过可达性分析算法来判断对象是否存活，都是根据对象是否被引用进行判断的。在java中有四种引用：强引用（Strong Reference）、软引用（Soft Reference）、弱引用（Weak Reference）、虚引用（Phantom Reference）。这四种引用强度依次减弱。</p>
+<ul>
+<li>强引用：强引用是代码中普遍存在的，只要强引用存在，垃圾回收器就不会回收强引用的对象。可以通过“Object obj &#x3D; new Object()”之类的new语句建立强引用</li>
+<li>软引用：软引用是用来描述一些有用但是非必须的对象。在垃圾回收时，如果内存充足，则不会回收软引用的对象，如果经过一次回收之后内存仍然不足，则会将软引用的对象进行回收。可以通过SoftReference类来实现软引用</li>
+<li>弱引用：弱引用也是用来描述非必须对象的，但是其强度比软引用还弱。在垃圾回收时，无论内存是否充足，弱引用的对象都会被回收。可以通过WeakReference类来实现弱引用</li>
+<li>虚引用也称为幽灵引用或者幻影引用，它是最弱的一种引用关系。一个对象是否有虚引用的存在，完全不会对其生存时间构造影响，也无法通过虚引用来取得一个对象实例。为一个对象设置虚引用关联的唯一目的就是能在这个对象被垃圾回收器回收时收到一个系统通知。可以通过PhantomReference类来实现虚引用</li>
+</ul>
+<p>下面程序展示了软引用和弱引用的区别</p>
+<p>对于软引用对象，垃圾回收时，由于内存充足，所以不会被回收。而对于弱引用对象，即使内存充足，在垃圾回收时也会被回收。而关于虚引用，则无论是在垃圾回收前还是垃圾回收后，均无法通过虚引用获取实例对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ReferenceType</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ReferenceType</span><span class="params">(String type)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ReferenceType [type=&quot;</span> + type + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestReference</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">ReferenceType</span> <span class="variable">strongReferece</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReferenceType</span>(<span class="string">&quot;strong reference&quot;</span>);</span><br><span class="line">        SoftReference&lt;ReferenceType&gt; softReference = <span class="keyword">new</span> <span class="title class_">SoftReference</span>&lt;ReferenceType&gt;(<span class="keyword">new</span> <span class="title class_">ReferenceType</span>(<span class="string">&quot;soft reference&quot;</span>));</span><br><span class="line">        WeakReference&lt;ReferenceType&gt; weakReference = <span class="keyword">new</span> <span class="title class_">WeakReference</span>&lt;ReferenceType&gt;(<span class="keyword">new</span> <span class="title class_">ReferenceType</span>(<span class="string">&quot;weak reference&quot;</span>));</span><br><span class="line">        PhantomReference&lt;ReferenceType&gt; phantomReference = <span class="keyword">new</span> <span class="title class_">PhantomReference</span>&lt;ReferenceType&gt;(<span class="keyword">new</span> <span class="title class_">ReferenceType</span>(<span class="string">&quot;phantom reference&quot;</span>), <span class="literal">null</span>);</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;----before gc----&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;strong reference: &quot;</span> + strongReferece);</span><br><span class="line">        System.out.println(<span class="string">&quot;soft reference: &quot;</span> + softReference.get());</span><br><span class="line">        System.out.println(<span class="string">&quot;weak reference: &quot;</span> + weakReference.get());</span><br><span class="line">        System.out.println(<span class="string">&quot;phantom reference: &quot;</span> + phantomReference.get());</span><br><span class="line">        System.gc();</span><br><span class="line">        System.out.println(<span class="string">&quot;----after gc----&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;strong reference: &quot;</span> + strongReferece);</span><br><span class="line">        System.out.println(<span class="string">&quot;soft reference: &quot;</span> + softReference.get());</span><br><span class="line">        System.out.println(<span class="string">&quot;weak reference: &quot;</span> + weakReference.get());</span><br><span class="line">        System.out.println(<span class="string">&quot;phantom reference: &quot;</span> + phantomReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序输出结果如下</p>
+<p><img src="/images/jvm/referenceSampleOutput.png" alt="引用例子输出结果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明，深入理解Java虚拟机：JVM高级特性与最佳实践[M]，北京：机械工业出版社，2013</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-347/" rel="prev" title="leetCode-347:Top K Frequent Elements">
+      <i class="fa fa-chevron-left"></i> leetCode-347:Top K Frequent Elements
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/jvm/jvm-gc-algorithm/" rel="next" title="jvm 垃圾回收算法">
+      jvm 垃圾回收算法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">可达性分析算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java%E4%B8%AD%E7%9A%84%E5%BC%95%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">java中的引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

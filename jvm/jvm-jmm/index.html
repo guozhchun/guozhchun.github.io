@@ -1,37 +1,505 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="概述java 内存模型（Java Memory Model, JMM）是 java 虚拟机定义的一种抽象的模型，主要是用来屏蔽各种硬件和操作系统的内存访问差异，以实现让 java 程序在各种平台下都能达到一致的内存访问效果。其模型大致如下图所示：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 内存模型">
+<meta property="og:url" content="http://yoursite.com/jvm/jvm-jmm/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="概述java 内存模型（Java Memory Model, JMM）是 java 虚拟机定义的一种抽象的模型，主要是用来屏蔽各种硬件和操作系统的内存访问差异，以实现让 java 程序在各种平台下都能达到一致的内存访问效果。其模型大致如下图所示：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/jvm/JMM.png">
+<meta property="article:published_time" content="2018-11-03T11:32:34.000Z">
+<meta property="article:modified_time" content="2018-11-03T13:45:31.998Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/jvm/JMM.png">
+
+<link rel="canonical" href="http://yoursite.com/jvm/jvm-jmm/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>java 内存模型 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/jvm/jvm-jmm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java 内存模型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-11-03 19:32:34 / 修改时间：21:45:31" itemprop="dateCreated datePublished" datetime="2018-11-03T19:32:34+08:00">2018-11-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index"><span itemprop="name">jvm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>java 内存模型（Java Memory Model, JMM）是 java 虚拟机定义的一种抽象的模型，主要是用来屏蔽各种硬件和操作系统的内存访问差异，以实现让 java 程序在各种平台下都能达到一致的内存访问效果。其模型大致如下图所示：</p>
+<p><img src="/images/jvm/JMM.png" alt="java内存模型"></p>
+<span id="more"></span>
+
+<h1 id="主内存和工作内存"><a href="#主内存和工作内存" class="headerlink" title="主内存和工作内存"></a>主内存和工作内存</h1><p>在 java 内存模型中，主内存是各个线程共享的，主要用于存在程序中创建的对象。与 java 内存区域（JVM 内存模型）中的堆可以进行类比，两者的功能类似。</p>
+<p>工作内存，则是各个线程独享的，各个线程之间互不干扰。与 java 内存区域中的虚拟机栈类似，都是存放着本线程使用到的局部变量，如 int、long 等基本类型。需要注意的是，使用 Interger、Long 等包装类型或其他类对象，其对象实例是在主内存中，而持有该对象的引用则是在工作内存中。</p>
+<p>当需要使用主内存的对象时，会将主内存的对象拷贝到线程的工作内存中，即线程的工作内存持有主内存变量的副本，当线程对该变量执行完毕后，需要将新的变量值写入主内存，此时，也是先将结果放在工作内存中，然后再从工作内存中写入主内存。从这个角度来说，工作内存就是线程执行引擎与主内存之间的桥梁，无论是读取还是更新主内存的变量，都需要先通过线程的工作内存进行。</p>
+<h1 id="内存间的交互操作"><a href="#内存间的交互操作" class="headerlink" title="内存间的交互操作"></a>内存间的交互操作</h1><p>工作内存和主内存需要频繁进行通信，java 内存模型也为此定义了 8 中原子操作来完成这种交互。</p>
+<ul>
+<li>lock（锁定）：作用于主内存的变量，它把一个变量标识为一条线程独占的状态。使用之后，其他线程只有等待 unlock 操作后才能继续对该变量执行 lock 操作。</li>
+<li>unlock（解锁）：作用于主内存的变量，它把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定。</li>
+<li>read（读取）：作用于主内存的变量，它把一个变量的值从主内存传输到线程的工作内存中，以便随后的 load 动作使用。</li>
+<li>load（载入）：作用于工作内存的变量，它把 read 操作从主内存中得到的变量值放入工作内存的变量副本中。</li>
+<li>use（使用）：作用于工作内存的变量，它把工作内存中一个变量的值传递给执行引擎，每当虚拟机遇到一个需要使用到变量的值的字节码指令时将会执行这个操作。</li>
+<li>assign（赋值）：作用于工作内存的变量，它把一个从执行引擎接收到的赋值给工作内存的变量，没当虚拟机遇到一个给变量赋值的字节码指令时执行这个操作。</li>
+<li>store（存储）：作用于工作内存的变量，它把工作内存中一个变量的值传送到主内存中，以便随后的 write 操作使用。</li>
+<li>write（写入）：作用于主内存的变量，它把 store 操作从工作内存中得到的变量值放入主内存的变量中。</li>
+</ul>
+<p>除了定义这 8 种操作之外，java 内存模型还定义这 8 种基本操作必须满足的原则：</p>
+<ul>
+<li>不允许 read 和 load 操作单独出现，也不允许 store 和 write 操作单独出现，也就是说 read 和 load 操作（store 和 write 操作）这两个操作是绑定的，必须成对出现。虽然如此，但是并没有说这两个操作必须连续出现，也就是说执行这两个操作中间可以执行其他的操作。如读取两个变量 a 和 b，执行的顺序可以是 <code>read a -&gt; read b -&gt; load a -&gt; load b</code>。</li>
+<li>不允许一个线程丢弃他的最近的 assign 操作，即变量在工作在工作内存中改变了之后必须把该变化同步到主内存中。</li>
+<li>不允许一个线程无原因地（没有发生过任何 assign 操作）把数据从线程的工作内存同步到主内存中。</li>
+<li>一个新的变量（不包括基本类型的局部变量）只能在主内存中“诞生”，不允许在工作内存中直接使用一个未被初始化（load 或 assign）的变量，即对一个变量实施 use、store 操作之前，必须先执行了 assign 和 load 操作。</li>
+<li>一个变量在同一个时刻只允许一条线程对其进行 lock 操作，但 lock 操作可以被同一个线程重复执行多次，多次执行 lock 后，只有执行相同次数的 unlock 操作，变量才会被解锁。</li>
+<li>如果对一个变量执行 lock 操作，那将会清空工作内存中此变量的值，在执行引擎使用这个变量前，需要重新执行 load 或 assign 操作初始化变量的值。</li>
+<li>如果一个变量事先没有被 lock 操作锁定，那就不允许对它执行 unlock 操作，也不允许去 unlock 一个被其他线程锁定住的变量。</li>
+<li>对一个变量执行 unlock 操作之前，必须先把此变量同步回主内存中（执行 store、write 操作）。</li>
+</ul>
+<h1 id="java-内存模型特性"><a href="#java-内存模型特性" class="headerlink" title="java 内存模型特性"></a>java 内存模型特性</h1><p>java 内存模型有三大特性：原子性、可见性、有序性。</p>
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>原子性（Atomicity）是指一个操作是不可中断的，即一个操作一旦开始执行就必须等待其执行完成，中间不会插入其他的操作。即使在多线程的环境下也是如此。java 内存模型提供的 8 中基本操作都是原子性的（虽然对 long 和 double 这种 64 位的数据结构而言，部分操作可以不是原子性的，但是几乎所有的商业虚拟机都是将其实现成原子性的），这些基本的操作能控制一些比较简单的指令。而对于需要将一块代码块（多个程序语句）实现成原子性时，Java 代码中也提供了 <code>synchronized </code> 关键字来保证，其对应到字节码指令是 <code>monitorenter</code> 和 <code>monitorexit</code>。</p>
+<h2 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h2><p>可见性（Visibility）是指当一个线程修改了共享变量的值，其他线程能够立即得到这个修改。这主要是通过将更新后的变量值及时写入主内存，同时其他线程获取变量时直接从主内存获取到工作内存来实现的。在 java 中有 <code>volatile</code>、<code>synchronized</code>、<code>final</code> 三个关键字可以实现可见性。</p>
+<ul>
+<li>volatile：被 volatile 修饰的变量，读取变量时，直接从主内存读取，更新变量时，立即同步到主内存。通过这种方式实现其可见性。</li>
+<li>synchronized：其可见性是由 “对一个变量执行 unlock 操作之前，必须先把此变量同步回主内存中（执行 store、write 操作）” 这个规则保证的。</li>
+<li>final：被 final 修饰的字段（所在对象存在于主内存中）在构造器中一旦完成初始化并且构造器没有将 “this” 的引用传递出去，则其他线程能看到 final 字段的值。</li>
+</ul>
+<h2 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h2><p>有序性（Ordering）指在本线程内观察，所有的操作都是有序的（即串性执行）。而对于在一个线程中观察另一个线程，则操作是无序的，这主要是指 “指令重排“ 和 “工作内存与主内存同步延迟” 。</p>
+<p>java 提供了 <code>volatile</code> 和 <code>synchronized</code> 两个关键字来保证线程之间操作的有序性。</p>
+<ul>
+<li>volatile：通过禁止指令重排序来实现线程的有序性</li>
+<li>synchronized：其有序性由 “一个变量在同一个时刻只允许一条线程对其进行 lock 操作” 这个规则来保证的。</li>
+</ul>
+<h1 id="先行发生原则"><a href="#先行发生原则" class="headerlink" title="先行发生原则"></a>先行发生原则</h1><p>除了  <code>volatile</code> 和 <code>synchronized</code> 这两个关键字保证有序性之外，java 内存模型也默认提供并执行一些先行发生原则来保证有序性。</p>
+<p>先行发生是 java 内存模型中定义的两种操作之间的偏序关系，如果操作 A 先行与操作 B 发生，则操作 A 执行的结果能够被操作 B 观察到。</p>
+<p>先行发生原则包括以下几点：</p>
+<ul>
+<li>程序次序规则（Program Order Rule）：在一个线程内，安装程序代码顺序，书写在前面的操作先行发生于书写在后面的操作。</li>
+<li>管城锁定规则（Monitor Lock Rule）：一个 unlock 操作先行发生于后面（时间上的先后）对于同一个锁的 lock 操作。</li>
+<li>volatile 变量规则（Volatile Variable Rule）：对一个 volatile 变量的写操作先行发生于后面（时间上的先后）对这个变量的读操作。</li>
+<li>线程启动规则（Thread Start Rule）：Thread 对象的 start 方法先行发生于此线程的每个动作。</li>
+<li>线程终止规则（Thread Termination Rule）：线程中所有操作都先行发生于对此线程的终止。</li>
+<li>线程中断规则（Thread Interruption Rule）：对线程 interrupt() 方法的调用先行发生于被中断线程的代码检测到中断事件的发生。可以通过 Thread.interrupted() 方法检测到是否有中断发生。也就是说， interrupt() 方法先于 Thread.interrupted() 方法执行。</li>
+<li>对象终结规则（Finalizer Rule）：一个对象的初始化完成（构造函数执行结束）先行发生于它的 finalize() 方法的开始。</li>
+<li>传递性（Transitivity）：如果操作 A 先行发生于操作 B，操作 B 先行发生于操作 C，则操作 A 先行发生于操作 C。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明，深入理解Java虚拟机：JVM高级特性与最佳实践[M]，北京：机械工业出版社，2013</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-19/" rel="prev" title="leetCode-19:Remove Nth Node From End of List">
+      <i class="fa fa-chevron-left"></i> leetCode-19:Remove Nth Node From End of List
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-24/" rel="next" title="leetCode-24:Swap Nodes in Pairs">
+      leetCode-24:Swap Nodes in Pairs <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E5%86%85%E5%AD%98%E5%92%8C%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AD%98"><span class="nav-number">2.</span> <span class="nav-text">主内存和工作内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E9%97%B4%E7%9A%84%E4%BA%A4%E4%BA%92%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">内存间的交互操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%89%B9%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">java 内存模型特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="nav-number">4.1.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="nav-number">4.3.</span> <span class="nav-text">有序性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%88%E8%A1%8C%E5%8F%91%E7%94%9F%E5%8E%9F%E5%88%99"><span class="nav-number">5.</span> <span class="nav-text">先行发生原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,37 +1,484 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简介树状数组又叫二叉索引树（binary indexed tree），是一种用数组来表示“树”形状的数据结构，这里的“树”并不是真正意义上的树，是一个抽象意义上的“树”，其部分节点并不真实存在，只是为了方便理解而将其用“树”来表示。树状数组常用于求解动态数组（数组中的值经常发生变化）中的区间和。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树状数组">
+<meta property="og:url" content="http://yoursite.com/binary-indexed-tree/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="简介树状数组又叫二叉索引树（binary indexed tree），是一种用数组来表示“树”形状的数据结构，这里的“树”并不是真正意义上的树，是一个抽象意义上的“树”，其部分节点并不真实存在，只是为了方便理解而将其用“树”来表示。树状数组常用于求解动态数组（数组中的值经常发生变化）中的区间和。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guozhchun.github.io/images/binary-indexed-tree-1.png">
+<meta property="og:image" content="https://guozhchun.github.io/images/binary-indexed-tree-2.png">
+<meta property="og:image" content="https://guozhchun.github.io/images/binary-indexed-tree-3.png">
+<meta property="article:published_time" content="2022-05-02T09:54:30.000Z">
+<meta property="article:modified_time" content="2022-05-04T06:38:52.020Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="树状数组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guozhchun.github.io/images/binary-indexed-tree-1.png">
+
+<link rel="canonical" href="http://yoursite.com/binary-indexed-tree/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>树状数组 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/binary-indexed-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树状数组
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-02 17:54:30" itemprop="dateCreated datePublished" datetime="2022-05-02T17:54:30+08:00">2022-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-04 14:38:52" itemprop="dateModified" datetime="2022-05-04T14:38:52+08:00">2022-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>树状数组又叫二叉索引树（binary indexed tree），是一种用数组来表示“树”形状的数据结构，这里的“树”并不是真正意义上的树，是一个抽象意义上的“树”，其部分节点并不真实存在，只是为了方便理解而将其用“树”来表示。树状数组常用于求解动态数组（数组中的值经常发生变化）中的区间和。</p>
+<span id="more"></span>
+
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>一般情况下，画二叉树都会将父节点放在左右子节点的中间，对于树状数组，将父节点位置调整到右子节点的方向上，如下图所示。</p>
+<p><img src="https://guozhchun.github.io/images/binary-indexed-tree-1.png" alt="binary-indexed-tree-1"></p>
+<p>然后将树中白色背景的节点删除（算法过程中并不需要这部分节点），将蓝色背景的节点统一放到一个水平线上，就可以得到一个数组，如下图所示</p>
+<p><img src="https://guozhchun.github.io/images/binary-indexed-tree-2.png" alt="binary-indexed-tree-2"></p>
+<p>基于此，就可以用一个数组来表示存储一颗“树”，并用这颗“树”来执行相关业务计算，比如区间和。</p>
+<p>但是，对于一个原始数组，怎么将其表示成树状数组呢。首先，要引入一个 <code>lowbit</code> 的概念，<code>lowbit(n)</code> 表示正整数 <code>n</code> 的二进制数的最低位 <code>1</code> 的位置对应数（整数二进制 32 位数里，只在这个位置有数 1，其他位置均为 0）。比如 <code>6</code> 的二进制数是 <code>110</code>，则 <code>lowbit(6) = 2</code>，<code>5</code> 的二进制数为 <code>101</code>，则 <code>lowbit(5) = 1</code>，<code>8</code> 的二进制数为 <code>1000</code>， 则 <code>lowbit(8) = 16</code>。关于 <code>lowbit</code> 有个快速的计算方法： <code>lowbit(n) = n &amp; (-n)</code>。</p>
+<p>知道了 <code>lowbit</code> 的含义，现在来构建树状数组。假设用 <code>C</code> 数组来表示构建的树状数组，<code>C[n]</code> 表示 <code>n</code> 节点或左右子树节点之和（如果存在左右子树的话），对于叶子节点，会自动对应到原始数组中。从下图中可以看出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">C[1] = nums[1]</span><br><span class="line">C[2] = C[1] + nums[2] = nums[1] + nums[2]</span><br><span class="line">C[3] = nums[3]</span><br><span class="line">C[4] = C[2] + C[3] + nums[4] = nums[1] + nums[2] + nums[3] + nums[4]</span><br><span class="line">C[5] = nums[5]</span><br><span class="line">C[6] = C[5] + nums[6] = nums[5] + nums[6]</span><br><span class="line">C[7] = nums[7]</span><br><span class="line">C[8] = C[4] + C[6] + C[7] + nums[8] = nums[1] + nums[2] + nums[3] + nums[4] + nums[5] + nums[6] + nums[7] + nums[8]</span><br><span class="line">C[9] = nums[9]</span><br><span class="line">C[10] = C[9] + nums[10] = nums[9] + nums[10]</span><br><span class="line">C[11] = nums[11]</span><br><span class="line">C[12] = C[10] + nums[11] + nums[12] = nums[9] + nums[10] + nums[11] + nums[12]</span><br><span class="line">C[13] = nums[13]</span><br><span class="line">C[14] = C[13] + nums[14] = nums[13] + nums[14]</span><br><span class="line">C[15] = nums[15]</span><br><span class="line">C[16] = C[8] + C[12] + C[14] + C[15] + nums[16] = nums[1] + nums[2] + nums[3] + nums[4] + nums[5] + nums[6] + nums[7] + nums[8] + nums[9] + nums[10] + nums[11] + nums[12] + nums[13] + nums[14] + nums[15] + nums[16]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://guozhchun.github.io/images/binary-indexed-tree-3.png" alt="binary-indexed-tree-3"></p>
+<p>从上述的数组等式中，可以看出，树状数组中的元素包含了原始数组中的部分元素。当初始数组的某个元素发生变化时，树状数组中的部分元素需要跟着改变（树状数组的元素构成里包含了初始数组的这个元素）。比如改变 <code>nums[1]</code> 时，<code>C[1]</code>、<code>C[2]</code>、<code>C[4]</code>、<code>C[8]</code>、<code>C[16]</code>都会发生改变，改变 <code>nums[7]</code> 时， <code>C[7]</code>、<code>C[8]</code>、<code>C[16]</code> 会跟着改变，改变 <code>nums[16]</code> 时，只有  <code>C[16]</code> 会发生变化。</p>
+<p>那当某个值发生变化时，怎么知道有哪些值会受影响呢。这里有个递归公式可以判断：当树状数组中 <code>i</code> 的位置发生变化时， <code>i + lowbit(i)</code> 的位置也会发生变化。所以可以得出以下的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nums 是初始数组，sums 是树状数组</span></span><br><span class="line"><span class="comment">// 此函数功能：改变初始数组 index 的值为 val，然后更新树状数组中的元素</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">increaseNum</span> <span class="operator">=</span> val - nums[index];</span><br><span class="line">    nums[index] = val;</span><br><span class="line">    <span class="comment">// 重要的是递推过程元素下标的变化：i += lowBit(i)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &lt; sums.length; i += lowBit(i)) &#123;</span><br><span class="line">        sums[i] += increaseNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述的代码虽然是对数组的更新操作，但是同样可以用在构建树状数组的过程中。因为构建树状数组的过程可以看做是将一个初始数组元素都是 <code>0</code> 的数组更新成目标数组的元素的过程。因此，构建树状数组的代码可以是以下操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处假设 nums[0] 是无意义的，真正有意义的数从 nums[1] 开始的</span></span><br><span class="line"><span class="comment">// nums 是初始数组，sums 是树状数组</span></span><br><span class="line"><span class="type">int</span>[] sums = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    update(i, nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说完了更新操作，接下来看查询操作。由于树状数组中的元素包含了部分初始数组的元素，因此，当查询初始数组的前缀和或区间和时，可以利用树状数组来快速求解。当求初始数组某个位置的前缀和时，可以利用递推公式在树状数组里进行计算，递归的规律刚好是跟更新操作相反。具体代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sums 是根据初始数组构建出来的树状数组，sums[0] 无意义，真正有意义的数从 sums[1] 开始</span></span><br><span class="line"><span class="comment">// 此函数功能，求解初始数组中 index 位置的前缀和</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">querySum</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 重要的是递推过程元素下标的变化：i -= lowBit(i)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &gt; <span class="number">0</span>; i -= lowBit(i)) &#123;</span><br><span class="line">        sum += sums[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>算法大部分都有模板代码，树状数组也一样，以下给出一个示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumArray</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] nums;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] sums;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化，构建树状数组，树状数组 sums[0] 留空（无意义），从 sums[1] 开始，sums[i] 对应 nums[i - 1]</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">NumArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.nums = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        <span class="comment">// sums[0] 无意义，从 sums[1] 开始，sums[i] 对应 nums[i - 1]</span></span><br><span class="line">        sums = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            update(i, nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将初始数组的 index 位置更新为 val，同时更新树状数组的元素</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">increaseNum</span> <span class="operator">=</span> val - nums[index];</span><br><span class="line">        nums[index] = val;</span><br><span class="line">        <span class="comment">// 重要的是递推过程元素下标的变化：i += lowBit(i)</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index + <span class="number">1</span>; i &lt; sums.length; i += lowBit(i)) &#123;</span><br><span class="line">            sums[i] += increaseNum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算初始数组 index 位置的前缀和</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">querySum</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 重要的是递推过程元素下标的变化：i -= lowBit(i)</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &gt; <span class="number">0</span>; i -= lowBit(i)) &#123;</span><br><span class="line">            sum += sums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算正整数 n 对应的二进制数的最低位 1 所在位置对应的数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">lowBit</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n &amp; (-n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+              <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" rel="tag"># 树状数组</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-304/" rel="prev" title="leetCode-304:Range Sum Query 2D - Immutable">
+      <i class="fa fa-chevron-left"></i> leetCode-304:Range Sum Query 2D - Immutable
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-307/" rel="next" title="leetCode-307:Range Sum Query - Mutable">
+      leetCode-307:Range Sum Query - Mutable <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

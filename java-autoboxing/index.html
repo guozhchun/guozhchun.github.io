@@ -1,37 +1,476 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="概念自动装箱和自动拆箱是 java5 提供的一种语法糖，主要是为了方便程序员进行代码编写，在编译时会自动将语法糖去除还原成其真正的语法。 自动装箱：将基本类型转换为其包装类型。如将 int 转成 Integer。其主要是通过包装类中的 valueOf 函数完成的。 自动拆箱：将包装类型转成基本类型。如将 Integer 转成 int。其主要是通过包装类中的 xxxValue函数完成的，其中 xxx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 自动装箱和拆箱">
+<meta property="og:url" content="http://yoursite.com/java-autoboxing/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="概念自动装箱和自动拆箱是 java5 提供的一种语法糖，主要是为了方便程序员进行代码编写，在编译时会自动将语法糖去除还原成其真正的语法。 自动装箱：将基本类型转换为其包装类型。如将 int 转成 Integer。其主要是通过包装类中的 valueOf 函数完成的。 自动拆箱：将包装类型转成基本类型。如将 Integer 转成 int。其主要是通过包装类中的 xxxValue函数完成的，其中 xxx">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-20T11:37:30.000Z">
+<meta property="article:modified_time" content="2018-10-20T12:53:27.297Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/java-autoboxing/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>java 自动装箱和拆箱 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/java-autoboxing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java 自动装箱和拆箱
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-10-20 19:37:30 / 修改时间：20:53:27" itemprop="dateCreated datePublished" datetime="2018-10-20T19:37:30+08:00">2018-10-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>自动装箱和自动拆箱是 java5 提供的一种语法糖，主要是为了方便程序员进行代码编写，在编译时会自动将语法糖去除还原成其真正的语法。</p>
+<p>自动装箱：将基本类型转换为其包装类型。如将 <code>int</code> 转成 <code>Integer</code>。其主要是通过包装类中的 <code>valueOf</code> 函数完成的。</p>
+<p>自动拆箱：将包装类型转成基本类型。如将 <code>Integer</code> 转成 <code>int</code>。其主要是通过包装类中的 <code>xxxValue</code>函数完成的，其中 <code>xxx</code>代表基本类型。例如 <code>Integer</code> 类中是 <code>intValue</code>，<code>Long</code> 类中是 <code>longValue</code>。</p>
+<span id="more"></span>
+
+<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><p>自动装箱和自动拆箱虽然极大地方便了程序员进行代码的编写，但是在使用过程中仍然需要注意以下几点，否则很容易造成错误。</p>
+<ul>
+<li>基本类型作为函数形参，包装类型作为函数实参，需要保证函数实参是非空的，否则会报空指针异常。因为将一个包装类转为基本类型时，需要调用包装类的 xxxValue 函数，如果此时包装类是 null ，则调用该函数会抛空指针异常。</li>
+<li>对于数字参与运算的情况，会自动执行拆箱过程，即将包装类型转成基本类型。</li>
+<li>对于 <code>==</code> 的比较情况，如果两边中有任何一边是表达式（即包含算术运算），则会触发自动拆箱的过程，其比较的是比较的是数值，而不是对象地址</li>
+<li>对于整数（Long、Integer、Short 类型），一般情况下，<code>-128 ~ 127</code> 这个范围的数字在使用自动装箱时，同一类型下，同一个数字的包装类型返回的是同一个对象。即 <code>Integer a = 3</code> 和 <code>Integer b = 3</code>，其得到的对象的地址是一样的，而对于 <code>Integer c = 1234567</code> 和 <code>Integer d = 1234567</code>，其得到的对象的地址是不同的。这主要是因为在 Long、Integer、Short 这几种类型中，其内部维护了一个缓存数组，放置着 <code>-128 ~ 127</code> 的包装类型，当外部调用 <code>valueOf</code> 函数时，如果其参数在这个范围内，则返回数组中已有的对象，否则新建一个对象返回。下面是 <code>Integer.valueOf</code> 函数的源码，从中可以证明上述结论。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title function_">valueOf</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">    <span class="comment">// 如果传入参数在缓存范围内，可返回缓存中已有的对象，否则新建一个对象返回</span></span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">IntegerCache</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> -<span class="number">128</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> high;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// high value may be configured by property</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">h</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">integerCacheHighPropValue</span> <span class="operator">=</span></span><br><span class="line">            sun.misc.VM.getSavedProperty(<span class="string">&quot;java.lang.Integer.IntegerCache.high&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (integerCacheHighPropValue != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> parseInt(integerCacheHighPropValue);</span><br><span class="line">                i = Math.max(i, <span class="number">127</span>);</span><br><span class="line">                <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></span><br><span class="line">                h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span>( NumberFormatException nfe) &#123;</span><br><span class="line">                <span class="comment">// If the property cannot be parsed into an int, ignore it.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        high = h;</span><br><span class="line"></span><br><span class="line">        cache = <span class="keyword">new</span> <span class="title class_">Integer</span>[(high - low) + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> low;</span><br><span class="line">        <span class="comment">// 为缓存中预置对象</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">            cache[k] = <span class="keyword">new</span> <span class="title class_">Integer</span>(j++);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></span><br><span class="line">        <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">IntegerCache</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>以下例子参考《 深入理解Java虚拟机：JVM高级特性与最佳实践》而来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestInteger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">e</span> <span class="operator">=</span> <span class="number">321</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">321</span>;</span><br><span class="line">        <span class="type">Long</span> <span class="variable">g</span> <span class="operator">=</span> <span class="number">3L</span>;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;c == d: &quot;</span> + (c == d));</span><br><span class="line">        System.out.println(<span class="string">&quot;e == f: &quot;</span> + (e == f));</span><br><span class="line">        System.out.println(<span class="string">&quot;c == (a + b): &quot;</span> + (c == (a + b)));</span><br><span class="line">        System.out.println(<span class="string">&quot;c.equals(a + b): &quot;</span> + (c.equals(a + b)));</span><br><span class="line">        System.out.println(<span class="string">&quot;g == (a + b): &quot;</span> + (g == (a + b)));</span><br><span class="line">        System.out.println(<span class="string">&quot;g.equals(a + b): &quot;</span> + (g.equals(a + b)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序输出如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">c == d: <span class="literal">true</span></span><br><span class="line">e == f: <span class="literal">false</span></span><br><span class="line">c == (a + b): <span class="literal">true</span></span><br><span class="line">c.equals(a + b): <span class="literal">true</span></span><br><span class="line">g == (a + b): <span class="literal">true</span></span><br><span class="line">g.equals(a + b): <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>下面对输出结果进行解释。</p>
+<p>首先 <code>c == d</code> 的输出结果：由于 c 和 d 都是对于 3 的封装类型，并且 3 在<code>-128 ~ 127</code> 这个缓存范围内，所以其指向的是同一个对象，所以返回 true。</p>
+<p>对于 <code>e == f</code> 的输出结果：虽然 e 和 f 都是 321 的封装类型，但是由于 321 在<code>-128 ~ 127</code> 这个缓存范围外，每次对其进行装箱时都是新建一个对象，所以 e 和 f 实质上指向的是不同的对象，因此返回 false。</p>
+<p>对于 <code>c == (a + b)</code> 的输出结果：由于 <code>==</code> 右边是一个运算表达式，所以会将 <code>==</code> 两边都自动拆箱进行数值之间的比较，所以返回的是 true。</p>
+<p>对于 <code>c.equals(a + b)</code> 的输出结果：由于 <code>a + b</code> 包含运算符，所以会先将 a 和 b 进行拆箱，然后进行运算，最后将结果进行装箱与 c 进行比较，由于 <code>a + b</code> 运算得到的结果是 3，在<code>-128 ~ 127</code> 这个缓存范围内，所以其装箱后与 c 指向的是同一个对象，因此返回 true。</p>
+<p>对于 <code>g == (a + b)</code>  的输出结果：由于 <code>==</code> 右边是一个运算表达式，所以会将 <code>==</code> 两边都自动拆箱进行数值之间的比较，虽然 <code>a + b</code> 得到的结果 <code>3</code> 是 <code>int</code> 类型，但是转成 <code>long</code> 类型后还是数字 3，与 g 的数值是相等的，因此返回 true。</p>
+<p>对于 <code>g.equals(a + b)</code> 的输出结果：<code>a + b</code> 先拆箱进行运算，得到数值 <code>3</code>，由于数值是 <code>int</code> 类型，且不是进行 <code>==</code> 数值间的比较，不需要拆箱强制转换成 <code>long</code> 类型，因此其装箱得到的是 <code>Integer</code> 类型，此时再与 g 对象（<code>Long</code> 类型）进行比较，由于 <code>Intege</code> 不是 <code>Long</code> 类型，也不是其子类型，所以其返回 false。这可以从 <code>Long.equals</code> 中看出。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Long) &#123;</span><br><span class="line">        <span class="keyword">return</span> value == ((Long)obj).longValue();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面附上反编译后的代码，证明上述结论与分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestInteger</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] var0)</span> &#123;</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">var1</span> <span class="operator">=</span> Integer.valueOf(<span class="number">1</span>);</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">var2</span> <span class="operator">=</span> Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">var3</span> <span class="operator">=</span> Integer.valueOf(<span class="number">3</span>);</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">var4</span> <span class="operator">=</span> Integer.valueOf(<span class="number">3</span>);</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">var5</span> <span class="operator">=</span> Integer.valueOf(<span class="number">321</span>);</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">var6</span> <span class="operator">=</span> Integer.valueOf(<span class="number">321</span>);</span><br><span class="line">      <span class="type">Long</span> <span class="variable">var7</span> <span class="operator">=</span> Long.valueOf(<span class="number">3L</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;c == d: &quot;</span> + (var3 == var4));</span><br><span class="line">      System.out.println(<span class="string">&quot;e == f: &quot;</span> + (var5 == var6));</span><br><span class="line">      System.out.println(<span class="string">&quot;c == (a + b): &quot;</span> + (var3.intValue() == var1.intValue() + var2.intValue()));</span><br><span class="line">      System.out.println(<span class="string">&quot;c.equals(a + b): &quot;</span> + var3.equals(Integer.valueOf(var1.intValue() + var2.intValue())));</span><br><span class="line">      System.out.println(<span class="string">&quot;g == (a + b): &quot;</span> + (var7.longValue() == (<span class="type">long</span>)(var1.intValue() + var2.intValue())));</span><br><span class="line">      System.out.println(<span class="string">&quot;g.equals(a + b): &quot;</span> + var7.equals(Integer.valueOf(var1.intValue() + var2.intValue())));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-48/" rel="prev" title="leetCode-48:Rotate Image">
+      <i class="fa fa-chevron-left"></i> leetCode-48:Rotate Image
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/leetCode/leetCode-17/" rel="next" title="leetCode-17:Letter Combinations of a Phone Number">
+      leetCode-17:Letter Combinations of a Phone Number <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

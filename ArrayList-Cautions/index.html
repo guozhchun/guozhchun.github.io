@@ -1,37 +1,471 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言ArrayList 是 java 中最常用的也是最基本的集合类，但是其中一部分函数如果不注意就会很容易出错。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList一些注意事项">
+<meta property="og:url" content="http://yoursite.com/ArrayList-Cautions/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="前言ArrayList 是 java 中最常用的也是最基本的集合类，但是其中一部分函数如果不注意就会很容易出错。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-26T14:42:05.000Z">
+<meta property="article:modified_time" content="2018-07-26T15:43:53.538Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/ArrayList-Cautions/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>ArrayList一些注意事项 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/ArrayList-Cautions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ArrayList一些注意事项
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-07-26 22:42:05 / 修改时间：23:43:53" itemprop="dateCreated datePublished" datetime="2018-07-26T22:42:05+08:00">2018-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>ArrayList 是 java 中最常用的也是最基本的集合类，但是其中一部分函数如果不注意就会很容易出错。</p>
+<span id="more"></span>
+
+<h1 id="remove函数"><a href="#remove函数" class="headerlink" title="remove函数"></a>remove函数</h1><p>java5 后引入了自动封箱和自动拆箱的语法糖，一方面简化了程序，但是另一方面，在对支持<code>remove(int index)</code>又支持<code>remove(Object o)</code>的 ArrayList 类的方法调用上，就很容易疑惑，也很容易出错。如果调用<code>remove</code>函数时传入的是数字 1 ，那调用的是 <code>remove(int index)</code>函数还是<code>remove(Object o)</code>函数呢？答案可以从下面的程序及输出结果中得知。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testRemove</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    List&lt;Integer&gt; nums = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    nums.add(<span class="number">1</span>);</span><br><span class="line">    nums.add(<span class="number">2</span>);</span><br><span class="line">    nums.add(<span class="number">3</span>);</span><br><span class="line">    nums.add(<span class="number">4</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----before remove----&quot;</span>);</span><br><span class="line">    System.out.println(nums.toString());</span><br><span class="line"></span><br><span class="line">    nums.remove(<span class="number">1</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after remove(1)&quot;</span>);</span><br><span class="line">    System.out.println(nums.toString());</span><br><span class="line"></span><br><span class="line">    nums.remove((Integer) <span class="number">1</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after remove((Integer) 1)----&quot;</span>);</span><br><span class="line">    System.out.println(nums.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">----before remove----</span><br><span class="line">[1, 2, 3, 4]</span><br><span class="line">----after remove(1)----</span><br><span class="line">[1, 3, 4]</span><br><span class="line">----after remove((Integer) 1)----</span><br><span class="line">[3, 4]</span><br></pre></td></tr></table></figure>
+
+<p>从上述程序输出可以得知，当调用 remove 函数时，如果输入的是数字或 int 类型，则调用 <code>remove(int index)</code>函数，而如果传入的是  Integer 类型或将数字强制转换为 Integer 类型，则调用的是<code>remove(Object o)</code>函数。</p>
+<p>更近一步，推而广之，如果一个类中存在重载函数，既有基本类型的函数，也有封装类型的函数，当传入数字或基本类型变量时，优先调用的基本类型的函数，而不是封装类型的函数，只有明确将传入的基本类型转换成封装类型或传入封装类型的参数变量，才会调用封装类型的函数。</p>
+<h1 id="subList"><a href="#subList" class="headerlink" title="subList"></a>subList</h1><p>subList 函数是返回 ArrayList 集合中的一个子序列，但是需要注意以下几点：</p>
+<ul>
+<li>subList 是原有 ArrayList 集合中的一个”指针”的集合，对 subList 做出的改动会同步反映到原有的 ArrayList 集合中，同时对原有的 ArrayList 集合的非改变集合大小的操作也都会直接同步反映到 subList 集合中</li>
+<li>对原有的 ArrayList 集合的add、remove等改变集合大小的操作，会使原有的 subList 失效，即再调用 subList 的操作会抛出<code>ConcurrentModificationException</code>异常</li>
+</ul>
+<p>如下程序及其输出证明了上述特点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSubList</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; nums = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    nums.add(<span class="number">1</span>);</span><br><span class="line">    nums.add(<span class="number">2</span>);</span><br><span class="line">    nums.add(<span class="number">3</span>);</span><br><span class="line">    nums.add(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// subList is [2, 3]</span></span><br><span class="line">    List&lt;Integer&gt; subList = nums.subList(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----init-----&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;nums: &quot;</span> + nums.toString());</span><br><span class="line">    System.out.println(<span class="string">&quot;subList: &quot;</span> + subList.toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对subList的remove操作会反映到原有的集合中</span></span><br><span class="line">    subList.remove(<span class="number">0</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after subList.remove(0)----&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;nums: &quot;</span> + nums.toString());</span><br><span class="line">    System.out.println(<span class="string">&quot;subList: &quot;</span> + subList.toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对subList的add操作会反映到原有的集合中</span></span><br><span class="line">    subList.add(<span class="number">2</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after subList.add(2)----&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;nums: &quot;</span> + nums.toString());</span><br><span class="line">    System.out.println(<span class="string">&quot;subList: &quot;</span> + subList.toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对subList的remove操作会反映到原有的集合中</span></span><br><span class="line">    subList.remove((Integer) <span class="number">2</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after subList.remove((Integer) 2)----&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;nums: &quot;</span> + nums.toString());</span><br><span class="line">    System.out.println(<span class="string">&quot;subList: &quot;</span> + subList.toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对subList的set操作会反映到原有的集合中</span></span><br><span class="line">    subList.set(<span class="number">0</span>, <span class="number">333</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after subList.set(0, 333)----&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;nums: &quot;</span> + nums.toString());</span><br><span class="line">    System.out.println(<span class="string">&quot;subList: &quot;</span> + subList.toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对原有集合的set操作会反映到subList集合中</span></span><br><span class="line">    nums.set(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;----after nums.set(1, 3)----&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;nums: &quot;</span> + nums.toString());</span><br><span class="line">    System.out.println(<span class="string">&quot;subList: &quot;</span> + subList.toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不能对原有的集合进行add或remove等会改变集合大小的操作</span></span><br><span class="line">    <span class="comment">// 否则再次对subList集合进行操作时会抛 ConcurrentModificationException 异常</span></span><br><span class="line">    <span class="comment">// nums.remove(0);</span></span><br><span class="line">    <span class="comment">// System.out.println(subList.toString());</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序输出如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">----init-----</span><br><span class="line">nums: [1, 2, 3, 4]</span><br><span class="line">subList: [2, 3]</span><br><span class="line">----after subList.remove(0)----</span><br><span class="line">nums: [1, 3, 4]</span><br><span class="line">subList: [3]</span><br><span class="line">----after subList.add(2)----</span><br><span class="line">nums: [1, 3, 2, 4]</span><br><span class="line">subList: [3, 2]</span><br><span class="line">----after subList.remove((Integer) 2)----</span><br><span class="line">nums: [1, 3, 4]</span><br><span class="line">subList: [3]</span><br><span class="line">----after subList.set(0, 333)----</span><br><span class="line">nums: [1, 333, 4]</span><br><span class="line">subList: [333]</span><br><span class="line">----after nums.set(1, 3)----</span><br><span class="line">nums: [1, 3, 4]</span><br><span class="line">subList: [3]</span><br></pre></td></tr></table></figure>
+
+<p>至于 subList 为什么有以上的特点，这可以从 ArrayList 的源码中得知答案。</p>
+<p>ArrayList 中 subList 返回的是一个内部类<code>SubList</code>，从内部类的构造函数可以看出，当创建一个 SubList 时，会将 ArrayList 对象及其部分参数传入构造函数中。当调用 subList 中的 set、get、add、remove 操作都是直接操作原有的 ArrayList 集合，所以修改 subList 对象会导致原有的 ArrayList 对象。</p>
+<p>而对于修改原有的 ArrayList 对象的情况，则需要分两种情况考虑，一种是不修改集合大小的操作（即不改变 modCount 的操作，如 get、set 函数），这种情况由于没有修改 modCount 变量的值，所以下次调用 subList 对象的函数进行校验时仍然满足 modCount 变量值相等的条件，不会抛出 ConcurrentModificationException 异常。另一种是会修改集合大小的操作（即改变 modCount 的操作，如 add、remove 函数），这种情况由于修改了原有的 ArrayList 对象中的 modCount 变量值而没有修改 subList 变量中的 modCount 变量值，所以下次再调用 subList 对象的函数时，由于两者的 modCount 变量不相等，会抛出ConcurrentModificationException 异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;E&gt; <span class="title function_">subList</span><span class="params">(<span class="type">int</span> fromIndex, <span class="type">int</span> toIndex)</span> &#123;</span><br><span class="line">    subListRangeCheck(fromIndex, toIndex, size);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SubList</span>(<span class="built_in">this</span>, <span class="number">0</span>, fromIndex, toIndex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// SubList 内部类</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SubList</span> <span class="keyword">extends</span> <span class="title class_">AbstractList</span>&lt;E&gt; <span class="keyword">implements</span> <span class="title class_">RandomAccess</span> &#123;</span><br><span class="line">    <span class="comment">// ... 其他代码 ...</span></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    SubList(AbstractList&lt;E&gt; parent,</span><br><span class="line">            <span class="type">int</span> offset, <span class="type">int</span> fromIndex, <span class="type">int</span> toIndex) &#123;</span><br><span class="line">        <span class="built_in">this</span>.parent = parent;</span><br><span class="line">        <span class="built_in">this</span>.parentOffset = fromIndex;</span><br><span class="line">        <span class="built_in">this</span>.offset = offset + fromIndex;</span><br><span class="line">        <span class="built_in">this</span>.size = toIndex - fromIndex;</span><br><span class="line">        <span class="comment">// 此参数用于记录改变集合大小的操作次数，</span></span><br><span class="line">        <span class="comment">// 当 SubList 中的参数与原有的 ArrayList 集合中的参数不相等时，</span></span><br><span class="line">        <span class="comment">// 再次对 SubList 操作会抛出 ConcurrentModificationException 异常</span></span><br><span class="line">        <span class="built_in">this</span>.modCount = ArrayList.<span class="built_in">this</span>.modCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> E <span class="title function_">set</span><span class="params">(<span class="type">int</span> index, E e)</span> &#123;</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        <span class="comment">// 校验 SubList 和原有 ArrayList 集合中的 modCount 变量是否相等，</span></span><br><span class="line">        <span class="comment">// 不相等则抛出 ConcurrentModificationException 异常</span></span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="comment">// 直接操作的是原有的 ArrayList 集合中对应的变量</span></span><br><span class="line">        <span class="type">E</span> <span class="variable">oldValue</span> <span class="operator">=</span> ArrayList.<span class="built_in">this</span>.elementData(offset + index);</span><br><span class="line">        ArrayList.<span class="built_in">this</span>.elementData[offset + index] = e;</span><br><span class="line">        <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> E <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        <span class="comment">// 校验 SubList 和原有 ArrayList 集合中的 modCount 变量是否相等，</span></span><br><span class="line">        <span class="comment">// 不相等则抛出 ConcurrentModificationException 异常</span></span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="comment">// 直接返回原有的 ArrayList 集合中对应的变量</span></span><br><span class="line">        <span class="keyword">return</span> ArrayList.<span class="built_in">this</span>.elementData(offset + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 其他代码 ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> index, E e)</span> &#123;</span><br><span class="line">        rangeCheckForAdd(index);</span><br><span class="line">        <span class="comment">// 校验 SubList 和原有 ArrayList 集合中的 modCount 变量是否相等，</span></span><br><span class="line">        <span class="comment">// 不相等则抛出 ConcurrentModificationException 异常</span></span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="comment">// 直接在原有的 ArrayList 集合中对应的位置中增加元素</span></span><br><span class="line">        parent.add(parentOffset + index, e);</span><br><span class="line">        <span class="comment">// 修改 modCount 的值，避免在下次对 SubList 进行操作时抛出异常</span></span><br><span class="line">        <span class="built_in">this</span>.modCount = parent.modCount;</span><br><span class="line">        <span class="built_in">this</span>.size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> E <span class="title function_">remove</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        <span class="comment">// 校验 SubList 和原有 ArrayList 集合中的 modCount 变量是否相等，</span></span><br><span class="line">        <span class="comment">// 不相等则抛出 ConcurrentModificationException 异常</span></span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="comment">// 直接删除原有的 ArrayList 集合中对应的位置的元素</span></span><br><span class="line">        <span class="type">E</span> <span class="variable">result</span> <span class="operator">=</span> parent.remove(parentOffset + index);</span><br><span class="line">        <span class="comment">// 修改 modCount 的值，避免在下次对 SubList 进行操作时抛出异常</span></span><br><span class="line">        <span class="built_in">this</span>.modCount = parent.modCount;</span><br><span class="line">        <span class="built_in">this</span>.size--;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 其他代码 ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">checkForComodification</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ArrayList.<span class="built_in">this</span>.modCount != <span class="built_in">this</span>.modCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ConcurrentModificationException</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 其他代码 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/kmp/" rel="prev" title="KMP算法">
+      <i class="fa fa-chevron-left"></i> KMP算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/jvm/jvm-class-structure/" rel="next" title="jvm 类文件结构">
+      jvm 类文件结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#remove%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">remove函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#subList"><span class="nav-number">3.</span> <span class="nav-text">subList</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

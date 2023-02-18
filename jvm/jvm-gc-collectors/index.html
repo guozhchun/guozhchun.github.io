@@ -1,37 +1,592 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="概述java虚拟机的垃圾回收器多种多样，因不同的厂商、版本而不同。本文主要介绍在HotSpot虚拟机中常用的几种垃圾回收器：Serial、ParNew、Parallel Scavenge、CMS、Serial Old、Parallel Old、G1。这几种垃圾回收器关系如下图所示，其中连线表示两个垃圾回收器可以结合使用。   说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm垃圾回收器">
+<meta property="og:url" content="http://yoursite.com/jvm/jvm-gc-collectors/index.html">
+<meta property="og:site_name" content="ChunNote">
+<meta property="og:description" content="概述java虚拟机的垃圾回收器多种多样，因不同的厂商、版本而不同。本文主要介绍在HotSpot虚拟机中常用的几种垃圾回收器：Serial、ParNew、Parallel Scavenge、CMS、Serial Old、Parallel Old、G1。这几种垃圾回收器关系如下图所示，其中连线表示两个垃圾回收器可以结合使用。   说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/jvm/gcCollectors.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/serialCollector.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/parNewCollector.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/parallelOldCollector.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/parNewCollector.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/parallelOldCollector.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/CMSCollector.png">
+<meta property="og:image" content="http://yoursite.com/images/jvm/G1Collector.png">
+<meta property="article:published_time" content="2018-07-02T14:00:20.000Z">
+<meta property="article:modified_time" content="2018-08-05T09:58:26.132Z">
+<meta property="article:author" content="guozhchun">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/jvm/gcCollectors.png">
+
+<link rel="canonical" href="http://yoursite.com/jvm/jvm-gc-collectors/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>jvm垃圾回收器 | ChunNote</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ChunNote</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/jvm/jvm-gc-collectors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jvm垃圾回收器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-02 22:00:20" itemprop="dateCreated datePublished" datetime="2018-07-02T22:00:20+08:00">2018-07-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-08-05 17:58:26" itemprop="dateModified" datetime="2018-08-05T17:58:26+08:00">2018-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index"><span itemprop="name">jvm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>java虚拟机的垃圾回收器多种多样，因不同的厂商、版本而不同。本文主要介绍在HotSpot虚拟机中常用的几种垃圾回收器：Serial、ParNew、Parallel Scavenge、CMS、Serial Old、Parallel Old、G1。这几种垃圾回收器关系如下图所示，其中连线表示两个垃圾回收器可以结合使用。</p>
+<p><img src="/images/jvm/gcCollectors.png" alt="垃圾回收器关系图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Serial回收器"><a href="#Serial回收器" class="headerlink" title="Serial回收器"></a>Serial回收器</h1><p>Serial收集器是最基本也是发展历史最悠久的回收器。它相比其他回收器而言显得简单而高效，是虚拟机运行在Client模式下的默认新生代回收器。这是一个单线程的收集器，其在进行垃圾回收时，必须暂停其他所有的工作线程（Stop The World）直到收集结束。其运行过程大致如下图所示</p>
+<p><img src="/images/jvm/serialCollector.png" alt="Serial回收器运行图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<h1 id="ParNew回收器"><a href="#ParNew回收器" class="headerlink" title="ParNew回收器"></a>ParNew回收器</h1><p>ParNew回收器是Serial回收器的多线程版本，是大部分虚拟机运行在Server模式下的首选新生代回收器，同时也是使用-XX:+UseConcMarkSweepGC选项后的默认的新生代回收器，当然，也可以使用-XX:+UseParNewGC选项来强制启动该回收器。由于这是多线程进行回收，存在线程切换的开销，因此当CPU数量较少时，其性能并不比Serial回收器好，甚至比Serial回收器还差，但是当CPU数量比较多时，其性能远远超过Seral回收器，这也是Serial回收器应用于Client端而ParNew回收器应用于Server端的一个原因。当然，可以通过-XX:ParallelGCThreads参数来限制垃圾回收的线程数。其运行过程大致如下图所示</p>
+<p><img src="/images/jvm/parNewCollector.png" alt="ParNew回收器运行图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<h1 id="Parallel-Scavenge回收器"><a href="#Parallel-Scavenge回收器" class="headerlink" title="Parallel Scavenge回收器"></a>Parallel Scavenge回收器</h1><p>Parallel Scavenge回收器也是一个使用复制算法的新生代的并行多线程的回收器，与ParNew回收器不同的是：ParNew回收器注重的是响应时间，即在垃圾回收过程中用户线程停顿的时间；而Parallel Scavenge回收器注重的是吞吐量，即运行用户的代码消耗的CPU时间占CPU总消耗时间的比率。吞吐量 &#x3D; 运行用户代码时间 &#x2F;（运行用户代码时间 + 垃圾回收时间）。</p>
+<p>Parallel Scavenge回收器提供了以下几个参数用户控制吞吐量</p>
+<ul>
+<li><p>-XX:UseAdaptiveSizePolicy：此参数是一个开关参数，用于控制是否让虚拟机动态调整相关参数以提供最合适的停顿时间或最大的吞吐量。当此参数打开后，就不需要手工指定新生代的大小（-Xmn）、Eden与Survivor区的比例（-XX:SurvivorRatio）、晋升老年代对象大小（-XX:PretenureSizeThreshold）等参数细节。</p>
+</li>
+<li><p>-XX:MaxGCPauseMillis：控制最大垃圾回收的停顿时间，停顿时间小是以牺牲新生代的大小为代价换来的。</p>
+</li>
+<li><p>-XX:GCTimeRatio：一个（0，100）的整数，表示用户线程运行时间与垃圾回收时间的比值，默认值是99，表示允许最大1%（即 1&#x2F;(1+99)) 的垃圾回收时间。其运行过程图大致如下图所示</p>
+<p><img src="/images/jvm/parallelOldCollector.png" alt="Parallel Scavenge回收器运行图"></p>
+</li>
+</ul>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<h1 id="Serial-Old回收器"><a href="#Serial-Old回收器" class="headerlink" title="Serial Old回收器"></a>Serial Old回收器</h1><p>Serial Old回收器是Serial回收器的老年代版本，同样是一个单线程回收器，使用“标记整理”算法。这个回收器的主要意义是给Client模式下的虚拟机使用。如果运行在Server端，还可以作为CMS回收器的后备预案，在并发回收发生Concurrent Mode Failure时使用。其运行过程图大致如下图所示</p>
+<p><img src="/images/jvm/parNewCollector.png" alt="Serial Old回收器运行图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<h1 id="Parallel-Old回收器"><a href="#Parallel-Old回收器" class="headerlink" title="Parallel Old回收器"></a>Parallel Old回收器</h1><p>Parallel Old回收器是Parallel Scavenge回收器的老年代版本，使用多线程和“标记整理”算法。其运行过程图大致如下图所示</p>
+<p><img src="/images/jvm/parallelOldCollector.png" alt="Parallel Old回收器运行图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<h1 id="CMS回收器"><a href="#CMS回收器" class="headerlink" title="CMS回收器"></a>CMS回收器</h1><p>CMS(Concurrent Mark Sweep)回收器是一种以获取最短回收停顿时间为目标的回收器，也就是说，这是一个注重用户响应时间、注重用户体验的回收器。CMS回收器使用“标记清除”算法，其运行过程主要分成四个步骤：初始标记、并发标记、重新标记、并发清除。</p>
+<ul>
+<li>初始标记（CMS initial mark）：标记一下GC Roots能直接关联到的对象，速度快，需要暂停用户线程（Stop The World）</li>
+<li>并发标记（CMS concurrent mark）：根据GC Roots节点查找所有能与之直接或间接关联的对象（GC Roots Tracing），此过程耗时较长，可以与用户线程并发执行</li>
+<li>重新标记（CMS remark）：修正并发标记期间因用户程序继续运行而导致标记产生变动的对象的标记记录，这个过程一般比初始标记阶段稍微长一点，但是远比并发标记的时间短，此过程也需要暂停用户线程（Stop The World）</li>
+<li>并发清除（CMS concurrent sweep）：此过程将对象进行回收，可以与用户线程并发执行。</li>
+</ul>
+<p>其运行过程图大致如下图所示</p>
+<p><img src="/images/jvm/CMSCollector.png" alt="CMS回收器运行图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<p>CMS是一款优秀的回收器，但是其也存在以下几个缺点</p>
+<ul>
+<li>对CPU资源非常敏感。因为在并发标记和并发清除这两个阶段是运行用户线程并发执行的，线程之间的切换会导致了用户线程与回收线程争抢CPU资源的情况，如果CPU资源少，则会同时影响用户线程和垃圾回收的运行时间</li>
+<li>CMS回收器无法清理浮动垃圾（Floating Garbage），可能出现“Concurrent Mode Failure”失败而导致另一次Full GC的产生，此时会临时启用Serial Old回收器重新进行老年代的垃圾回收</li>
+<li>可能产生大量垃圾碎片，这是因为其使用“标记清除”的回收算法导致的</li>
+</ul>
+<h1 id="G1回收器"><a href="#G1回收器" class="headerlink" title="G1回收器"></a>G1回收器</h1><p>G1(Garbage-First)回收器是一款面向Server端的垃圾回收器，其不像其他垃圾回收器区分新生代和老年代，而是使用“化整为零”的思想把整个java堆划分成多个大小相等的独立区域（Region），虽然还保留着新生代和老年代的概念，但是新生代和老年代不再是物理隔离的，他们都是一部分Region(不需要连续)的集合。其运行过程主要分成四个步骤：初始标记、并发标记、最终标记、筛选回收。</p>
+<ul>
+<li>初始标记（Initial Marking）：标记一下GC Roots能直接关联到的对象，并且修改TAMS(Next Top at Mark Start)的值，让下一阶段用户程序并发运行时能在正确可用的Region中创建对象，这阶段需要停顿用户线程（Stop The World），但是耗时短</li>
+<li>并发标记（Concurrent Marking）：根据GC Roots节点查找所有能与之直接或间接关联的对象（GC Roots Tracing），此过程耗时较长，可以与用户线程并发执行</li>
+<li>最终标记（Final Marking）：修正并发标记期间因用户程序继续运行而导致标记产生变动的对象的标记记录，此阶段耗时较少，也需要停顿用户线程（Stop The World）</li>
+<li>筛选回收（Live Data Counting and Evacuation）：对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间制定回收计划并回收对象</li>
+</ul>
+<p>其运行过程图大致如下图所示</p>
+<p><img src="/images/jvm/G1Collector.png" alt="CMS回收器运行图"></p>
+<blockquote>
+<p>说明：此图参考《深入理解Java虚拟机：JVM高级特性与最佳实践》画出</p>
+</blockquote>
+<p>G1回收器有以下特点</p>
+<ul>
+<li>并发与并行。G1回收器能充分利用多CPU、多核环境下的硬件优势来缩短Stop-The-World停顿的时间。部分回收器原本需要停顿java线程执行GC动作，但是G1回收器仍然可以通过并发的方式让java程序继续运行</li>
+<li>分代回收。虽然G1回收器中新生代和老年代的区别不在那么明显，但是G1回收器仍然能够采用不同的方式处理新建的对象和已经存活一段时间的对象</li>
+<li>空间整合：G1回收器整体上是使用“标记整理”算法，而不是容易产生空间碎片的“标记清除”算法</li>
+<li>可预测的停顿：G1回收器能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为M毫秒的时间片段内，消耗在垃圾回收上的时间不超过N毫秒，这几乎是实时java(RTSJ)的垃圾回收器的特征。</li>
+</ul>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><table>
+<thead>
+<tr>
+<th>回收器</th>
+<th>适用内存区域</th>
+<th>适用B&#x2F;S范围</th>
+<th>回收算法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Serial回收器</td>
+<td>新生代</td>
+<td>Client</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>ParNew回收器</td>
+<td>新生代</td>
+<td>Server</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>Parallel Scavenge回收器</td>
+<td>新生代</td>
+<td>Server</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>Serial Old</td>
+<td>老年代</td>
+<td>Client、Server</td>
+<td>标记整理</td>
+</tr>
+<tr>
+<td>Parallel Old</td>
+<td>老年代</td>
+<td>Server</td>
+<td>标记整理</td>
+</tr>
+<tr>
+<td>CMS回收器</td>
+<td>老年代</td>
+<td>Server</td>
+<td>标记清除</td>
+</tr>
+<tr>
+<td>G1回收器</td>
+<td>新生代、老年代</td>
+<td>Server</td>
+<td>标记整理</td>
+</tr>
+</tbody></table>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] 周志明，深入理解Java虚拟机：JVM高级特性与最佳实践[M]，北京：机械工业出版社，2013</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/jvm/jvm-gc-algorithm/" rel="prev" title="jvm 垃圾回收算法">
+      <i class="fa fa-chevron-left"></i> jvm 垃圾回收算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/jvm/jvm-memory-allocation/" rel="next" title="jvm 内存分配策略">
+      jvm 内存分配策略 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Serial%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">Serial回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ParNew%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">ParNew回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parallel-Scavenge%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">Parallel Scavenge回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Serial-Old%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">Serial Old回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parallel-Old%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">Parallel Old回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CMS%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">CMS回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#G1%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">8.</span> <span class="nav-text">G1回收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">9.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guozhchun</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">298</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright" style="text-align: center;">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozhchun</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
