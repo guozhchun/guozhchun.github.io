@@ -13867,4 +13867,34 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-235:Lowest Common Ancestor of a Binary Search Tree</title>
+    <url>/leetCode/leetCode-235/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个搜索二叉树和两个节点，要求找出两个节点的公共祖先。题目链接：<a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8</p>
+<p>输出：6</p>
+<p>解释：树的形状如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/14/binarysearchtree_improved.png" alt="binarysearchtree_improved.png (200×190) (leetcode.com)"> </p>
+</blockquote>
+<blockquote>
+<p>输入：root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 4</p>
+<p>输出：2</p>
+<p>解释：树的形状如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/14/binarysearchtree_improved.png" alt="binarysearchtree_improved.png (200×190) (leetcode.com)"></p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>树是二叉搜索树，可以充分利用这个特点进行搜索，如果 <code>p</code> 和 <code>q</code> 在根节点的左右两边或其中一个节点是根节点，那么这两个节点的最近公共祖先就是根节点，如果 <code>p</code> 和 <code>q</code> 的值都小于根节点的值，那么其最近公共祖先就在左子树中，此时递归搜索左子树即可，如果 <code>p</code> 和 <code>q</code> 的值都大于根节点的值，那么其最近公共祖先就在右子树中，此时递归搜索右子树即可。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root.val == p.val || root.val == q.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode small;</span><br><span class="line">        TreeNode big;</span><br><span class="line">        <span class="keyword">if</span> (p.val &lt; q.val) &#123;</span><br><span class="line">            small = p;</span><br><span class="line">            big = q;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            small = q;</span><br><span class="line">            big = p;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (small.val &lt; root.val &amp;&amp; root.val &lt; big.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (big.val &lt; root.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
