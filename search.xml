@@ -13897,4 +13897,34 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-172:Factorial Trailing Zeroes</title>
+    <url>/leetCode/leetCode-172/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个整数 <code>n</code>，要求找出 <code>n!</code>  的值末尾右多少个 <code>0</code>，题目链接：<a href="https://leetcode.com/problems/factorial-trailing-zeroes/"><strong>点我</strong></a> </p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：5</p>
+<p>输出：1</p>
+<p>解释：5! &#x3D; 5 * 4 * 3 * 2 * 1 &#x3D; 120，末尾有一个0</p>
+</blockquote>
+<blockquote>
+<p>输入：2</p>
+<p>输出：0</p>
+</blockquote>
+<h1 id="问题解放"><a href="#问题解放" class="headerlink" title="问题解放"></a>问题解放</h1><p>此题简单的做法按阶乘做法进行计算，中间数字如果末尾是0，则除10并计数加一，为了相乘的结果不溢出，中间需要进行模100的操作。但是这样的时间复杂度是 <code>O(n)</code>。可以进一步优化。</p>
+<p>观察阶乘算法过程，我们可以知道，末尾的 <code>0</code> 是由 <code>2</code>  和 <code>5</code> （包括 2 和 5 的倍数）产生的，因此只需要找到 <code>1</code> 到 <code>n</code> 中 <code>2</code> 和 <code>5</code> 的质因子个数即可。由于 <code>2</code> 的质因数个数比 <code>5</code> 的多，因此只需要找到 <code>5</code> 的质因数的个数即可得到最终阶乘结果末尾0的个数。更进一步，观察阶乘的过程，<code>5</code> 质因数的产生是**每5个数产生一个5的质因子，每 5 * 5 个数会产生 2 个质因子，每 5 * 5 * 5 个数会产生 3 个质因子…**，因此，该求解过程变成，<code>n</code> 中被 <code>5</code> 整除的个数加上被 <code>5 * 5</code> 整除的个数加上被 <code>5 * 5 * 5</code> 整除的个数…</p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trailingZeroes</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            n = n / <span class="number">5</span>;</span><br><span class="line">            count += n;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode.cn/problems/factorial-trailing-zeroes/solution/xiang-xi-tong-su-de-si-lu-fen-xi-by-windliang-3/">详细通俗的思路分析 - 阶乘后的零 - 力扣（LeetCode）</a> </p>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
