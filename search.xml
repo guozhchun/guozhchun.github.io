@@ -13927,4 +13927,32 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-169:Majority Element</title>
+    <url>/leetCode/leetCode-169/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个数组，数组中有个元素的数量超过数组总数的一半，要求找出该元素。题目链接：<a href="https://leetcode.com/problems/majority-element/"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：[3,2,3]</p>
+<p>输出：3</p>
+</blockquote>
+<blockquote>
+<p>输入：[2,2,1,1,1,2,2]</p>
+<p>输出：2</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题比较简单的做法是用 <code>map</code> 存储数字及其出现的次数，然后找出最大次数的元素即是求解的答案。另一种简单的做法是排序，然后返回中位数（因为目标元素出现了至少 <code>n / 2</code>次）。但是这两种解决都不能在 <code>O(1)</code> 的空间复杂度、<code>O(n)</code> 的时间复杂度内求解。</p>
+<p>更优化的做法是使用Boyer-Moore 算法：先用 <code>candidate</code> 表示候选的数，用 <code>count</code> 表示当前候选数剩余的数量，遍历数组，如果当前元素和候选数相同，则 <code>count + 1</code>，否则 <code>count - 1</code>，如果 <code>count</code> 为零，则将当前元素赋值给 <code>candidate</code>，遍历结束后，<code>count</code> 值一定大于0，此时 <code>candidate</code> 的值就是求解的值。此算法可以换另一种理解，因为求解的值的数量超过一半，所以剩下的元素和目标元素进行抵扣消极后，目标元素仍然有剩余。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">majorityElement</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">candidate</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num == candidate) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">                    candidate = num;</span><br><span class="line">                    count = <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    count--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> candidate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode.cn/problems/majority-element/solution/duo-shu-yuan-su-by-leetcode-solution/">多数元素 - 多数元素 - 力扣（LeetCode）</a> </p>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
