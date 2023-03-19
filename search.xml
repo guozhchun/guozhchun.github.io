@@ -13981,4 +13981,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-2404:Most Frequent Even Element</title>
+    <url>/leetCode/leetCode-2404/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个数组，要求找出数组中出现次数最多的偶数，如果有相同的，则返回最小的，如果没找到，则返回 <code>-1</code>。题目链接：<a href="https://leetcode.com/problems/most-frequent-even-element/description"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：[0,1,2,2,4,4,1]</p>
+<p>输出：2</p>
+</blockquote>
+<blockquote>
+<p>输入：[1,3,5,7]</p>
+<p>输出：-1</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>用一个 map 来存储偶数及其出现的个数，遍历数组，实时更新 map 中的值，同时更新当前的次数最多的最小偶数，遍历结束后，即可获得答案。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">mostFrequentEven</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">candidate</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> map.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">                map.put(num, count);</span><br><span class="line"></span><br><span class="line">                <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> map.getOrDefault(candidate, Integer.MIN_VALUE);</span><br><span class="line">                <span class="keyword">if</span> (temp &lt; count) &#123;</span><br><span class="line">                    candidate = num;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp == count &amp;&amp; num &lt; candidate) &#123;</span><br><span class="line">                    candidate = num;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> candidate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
