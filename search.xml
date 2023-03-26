@@ -14007,4 +14007,37 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-295:Find Median from Data Stream</title>
+    <url>/leetCode/leetCode-295/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>要求实现一个类，类中有两个功能，一个是往类中添加整数，另一个是求已添加的整数列表中的中位数。题目链接：<a href="https://leetcode.com/problems/find-median-from-data-stream/"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：</p>
+<p>[“MedianFinder”, “addNum”, “addNum”, “findMedian”, “addNum”, “findMedian”]<br>[[], [1], [2], [], [3], []]</p>
+<p>输出：[null, null, null, 1.5, null, 2.0]</p>
+<p>解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MedianFinder medianFinder = new MedianFinder();</span><br><span class="line">medianFinder.addNum(1);    // arr = [1]</span><br><span class="line">medianFinder.addNum(2);    // arr = [1, 2]</span><br><span class="line">medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)</span><br><span class="line">medianFinder.addNum(3);    // arr[1, 2, 3]</span><br><span class="line">medianFinder.findMedian(); // return 2.0</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>输入：</p>
+<p>[“MedianFinder”, “addNum”, “findMedian”]<br>[[], [1], []]</p>
+<p>输出：[null, null, 1.0]</p>
+<p>解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MedianFinder medianFinder = new MedianFinder();</span><br><span class="line">medianFinder.addNum(1);    // arr = [1]</span><br><span class="line">medianFinder.findMedian(); // return 1.0</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>维护两个优先队列（大小堆），大堆堆顶元素和小堆堆顶元素对应着中位数，大堆的元素始终不大于小堆中的元素。如果数列总数是奇数，则返回大堆的堆顶元素，如果队列总数是偶数，是取大堆和小堆的堆顶元素的平均值。在处理 <code>addNum</code> 时，先判断当前已有的元素个数，如果当前是奇数的，那新增的值会让小堆元素加一，如果此时大堆堆顶元素比当前元素大，则需要从大堆中取出堆顶元素放如小堆中，然后将当前元素放如大堆中，否则，直接将当前元素放如小堆中。反之亦然。</p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MedianFinder</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; oddQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(Comparator.reverseOrder());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; evenQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isOddNow</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MedianFinder</span><span class="params">()</span> &#123;</span><br><span class="line">        oddQueue.clear();</span><br><span class="line">        evenQueue.clear();</span><br><span class="line">        isOddNow = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addNum</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">oddNum</span> <span class="operator">=</span> oddQueue.peek();</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">evenNum</span> <span class="operator">=</span> evenQueue.peek();</span><br><span class="line">        <span class="keyword">if</span> (isOddNow) &#123;</span><br><span class="line">            <span class="keyword">if</span> (oddNum &gt; num) &#123;</span><br><span class="line">                oddQueue.poll();</span><br><span class="line">                oddQueue.offer(num);</span><br><span class="line">                evenQueue.offer(oddNum);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                evenQueue.offer(num);</span><br><span class="line">            &#125;</span><br><span class="line">            isOddNow = <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (evenNum != <span class="literal">null</span> &amp;&amp; evenNum &lt; num) &#123;</span><br><span class="line">                evenQueue.poll();</span><br><span class="line">                evenQueue.offer(num);</span><br><span class="line">                oddQueue.offer(evenNum);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                oddQueue.offer(num);</span><br><span class="line">            &#125;</span><br><span class="line">            isOddNow = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">findMedian</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (isOddNow) &#123;</span><br><span class="line">            <span class="keyword">return</span> oddQueue.peek();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (oddQueue.peek() + evenQueue.peek()) / <span class="number">2.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MedianFinder object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MedianFinder obj = new MedianFinder();</span></span><br><span class="line"><span class="comment"> * obj.addNum(num);</span></span><br><span class="line"><span class="comment"> * double param_2 = obj.findMedian();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
