@@ -184,6 +184,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/mysql-mvcc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guozhchun">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChunNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/mysql-mvcc/" class="post-title-link" itemprop="url">mysql MVCC 介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-02 14:24:59 / 修改时间：23:24:38" itemprop="dateCreated datePublished" datetime="2019-11-02T14:24:59+08:00">2019-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>MVCC （multiversion concurrency control），多版本并发控制，主要是通过在每一行记录中增加三个字段，与 undo log 中相关记录配合使用，同时加上可见性算法，使得各个事务可以在不加锁的情况下能够同时地读取到某行记录上的准确值（这个值对不同的事务而言可能是不同的）。使用 MVCC，在不加锁的情况下也能读取到准确的数据，大大提高了并发效率。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mysql-mvcc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/leetCode/leetCode-38/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -873,81 +948,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/tools-javadoc2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="guozhchun">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChunNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/tools-javadoc2/" class="post-title-link" itemprop="url">使用 javadoc2 插件快速生成 javadoc 注释</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-08-24 10:56:15 / 修改时间：11:40:05" itemprop="dateCreated datePublished" datetime="2019-08-24T10:56:15+08:00">2019-08-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目新增一个指标：代码中每个 protected、public 方法和成员变量都必须有 javadoc 注释，由于存在大量不符合规范的历史代码。如果一个个找出手工添加，必将花费大量的精力。所以寻求插件批量解决。javadoc2 插件刚好可以匹配这些要求。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tools-javadoc2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1017,7 +1017,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">305</span>
+          <span class="site-state-item-count">306</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
