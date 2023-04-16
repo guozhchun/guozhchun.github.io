@@ -14095,4 +14095,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-168:Excel Sheet Column Title</title>
+    <url>/leetCode/leetCode-168/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个数字，要求将其转换成Excel表格表头字母。其转换规则如下：<code>A -&gt; 1、B -&gt; 2、C -&gt; 3、... Z -&gt; 26、AA -&gt; 27、AB -&gt; 28、AC -&gt; 29...</code>。题目链接：<a href="https://leetcode.com/problems/excel-sheet-column-title"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：1</p>
+<p>输出：A</p>
+</blockquote>
+<blockquote>
+<p>输入：701</p>
+<p>输出：ZY</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题是一道类似26进制的转换题，只是没有0，所以只要对26的倍数的值进行额外处理即可，其他操作方式跟进制转换一样。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">convertToTitle</span><span class="params">(<span class="type">int</span> columnNumber)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] chars = &#123;<span class="string">&#x27;Z&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;G&#x27;</span>, <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;J&#x27;</span>, <span class="string">&#x27;K&#x27;</span>, <span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="string">&#x27;N&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;U&#x27;</span>, <span class="string">&#x27;V&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;X&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>&#125;;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">while</span> (columnNumber != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">modNum</span> <span class="operator">=</span> columnNumber % <span class="number">26</span>;</span><br><span class="line">            sb.append(chars[modNum]);</span><br><span class="line">            columnNumber /= <span class="number">26</span>;</span><br><span class="line">            <span class="keyword">if</span> (modNum == <span class="number">0</span>) &#123;</span><br><span class="line">                columnNumber--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
