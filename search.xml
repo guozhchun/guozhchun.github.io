@@ -14121,4 +14121,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-171:Excel Sheet Column Number</title>
+    <url>/leetCode/leetCode-171/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个 EXCEL 表格的表头，要求换算成对应的数字。<code>A -&gt; 1, B -&gt; 2, C -&gt; 3, ..., Z -&gt; 26, AA -&gt; 27, AB -&gt; 28, ...</code>。题目链接：<a href="https://leetcode.com/problems/excel-sheet-column-number"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：A</p>
+<p>输出：1</p>
+</blockquote>
+<blockquote>
+<p>输入：ZY</p>
+<p>输出：701</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题与 <a href="https://guozhchun.github.io/leetCode/leetCode-168/">LeetCode-168</a> 是一种类似26进制的相互转换关系，直接按进制转换的方式进行求解即可。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">titleToNumber</span><span class="params">(String columnTitle)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">factor</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> columnTitle.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            num += ((columnTitle.charAt(i) - <span class="string">&#x27;A&#x27;</span>) + <span class="number">1</span>) * factor;</span><br><span class="line">            factor = factor * <span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
