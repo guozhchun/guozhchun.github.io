@@ -14147,4 +14147,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-416:Partition Equal Subset Sum</title>
+    <url>/leetCode/leetCode-416/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个整数数组，<code>1 &lt;= nums.length &lt;= 200</code>，<code>1 &lt;= nums[i] &lt;= 100</code>，要求判断是否可以将数组分割成两个子数组，并且这两个子数组的元素和相同。题目链接：<a href="https://leetcode.com/problems/partition-equal-subset-sum"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：[1,5,11,5]</p>
+<p>输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：[1,2,3,5]</p>
+<p>输出：false</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题用暴力求解会超时，需要使用动态规划进行求解，可以将此题转换为从数组中挑选出 <code>k</code> 个元素，使这些元素和等于目标数。此题类似背包问题，用 <code>dp[i][j]</code> 表示前 <code>i</code> 个元素中是否存在某些元素和等于 <code>j</code>，针对每个新元素都存在选与不选的情况，动态转移方程为：<code>dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]] </code>。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canPartition</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">total</span> <span class="operator">=</span> Arrays.stream(nums).sum();</span><br><span class="line">        <span class="keyword">if</span> (total % <span class="number">2</span> != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">boolean</span>[][] dp = <span class="keyword">new</span> <span class="title class_">boolean</span>[nums.length][total + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i][nums[i]] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; dp.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; dp[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j] || (j &gt;= nums[i] &amp;&amp; dp[i - <span class="number">1</span>][j - nums[i]]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[nums.length - <span class="number">1</span>][total / <span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
