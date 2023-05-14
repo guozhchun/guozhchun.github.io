@@ -14203,4 +14203,35 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-202:Happy Number</title>
+    <url>/leetCode/leetCode-202/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个正整数，要求判断其是不是 “快乐数”，”快乐数“ 定义是：求数字的每一位数的平方和得到一个新数，判断这个数是否是 <code>1</code>，不是的话重复上述过程，直到数字是 <code>1</code>，或是无线循环。最终如果能得到数字 <code>1</code>， 则说明这个数是 “快乐数”，否则不是。题目链接：<a href="https://leetcode.com/problems/happy-number"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：19</p>
+<p>输出：true</p>
+<p>解释：</p>
+<p>1 * 1 + 9 * 9 &#x3D; 82</p>
+<p>8 * 8 + 2 * 2 &#x3D; 68</p>
+<p>6 * 6 + 8 * 8 &#x3D; 100</p>
+<p>1 * 1 + 0 * 0 + 0 * 0 &#x3D; 1</p>
+</blockquote>
+<blockquote>
+<p>输入：2</p>
+<p>输出：false</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题比较简单，直接按照题目意思进行模拟计算判断即可，代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isHappy</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> String.valueOf(n);</span><br><span class="line">        Set&lt;String&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!str.equals(<span class="string">&quot;1&quot;</span>)) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> str.charAt(i) - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                sum += num * num;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            str = String.valueOf(sum);</span><br><span class="line">            <span class="keyword">if</span> (set.contains(str)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            set.add(str);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
