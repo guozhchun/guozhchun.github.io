@@ -14234,4 +14234,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-205:Isomorphic Strings</title>
+    <url>/leetCode/leetCode-205/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定两个字符串，要求判断两个字符串是否是同构字符串。同构字符串的定义：可以按照某种规则将一个字符串中所有字符映射成另一个字符串的字符。每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身 。题目链接：<a href="https://leetcode.com/problems/isomorphic-strings"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：s &#x3D; “paper”, t &#x3D; “title”</p>
+<p>输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：s &#x3D; “badc”, t &#x3D; “baba”</p>
+<p>输出：false</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题关键在于读懂题意，按照题目意思维护两个字符串的映射规则，只要两个字符串中映射规则中不重复即可，代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isIsomorphic</span><span class="params">(String s, String t)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] lefts = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">128</span>];</span><br><span class="line">        <span class="type">char</span>[] rights = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">128</span>];</span><br><span class="line">        <span class="type">boolean</span>[] leftUsed = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">128</span>];</span><br><span class="line">        <span class="type">boolean</span>[] rightUsed = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">128</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (leftUsed[s.charAt(i)]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (lefts[s.charAt(i)] != t.charAt(i)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rightUsed[t.charAt(i)]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (rights[t.charAt(i)] != s.charAt(i)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                lefts[s.charAt(i)] = t.charAt(i);</span><br><span class="line">                rights[t.charAt(i)] = s.charAt(i);</span><br><span class="line">                leftUsed[s.charAt(i)] = <span class="literal">true</span>;</span><br><span class="line">                rightUsed[t.charAt(i)] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
