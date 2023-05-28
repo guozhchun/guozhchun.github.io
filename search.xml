@@ -14260,4 +14260,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-242:Valid Anagram</title>
+    <url>/leetCode/leetCode-242/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定两个字符串，要求判断两个字符串是否是异位词。异位词的定义：两个字符串的字符种类一样，每个种类的字符个数相同，不要求顺序相同。题目链接：<a href="https://leetcode.com/problems/valid-anagram/"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：s &#x3D; “anagram”, t &#x3D; “nagaram”</p>
+<p>输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：s &#x3D; “rat”, t &#x3D; “car”</p>
+<p>输出：false</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题比较简单，因为题目限制了字符串只会由小写字母组成，所以，可以直接用数组表示每个字符的数量，然后比较数组是否相同，如果相同，则是异位词，否则不是。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isAnagram</span><span class="params">(String s, String t)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] first = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span>[] second = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            first[s.charAt(i) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; t.length(); i++) &#123;</span><br><span class="line">            second[t.charAt(i) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (first[i] != second[i]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
