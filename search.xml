@@ -14377,4 +14377,32 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-312:Burst Balloons</title>
+    <url>/leetCode/leetCode-312/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个数组，表示气球的数字，当戳破一个编号为 <code>i</code> 的气球时，可以获得金币 <code>nums[i - 1] * nums[i] * nums[i + 1]</code> （如果 <code>nums[i - 1]</code> 或 <code>nums[i + 1]</code> 不存在，则值为 <code>1</code>），要求找出戳破气球所能获得的最大金币数量。题目链接：<a href="https://leetcode.com/problems/burst-balloons"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：nums &#x3D; [3,1,5,8]</p>
+<p>输出：167</p>
+<p>解释：nums &#x3D; [3,1,5,8] –&gt; [3,5,8] –&gt; [3,8] –&gt; [8] –&gt; []、coins &#x3D;  3<em>1</em>5    +   3<em>5</em>8   +  1<em>3</em>8  + 1<em>8</em>1 &#x3D; 167</p>
+</blockquote>
+<blockquote>
+<p>输入：nums &#x3D; [1,5]</p>
+<p>输出：10</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题如果使用暴力手法列出所有可能的情况，则会存在超时。需要用动态规划的解法进行求解。用 <code>dp[i][j]</code> 表示 <code>i</code> 到 <code>j</code> 中戳破气球所能获得的金币最大数（不包括边界 <code>i</code> 和 <code>j</code>），用 <code>k</code> 表示 <code>i~j</code> 中最后一个戳破的气球，则存在动态转移方程：<code>dp[i][j] = dp[i][k] + dp[k][j] + nums[i] * nums[k] * nums[j]</code>。注意 <code>dp[i][j]</code> 中是不包含边界 <code>i</code>、<code>j</code> 气球的。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxCoins</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length + <span class="number">2</span>][nums.length + <span class="number">2</span>];</span><br><span class="line">        <span class="type">int</span>[] values = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length + <span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            values[i + <span class="number">1</span>] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        values[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        values[nums.length + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> values.length - <span class="number">3</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">2</span>; j &lt; values.length; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> i + <span class="number">1</span>; k &lt; j; k++) &#123;</span><br><span class="line">                    dp[i][j] = Math.max(dp[i][j], values[i] * values[k] * values[j] + dp[i][k] + dp[k][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][values.length - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode.cn/problems/burst-balloons/solution/zhe-ge-cai-pu-zi-ji-zai-jia-ye-neng-zuo-guan-jian-/">https://leetcode.cn/problems/burst-balloons/solution/zhe-ge-cai-pu-zi-ji-zai-jia-ye-neng-zuo-guan-jian-/</a></p>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
