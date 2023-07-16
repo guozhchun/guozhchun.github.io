@@ -14437,4 +14437,60 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-374:Guess Number Higher or Lower</title>
+    <url>/leetCode/leetCode-374/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个正整数 <code>n</code>，要求在 <code>1~n</code> 范围内找到预设的数字。猜测数字规则如下：每次调用 <code>int guess(int num) </code> 获取猜测的值与预设的值比较结果，如果相同则返回 <code>0</code>，如果猜测的值比预设的值大，则返回 <code>-1</code>，如果猜测的值比预设的值小，则返回 <code>1</code>。题目链接：<a href="https://leetcode.com/problems/guess-number-higher-or-lower"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：n &#x3D; 10, pick &#x3D; 6</p>
+<p>输出：6</p>
+</blockquote>
+<blockquote>
+<p>输入：n &#x3D; 1, pick &#x3D; 1</p>
+<p>输出：1</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>用二分查找进行求解，代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Forward declaration of guess API.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  num   your guess</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 	     -1 if num is higher than the picked number</span></span><br><span class="line"><span class="comment"> *			      1 if num is lower than the picked number</span></span><br><span class="line"><span class="comment"> *               otherwise return 0</span></span><br><span class="line"><span class="comment"> * int guess(int num);</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> <span class="keyword">extends</span> <span class="title class_">GuessGame</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">guessNumber</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">end</span> <span class="operator">=</span> n;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">middle</span> <span class="operator">=</span> start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> guess(middle);</span><br><span class="line">            <span class="keyword">if</span> (temp == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> middle;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (temp &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                start = middle + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                end = middle - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetCode-375:Guess Number Higher or Lower II</title>
+    <url>/leetCode/leetCode-375/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个正整数 <code>n</code>， 要求在范围 <code>1~n</code> 内找到预设的数字。每次猜测时都会得到比较结果，告知是猜中了还是比预设的数字大或小，如果猜中则赢得游戏，否则扣除猜测数字相同的金币数量，游戏过程中如果金币数量小于等于0，则输掉游戏。要求找到最小的金币数量，使得一定可以赢得游戏。题目链接：<a href="https://leetcode.com/problems/guess-number-higher-or-lower-ii"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：n &#x3D; 10<br>输出：16<br>解释：制胜策略如下：</p>
+<ul>
+<li>数字范围是 [1,10] 。你先猜测数字为 7 。<br>- 如果这是我选中的数字，你的总费用为 $0 。否则，你需要支付 $7 。<br>     - 如果我的数字更大，则下一步需要猜测的数字范围是 [8,10] 。你可以猜测数字为 9 。<br>              - 如果这是我选中的数字，你的总费用为 $7 。否则，你需要支付 $9 。<br>                  - 如果我的数字更大，那么这个数字一定是 10 。你猜测数字为 10 并赢得游戏，总费用为 $7 + $9 &#x3D; $16 。<br>                       我的数字更小，那么这个数字一定是 8 。你猜测数字为 8 并赢得游戏，总费用为 $7 + $9 &#x3D; $16 。<br>                           - 如果我的数字更小，则下一步需要猜测的数字范围是 [1,6] 。你可以猜测数字为 3 。<br>                                - 如果这是我选中的数字，你的总费用为 $7 。否则，你需要支付 $3 。<br>                                         - 如果我的数字更大，则下一步需要猜测的数字范围是 [4,6] 。你可以猜测数字为 5 。<br>                                                 - 如果这是我选中的数字，你的总费用为 $7 + $3 &#x3D; $10 。否则，你需要支付 $5 。<br>                                                      更大，那么这个数字一定是 6 。你猜测数字为 6 并赢得游戏，总费用为 $7 + $3 + $5 &#x3D; $15 。<br>                                                                  - 如果我的数字更小，那么这个数字一定是 4 。你猜测数字为 4 并赢得游戏，总费用为 $7 + $3 + $5 &#x3D; $15 。<br>                                                                       更小，则下一步需要猜测的数字范围是 [1,2] 。你可以猜测数字为 1 。<br>                                                                                   - 如果这是我选中的数字，你的总费用为 $7 + $3 &#x3D; $10 。否则，你需要支付 $1 。<br>                                                                                        更大，那么这个数字一定是 2 。你猜测数字为 2 并赢得游戏，总费用为 $7 + $3 + $1 &#x3D; $11 。<br>                                                                                        在最糟糕的情况下，你需要支付 $16 。因此，你只需要 $16 就可以确保自己赢得游戏。</li>
+</ul>
+<p><img src="https://assets.leetcode.com/uploads/2020/09/10/graph.png"></p>
+</blockquote>
+<blockquote>
+<p>输入：n &#x3D; 1</p>
+<p>输出：0</p>
+<p>解释：只有一个数字，一猜即中</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>采用记忆化搜索进行求解，用 <code>dp[i][j]</code> 表示 <code>i ~ j</code> 区间要赢得游戏所需的最小金币数量，则动态转移方程为 <code>dp[i][j] = k + max(dp[i][k - 1], dp[k + 1][j])</code>，代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMoneyAmount</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n + <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == j) &#123;</span><br><span class="line">                    dp[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i + <span class="number">1</span> == j) &#123;</span><br><span class="line">                    dp[i][j] = i;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = -<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> search(dp, <span class="number">1</span>, n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">search</span><span class="params">(<span class="type">int</span>[][] dp, <span class="type">int</span> from, <span class="type">int</span> to)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (dp[from][to] != -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> dp[from][to];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> from + <span class="number">1</span>; k &lt; to; k++) &#123;</span><br><span class="line">            temp = Math.min(temp, k + Math.max(search(dp, from, k - <span class="number">1</span>), search(dp, k + <span class="number">1</span>, to)));</span><br><span class="line">        &#125;</span><br><span class="line">        dp[from][to] = temp;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[from][to];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
