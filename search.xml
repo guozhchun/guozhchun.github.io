@@ -14605,4 +14605,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-190:Reverse Bits</title>
+    <url>/leetCode/leetCode-190/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个32位无符号整数，要求将其按位翻转。题目链接：<a href="https://leetcode.com/problems/reverse-bits"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：n &#x3D; 00000010100101000001111010011100</p>
+<p>输出：00111001011110000010100101000000</p>
+</blockquote>
+<blockquote>
+<p>输入：n &#x3D; 00000000000000000000000000000001</p>
+<p>输出：10000000000000000000000000000000</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>按位运算倒置，代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">// you need treat n as an unsigned value</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">reverseBits</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">last</span> <span class="operator">=</span> n &amp; <span class="number">1</span>;</span><br><span class="line">            result = result | (last &lt;&lt; (<span class="number">31</span> - i));</span><br><span class="line">            n = n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
