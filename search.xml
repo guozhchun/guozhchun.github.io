@@ -14631,4 +14631,30 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-368:Largest Divisible Subset</title>
+    <url>/leetCode/leetCode-368/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个只包含正整数的不存在重复元素的数组，要求找出包含最大长度的子集合（存在多个时返回任意一个即可），该子集合中的元素满足任意两个元素都能整除。题目链接：<a href="https://leetcode.com/problems/largest-divisible-subset"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：nums &#x3D; [1,2,3]</p>
+<p>输出：[1, 2]  或 [1, 3]</p>
+</blockquote>
+<blockquote>
+<p>输入：nums &#x3D; [1,2,4,8]</p>
+<p>输出：[1, 2, 4, 8]</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题就是查找数组中的最大互为公约数子序列。可以使用动态规划求解，先对数组进行排序，然后用 <code>dp[i]</code> 表示以 <code>i</code> 位置元素为递增乘数队列的最后一个元素，则可遍历 <code>[0, i - 1]</code> 中的元素，如果当中某个元素时 <code>i</code> 元素的公约数，则可表示将 <code>i</code> 元素加入到 <code>k</code> 元素的列表中。动态转移方程为 <code>dp[i] = max(dp[k]) + 1</code>，最后，取 <code>dp</code> 数组中元素最大值就是目标数组的元素个数。以此为结果可以倒推结果数组中的每个元素。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">largestDivisibleSubset</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="type">int</span>[] dpIndex = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        <span class="type">int</span>[] dpCount = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        Arrays.fill(dpIndex, -<span class="number">1</span>);</span><br><span class="line">        Arrays.fill(dpCount, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">maxCount</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">lastIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] % nums[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (dpCount[j] + <span class="number">1</span> &gt; dpCount[i]) &#123;</span><br><span class="line">                        dpCount[i] = dpCount[j] + <span class="number">1</span>;</span><br><span class="line">                        dpIndex[i] = j;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (dpCount[i] &gt; maxCount) &#123;</span><br><span class="line">                maxCount = dpCount[i];</span><br><span class="line">                lastIndex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (lastIndex != -<span class="number">1</span>) &#123;</span><br><span class="line">            result.add(nums[lastIndex]);</span><br><span class="line">            lastIndex = dpIndex[lastIndex];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
