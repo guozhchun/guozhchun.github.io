@@ -14657,4 +14657,444 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-315:Count of Smaller Numbers After Self</title>
+    <url>/leetCode/leetCode-315/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个整数数组，要求输出一个数组，结果数组中的每个元素表示原始数组该位置后续元素比该位置元素小的元素数量。题目链接：<a href="https://leetcode.com/problems/count-of-smaller-numbers-after-self"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：nums &#x3D; [5,2,6,1]</p>
+<p>输出：[2,1,1,0]</p>
+<p>解释：原始数组中第一个元素 5，后续元素比他小的有两个：2 和 1，所以结果数组中第一个元素是 2</p>
+<p>原始数组中第二个元素 2，后续元素比他小的有一个： 1，所以结果数组中第二个元素是 1</p>
+<p>原始数组中第三个元素 6，后续元素比他小的有一个： 1，所以结果数组中第三个元素是 1</p>
+<p>原始数组中第四个元素 1，没有后续元素，所以结果数组中第四个元素是 0</p>
+</blockquote>
+<blockquote>
+<p>输入：nums &#x3D; [-1]</p>
+<p>输出：[0]</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>按照题目意思，此题最简单的做法是两层循环分别计算结果，但是这样明显会超时，所以需要寻求更优的解法。</p>
+<p>首先，先对数组进行排序去重，然后从后往前遍历数组，每次计算更新当前元素值的数量，同时计算获取小于当前元素值的数量。举例如下，假设数组 <code>nums = [7, 5, 6, 5, 2, 6, 5, 1] </code>，则其计算步骤如下：</p>
+<p>首先对数组排序去重，得到数组 <code>[1, 2, 5, 6, 7]</code>，然后从后往前遍历原始数组，分别计算数组元素出现的个数，同时计算小于该元素的元素数量。</p>
+<p>当 <code>i = 7</code> 时（原始数组最后一个元素），此时元素为 <code>1</code> ，更新数组如下，比 1 小的元素个数和为 0（表中没有比 1 小的元素），此时 <code>counts[7] = 0</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 6</code> 时，此时元素为 <code>5</code>，更新数组如下，比 <code>5</code> 小的元素有 <code>1</code> 和 <code>2</code>，其个数分别为 <code>1</code> 和 <code>0</code>，相加得到值 <code>1</code>，<code>counts[6] = 1</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 5</code> 时，此时元素为 <code>6</code>，更新数组如下，比 <code>6</code> 小的元素有 <code>1</code> 、 <code>2</code>、<code>5</code>，其个数分别为 <code>1</code> 、 <code>0</code>、<code>1</code>，相加得到值 <code>1</code>，<code>counts[5] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 4</code> 时，此时元素为 <code>2</code>，更新数组如下，比 <code>2</code> 小的元素有 <code>1</code>，其个数为 <code>1</code>，<code>counts[4] = 1</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 3</code> 时，此时元素为 <code>5</code>，更新数组如下，比 <code>5</code> 小的元素有 <code>1</code> 和 <code>2</code>，其个数分别为 <code>1</code> 和 <code>1</code>，相加得到值 <code>2</code>，<code>counts[4] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 2</code> 时，此时元素为 <code>6</code>，更新数组如下，比 <code>6</code> 小的元素有 <code>1</code> 、 <code>2</code>、<code>5</code>，其个数分别为 <code>1</code> 、 <code>1</code>、<code>2</code>，相加得到值 <code>4</code>，<code>counts[3] = 4</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 1</code> 时，此时元素为 <code>5</code>，更新数组如下，比 <code>5</code> 小的元素有 <code>1</code> 和 <code>2</code>，其个数分别为 <code>1</code> 和 <code>1</code>，相加得到值 <code>2</code>，<code>counts[1] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 0</code> 时，此时元素为 <code>7</code>，更新数组如下，比 <code>7</code> 小的元素有 <code>1</code> 、 <code>2</code>、<code>5</code>、<code>6</code>，其个数分别为 <code>1</code> 、 <code>1</code>、<code>3</code>、<code>2</code>，相加得到值 <code>7</code>，<code>counts[0] = 7</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>个数 c[j]</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>最终得到的结果数组为 <code>[7, 2, 4, 2, 1, 2, 1, 0]</code></p>
+<p>上述方法虽然可以得到结果，但是仍然效率低下。仔细观察可以发现，每次在计算个数时，都对元素之前的个数进行了汇总，这就是求前缀和或区间和，可以用树状数组来优化。此做法参考：<a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/solutions/325800/shu-zhuang-shu-zu-de-xiang-xi-fen-xi-by-yangbingji">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/solutions/325800/shu-zhuang-shu-zu-de-xiang-xi-fen-xi-by-yangbingji</a></p>
+<p>还是上面的例子，用树状数组计算的过程如下</p>
+<p>当 <code>i = 7</code> 时（原始数组最后一个元素），此时元素为 <code>1</code> ，对应树状数组下标为 <code>1</code>，更新树状数组<code>C[1]</code>、<code>C[2]</code>、<code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[0] = 0</code>， <code>counts[7] = 0</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 6</code> 时，此时元素为 <code>5</code>，对应树状数组下标为 <code>3</code>，更新树状数组 <code>C[3]</code>、<code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[2] = C[2] = 1</code>，<code>counts[6] = 1</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 5</code> 时，此时元素为 <code>6</code>，对应树状数组下标为 <code>4</code>，更新树状数组 <code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[3] = C[3] + C[2] = 2</code>，<code>counts[5] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 4</code> 时，此时元素为 <code>2</code>，对应树状数组下标为 <code>2</code>，更新树状数组 <code>C[2]</code>、<code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[1] = C[1] = 1</code>，<code>counts[4] = 1</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 3</code> 时，此时元素为 <code>5</code>，对应树状数组下标为 <code>3</code>，更新树状数组 <code>C[3]</code>、<code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[2] = C[2] = 2</code>，<code>counts[4] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 2</code> 时，此时元素为 <code>6</code>，对应树状数组下标为 <code>4</code>，更新树状数组 <code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[3] = C[3] + C[2] = 4</code>，<code>counts[3] = 4</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 1</code> 时，此时元素为 <code>5</code>，对应树状数组下标为 <code>3</code>，更新树状数组 <code>C[3]</code>、<code>C[4]</code>，计算前缀和 <code>sum[j - 1] = sum[2] = C[2] = 2</code>，<code>counts[1] = 2</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>当 <code>i = 0</code> 时，此时元素为 <code>7</code>，对应树状数组下标为 <code>5</code>，更新树状数组<code>C[5]</code>，计算前缀和 <code>sum[j - 1] = sum[4] = C[4] = 7</code>，<code>counts[0] = 7</code></p>
+<table>
+<thead>
+<tr>
+<th>数组 n[j]</th>
+<th>1</th>
+<th>2</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>树状数组C[j]</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr>
+<td>树状数组下标</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>最终得到的结果数组为 <code>[7, 2, 4, 2, 1, 2, 1, 0]</code></p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">countSmaller</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; numList = Arrays.stream(nums).distinct().sorted().boxed().collect(Collectors.toList());</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; numList.size(); i++) &#123;</span><br><span class="line">            map.put(numList.get(i), i + <span class="number">1</span>);    <span class="comment">// 错位，留出下标为 0 的位置，方便后续树状数组计算更新</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] sums = <span class="keyword">new</span> <span class="title class_">int</span>[numList.size() + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span>[] counts = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> nums.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> map.get(nums[i]);</span><br><span class="line">            update(sums, index);</span><br><span class="line">            counts[i] = querySum(sums, index - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(counts).boxed().collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">lowBit</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n &amp; (-n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(<span class="type">int</span>[] sums, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i; j &lt; sums.length; j += lowBit(j)) &#123;</span><br><span class="line">            sums[j]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">querySum</span><span class="params">(<span class="type">int</span>[] sums, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            result += sums[i];</span><br><span class="line">            i -= lowBit(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/solutions/325800/shu-zhuang-shu-zu-de-xiang-xi-fen-xi-by-yangbingji/">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/solutions/325800/shu-zhuang-shu-zu-de-xiang-xi-fen-xi-by-yangbingji/</a></p>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
