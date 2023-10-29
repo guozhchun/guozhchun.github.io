@@ -15326,4 +15326,34 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-430:Flatten a Multilevel Doubly Linked List</title>
+    <url>/leetCode/leetCode-430/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个链表，链表可能存在多层，要求将链表偏平化。题目链接：<a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/description"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：head &#x3D; [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]</p>
+<p>输出：[1,2,3,7,8,11,12,9,10,4,5,6]</p>
+<p>解释：输入的链表如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/11/09/flatten11.jpg"></p>
+<p>输出的链表如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/11/09/flatten12.jpg"></p>
+</blockquote>
+<blockquote>
+<p>输入：head &#x3D; []</p>
+<p>输出：[]</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>使用递归将子链表偏平化后再进行连接，为了避免重复遍历节点，可以在扁平化的过程中将子链表最后节点直接对接到父链表的下个节点上。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">    public int val;</span></span><br><span class="line"><span class="comment">    public Node prev;</span></span><br><span class="line"><span class="comment">    public Node next;</span></span><br><span class="line"><span class="comment">    public Node child;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Node <span class="title function_">flatten</span><span class="params">(Node head)</span> &#123;</span><br><span class="line">        flatten(head, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">flatten</span><span class="params">(Node head, Node next)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">Node</span> <span class="variable">current</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">while</span> (current.next != <span class="literal">null</span> &amp;&amp; current.child == <span class="literal">null</span>) &#123;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (current.child == <span class="literal">null</span>) &#123;</span><br><span class="line">            current.next = next;</span><br><span class="line">            <span class="keyword">if</span> (next != <span class="literal">null</span>) &#123;</span><br><span class="line">                next.prev = current;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">nextStep</span> <span class="operator">=</span> current.next;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">childNode</span> <span class="operator">=</span> current.child;</span><br><span class="line">            flatten(childNode, nextStep == <span class="literal">null</span> ? next : nextStep);</span><br><span class="line">            current.next = childNode;</span><br><span class="line">            childNode.prev = current;</span><br><span class="line">            current.child = <span class="literal">null</span>;</span><br><span class="line">            flatten(nextStep, next);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
