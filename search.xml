@@ -15356,4 +15356,32 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-268:Missing Number</title>
+    <url>/leetCode/leetCode-268/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个长度为 <code>n</code> 的非负整数数组，数组中元素均不相同，且元素都是 <code>[0, n]</code> 之间的某个数，要求找出数组中不在 <code>[0, n]</code> 中的数字。题目链接：<a href="https://leetcode.com/problems/missing-number"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：nums &#x3D; [3,0,1]</p>
+<p>输出：2</p>
+<p>解释：数组长度为 3，所以元素范围为 [0, 3]，数组中只有元素 0、1、3，缺少 2，所以返回 2</p>
+</blockquote>
+<blockquote>
+<p>输入：nums &#x3D; [0, 1, 2]</p>
+<p>输出：3</p>
+<p>解释：数组长度为 3，所以元素范围为 [0, 3]，数组中只有元素 0、1、2，缺少 3，所以返回 3</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题比较简单的做法是排序后遍历取出缺少的值，这样时间复杂度是 <code>O(nlogn)</code>，另一种降低时间复杂度的做法是使用 <code>set</code> 保存数组元素，然后遍历找出缺失的元素，这样时间复杂度是 <code>O(n)</code>，空间复杂度是 <code>O(n)</code>，再优化点的做法是使用原地哈希方式，将数组元素依次映射到正确位置上，然后遍历数组找出缺失的元素，这样时间复杂度是 <code>O(n)</code>，空间复杂度是 <code>O(1)</code>。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">missingNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (nums[i] != nums.length &amp;&amp; nums[i] != i) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nums[i];</span><br><span class="line">                nums[i] = nums[temp];</span><br><span class="line">                nums[temp] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] != i) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> nums.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
