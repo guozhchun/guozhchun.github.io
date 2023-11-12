@@ -15384,4 +15384,34 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-292:Nim Game</title>
+    <url>/leetCode/leetCode-292/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>有这么一个游戏：两人对玩，有这么一堆石头，每次都从石头中取出 <code>1</code> 或 <code>2</code> 或 <code>3</code> 个石头，最后一个石头是谁拿走则谁胜出。现在给定一个数字表示有 <code>n</code> 个石头，要求游戏中先手是否能获胜。题目链接：<a href="https://leetcode.com/problems/nim-game"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：4</p>
+<p>输出：false</p>
+<p>解释：假设先手拿了 1 个石头，则后手拿走剩下 3 个石头（包含最后一块石头），先手输</p>
+<p>假设先手拿了 2 个石头，则后手拿走剩下 2 个石头（包含最后一块石头），先手输</p>
+<p>假设先手拿了 3 个石头，则后手拿走剩下 1 个石头（包含最后一块石头），先手输</p>
+</blockquote>
+<blockquote>
+<p>输入：2</p>
+<p>输出：true</p>
+<p>解释：先手一次行拿走 2 个石头（包含最后一个石头），先手赢</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>石头在 <code>[1, 3]</code> 范围内，先手都赢，因为可以直接拿走所有的石头（包括最后一个石头），石头数量是 <code>4</code> 的时候，先手都输，因为无论先手拿 <code>[1, 3]</code> 中的任何一个石头，后手都可以直接拿走剩下的全部石头（包括最后一个石头）。如果石头数量是 <code>5</code>，则先手可以拿走 <code>1</code> 个石头，剩下的 <code>4</code> 个石头无论后手如何取都会失败（前面论证过 <code>4</code> 个石头的情况下先拿的人会失败），即先手胜。如果石头数量是 <code>6</code>，则先手可以拿走 <code>2</code> 个石头，剩下 <code>4</code> 个石头无论后手如何选择最终都会输掉游戏，即先手胜利。如果石头数量是 <code>7</code>，则先手可以拿走 <code>3</code>  个石头，剩下 <code>4</code> 个石头无论后手如何选择最终都会输掉游戏，即先手胜利。如果石头数量是 <code>8</code>，则先手无论取走多少个石头，后手都能将剩下的石头数变成 <code>4</code>（如果先手取 <code>1</code>，则后手取 <code>3</code>；如果先手取 <code>2</code>，则后手取 <code>2</code>；如果先手取 <code>3</code>，则后手取 <code>1</code>），此时先手无论如何取石头最终都会输掉游戏（参考前面对石头数量为 <code>4</code> 的分析）。如果石头数量是 <code>9</code>，则先手可以拿走 <code>1</code> 个石头，剩下 <code>8</code> 个石头无论后手如何取都会失败（最终表现为先手胜利），依次类推，可以得知，如果石头数量是 <code>4</code> 的倍数，则先手失败，否则先手胜利。因此，次题解转换为对 <code>n % 4</code> 的判断。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canWinNim</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n % <span class="number">4</span> != <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
