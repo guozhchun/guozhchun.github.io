@@ -15470,4 +15470,42 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-332:Reconstruct Itinerary</title>
+    <url>/leetCode/leetCode-332/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一份航线列表 <code>tickets</code> ，其中 <code>tickets[i] = [fromi, toi]</code> 表示飞机出发和降落的机场地点。要求对该行程进行重新规划排序（一笔画的做法）。该行程必须从 <code>JFK</code> 开始。如果存在多种有效的行程，请你按字典排序返回最小的行程组合。</p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：tickets &#x3D; [[“MUC”,”LHR”],[“JFK”,”MUC”],[“SFO”,”SJC”],[“LHR”,”SFO”]]</p>
+<p>输出：[“JFK”,”MUC”,”LHR”,”SFO”,”SJC”]</p>
+<p>解释：tickets代表的图如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/03/14/itinerary1-graph.jpg"></p>
+</blockquote>
+<blockquote>
+<p>输入：tickets &#x3D; [[“JFK”,”SFO”],[“JFK”,”ATL”],[“SFO”,”ATL”],[“ATL”,”JFK”],[“ATL”,”SFO”]]</p>
+<p>输出：[“JFK”,”ATL”,”JFK”,”SFO”,”ATL”,”SFO”]</p>
+<p>解释：tickets代表的图如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/03/14/itinerary2-graph.jpg"></p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>此题是需要将行程按一笔画的方式重新给出每个节点的顺序，使用 <code>Hierholzer </code> 算法进行求解即可，参考：<a href="https://leetcode.cn/problems/reconstruct-itinerary/solutions/389885/zhong-xin-an-pai-xing-cheng-by-leetcode-solution%E3%80%82%60Hierholzer">https://leetcode.cn/problems/reconstruct-itinerary/solutions/389885/zhong-xin-an-pai-xing-cheng-by-leetcode-solution。`Hierholzer</a> &#96; 算法流程如下</p>
+<blockquote>
+<p>从起点出发，进行深度优先搜索。</p>
+<p>每次沿着某条边从某个顶点移动到另外一个顶点的时候，都需要删除这条边。</p>
+<p>如果没有可移动的路径，则将所在节点加入到栈中，并返回。</p>
+<p>如果要顺序输出路径，则需要将栈中存储的节点进行逆序排序后输出</p>
+</blockquote>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">findItinerary</span><span class="params">(List&lt;List&lt;String&gt;&gt; tickets)</span> &#123;</span><br><span class="line">        Map&lt;String, Queue&lt;String&gt;&gt; map = buildMap(tickets);</span><br><span class="line">        List&lt;String&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        search(map, result, <span class="string">&quot;JFK&quot;</span>);</span><br><span class="line">        Collections.reverse(result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">search</span><span class="params">(Map&lt;String, Queue&lt;String&gt;&gt; map, List&lt;String&gt; result, String current)</span> &#123;</span><br><span class="line">        Queue&lt;String&gt; queue = map.get(current);</span><br><span class="line">        <span class="keyword">if</span> (queue != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">                search(map, result, queue.poll());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        result.add(current);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Queue&lt;String&gt;&gt; <span class="title function_">buildMap</span><span class="params">(List&lt;List&lt;String&gt;&gt; tickets)</span> &#123;</span><br><span class="line">        Map&lt;String, Queue&lt;String&gt;&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (List&lt;String&gt; ticket : tickets) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">from</span> <span class="operator">=</span> ticket.get(<span class="number">0</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">to</span> <span class="operator">=</span> ticket.get(<span class="number">1</span>);</span><br><span class="line">            map.putIfAbsent(from, <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;());</span><br><span class="line">            map.get(from).add(to);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://leetcode.cn/problems/reconstruct-itinerary/solutions/389885/zhong-xin-an-pai-xing-cheng-by-leetcode-solution">https://leetcode.cn/problems/reconstruct-itinerary/solutions/389885/zhong-xin-an-pai-xing-cheng-by-leetcode-solution</a></p>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
