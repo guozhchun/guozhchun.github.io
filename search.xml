@@ -15508,4 +15508,32 @@
         <tag>leetCode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetCode-331:Verify Preorder Serialization of a Binary Tree</title>
+    <url>/leetCode/leetCode-331/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给定一个字符串，字符串是用 <code>,</code> 分割的数字和 <code>#</code>，判断该字符串是否一个二叉树的前序遍历字符串（前序遍历过程中遇到空节点输出 <code>#</code>），要求在判断过程中不能将字符串转换为二叉树。题目链接：<a href="https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree"><strong>点我</strong></a></p>
+<span id="more"></span>
+
+<h1 id="样例输入输出"><a href="#样例输入输出" class="headerlink" title="样例输入输出"></a>样例输入输出</h1><blockquote>
+<p>输入：preorder &#x3D; “9,3,4,#,#,1,#,#,2,#,6,#,#”</p>
+<p>输出：true</p>
+<p>解释：该字符串代表的树形状如下</p>
+<p><img src="https://assets.leetcode.com/uploads/2021/03/12/pre-tree.jpg"></p>
+</blockquote>
+<blockquote>
+<p>输入：preorder &#x3D; “9,#,#,1”</p>
+<p>输出：false</p>
+</blockquote>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>用栈来模拟树的遍历过程，如果遇到 <code>#</code> ，则判断当前栈顶元素是否“暴露”了两次，如果是，说明当前节点的子节点已经遍历完成，将其出栈。最后判断栈中是否为空，如果为空，则说明是一个二叉树，否则不是。代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isValidSerialization</span><span class="params">(String preorder)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (preorder.equals(<span class="string">&quot;#&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String[] items = preorder.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">        <span class="type">int</span>[] counts = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">101</span>];</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; items.length; i++) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">item</span> <span class="operator">=</span> items[i];</span><br><span class="line">            <span class="keyword">if</span> (item.equals(<span class="string">&quot;#&quot;</span>)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                counts[stack.peek()]++;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// 可能存在重复的数字，所以用2的倍数来判断</span></span><br><span class="line">                <span class="keyword">while</span> (counts[stack.peek()] % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    stack.pop();</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment">// 如果遍历过程中栈为空，还有剩余元素没入栈，说明这不是一棵二叉树</span></span><br><span class="line">                    <span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">                        <span class="keyword">return</span> i == items.length - <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    counts[stack.peek()]++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                stack.push(Integer.parseInt(item));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>leetCode</tag>
+      </tags>
+  </entry>
 </search>
